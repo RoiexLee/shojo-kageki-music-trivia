@@ -1,0 +1,112 @@
+[
+  {
+    "id": "hoshi-no-dialogue",
+    "folder": "星のダイアローグ",
+    "title": "星のダイアローグ",
+    "romaji": "Hoshi no Daiarogu",
+    "aliases": ["繁星的对白", "星之对话", "Star Dialogue"],
+    "type": "OP",
+    "origin": "2018 TV动画",
+    "singers": ["スタァライト九九組"],
+    "description": "动画 OP，九九组全员合唱的青春宣言，Star 系列曲开山之作。"
+  },
+  {
+    "id": "star-divine",
+    "folder": "Star Divine",
+    "title": "Star Divine",
+    "romaji": "Sutaa Dibain",
+    "aliases": ["星之神性"],
+    "type": "主題歌",
+    "origin": "舞台 The LIVE #1（2017）／1st单曲",
+    "singers": ["スタァライト九九組"],
+    "description": "企划开山曲、九九组出道曲，命运舞台对决的象征。"
+  },
+  {
+    "id": "star-diamond",
+    "folder": "Star Diamond",
+    "title": "Star Diamond",
+    "romaji": "Sutaa Daiamondo",
+    "aliases": [],
+    "type": "シングル表題曲",
+    "origin": "6th单曲（2019）／劇場版ロンド・ロンド・ロンド（movie ver.）",
+    "singers": ["スタァライト九九組"],
+    "description": "以 3rdスタァライブ为主题的九人曲，剧场版另有四人 movie ver.。"
+  },
+  {
+    "id": "star-parade",
+    "folder": "Star Parade",
+    "title": "Star Parade",
+    "romaji": "Sutaa Pareedo",
+    "aliases": ["星辰游行"],
+    "type": "シングル表題曲",
+    "origin": "7th单曲（2020-02-19）",
+    "singers": ["スタァライト九九組"],
+    "description": "横浜アリーナ 3rdスタァライブ后九人羁绊之作。"
+  },
+  {
+    "id": "watashitachi-wa-mou-butai-no-ue",
+    "folder": "私たちはもう舞台の上",
+    "title": "私たちはもう舞台の上",
+    "romaji": "Watashitachi wa Mou Butai no Ue",
+    "aliases": ["我们已在舞台之上"],
+    "type": "劇場版主題歌",
+    "origin": "劇場版 少女☆歌劇 レヴュースタァライト（2021）",
+    "singers": ["スタァライト九九組"],
+    "description": "2021 剧场版主题歌，九九组对舞台少女身份的最终回答。"
+  },
+  {
+    "id": "star-darling",
+    "folder": "Star Darling",
+    "title": "Star Darling",
+    "romaji": "Sutaa Daaringu",
+    "aliases": [],
+    "type": "ゲームOP",
+    "origin": "游戏 舞台奏像劇 遙かなるエルドラド（2024）",
+    "singers": ["スタァライト九九組"],
+    "description": "主机游戏《遥かなるエルドラド》OP，最新的 Star 系列全员曲。"
+  },
+  {
+    "id": "kiraboshi-distance",
+    "folder": "綺羅星ディスタンス",
+    "title": "綺羅星ディスタンス",
+    "romaji": "Kiraboshi Disutansu",
+    "aliases": ["绮罗星距离"],
+    "type": "舞台主題歌",
+    "origin": "舞台 The LIVE #4 Climax（2023）",
+    "singers": ["スタァライト九九組"],
+    "description": "舞台 The LIVE #4 Climax 主题曲，王道剧摇滚曲风的集大成之作。"
+  },
+  {
+    "id": "gekijo-no-ghost",
+    "folder": "You are a ghost, I am a ghost 〜劇場のゴースト〜",
+    "title": "You are a ghost, I am a ghost 〜劇場のゴースト〜",
+    "romaji": "You are a ghost, I am a ghost ~Gekijou no Ghost~",
+    "aliases": ["剧场的幽灵", "你是幽灵我是幽灵"],
+    "type": "キャラソン",
+    "origin": "2018 TV动画 BD BOX② 特典CD",
+    "singers": ["スタァライト九九組", "神楽ひかり", "天堂真矢", "星見純那", "大場なな"],
+    "description": "以剧场幽灵为题的暗色调角色歌，主唱四人、咏唱对舞台的献身。"
+  },
+  {
+    "id": "saisei-sanbika",
+    "folder": "再生讃美曲",
+    "title": "再生讃美曲",
+    "romaji": "Saisei Sanbikyoku",
+    "aliases": ["再生赞美曲"],
+    "type": "劇場版主題歌",
+    "origin": "劇場版 ロンド・ロンド・ロンド（2020）",
+    "singers": ["スタァライト九九組"],
+    "description": "总集篇剧场版 Rondo Rondo Rondo 主题曲，庄严圣咏风全员曲。"
+  },
+  {
+    "id": "koi-wa-taiyou",
+    "folder": "恋は太陽 〜CIRCUS!〜",
+    "title": "恋は太陽 〜CIRCUS!〜",
+    "romaji": "Koi wa Taiyou ~CIRCUS!~",
+    "aliases": ["恋是太阳"],
+    "type": "キャラソン",
+    "origin": "2018 TV动画 BD BOX 特典CD",
+    "singers": ["スタァライト九九組", "石動双葉", "花柳香子"],
+    "description": "双葉与香子的马戏团主题对唱曲，小丑与空中秋千的舞台意象。"
+  }
+]

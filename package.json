@@ -1,0 +1,25 @@
+{
+  "name": "starlight-song-quiz",
+  "private": true,
+  "version": "0.1.0",
+  "description": "少女☆歌剧 Revue Starlight 网页猜歌游戏（非官方粉丝作品）",
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "tools/*"
+  ],
+  "scripts": {
+    "assets": "node tools/prepare-audio/src/cli.mjs",
+    "test": "npm test --workspaces --if-present",
+    "dev": "node scripts/run-web.mjs dev",
+    "build": "node scripts/run-web.mjs build"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

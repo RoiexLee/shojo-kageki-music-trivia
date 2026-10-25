@@ -1,0 +1,10 @@
+{
+  "name": "@starlight/prepare-audio",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "prepare-audio": "node src/cli.mjs",
+    "test": "vitest run"
+  }
+}
