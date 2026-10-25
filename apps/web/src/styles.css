@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(1200px 800px at 50% -10%, #3a1f42 0%, #1a0f1e 55%, #120a14 100%);
+  color: #f3ead9;
+  font-family: "Noto Sans SC", "Hiragino Sans", "Yu Gothic UI", system-ui, sans-serif;
+  min-height: 100vh;
+}
+
+/* 波形动画：42 根竖条，播放时律动（高度由 inline style 提供） */
+.wave {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 48px;
+}
+.wave i {
+  flex: 1;
+  background: linear-gradient(to top, #d4a24e, #f0d78c);
+  border-radius: 2px;
+  opacity: 0.45;
+  animation: wave-idle 2.4s ease-in-out infinite;
+}
+.wave.is-playing i {
+  opacity: 1;
+  animation: wave-play 0.9s ease-in-out infinite alternate;
+}
+@keyframes wave-idle {
+  0%, 100% { transform: scaleY(0.7); }
+  50% { transform: scaleY(1); }
+}
+@keyframes wave-play {
+  from { transform: scaleY(0.55); }
+  to { transform: scaleY(1); }
+}
+
+/* 进度点：完成/当前/未到 */
+.progress-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  background: #4a3a52;
+}
+.progress-dot.done { background: #d4a24e; }
+.progress-dot.current { background: #fff; box-shadow: 0 0 6px #f0d78c; }
+
+@media (prefers-reduced-motion: reduce) {
+  .wave i { animation: none; }
+}
+
+button:focus-visible {
+  outline: 2px solid #f0d78c;
+  outline-offset: 2px;
+}
