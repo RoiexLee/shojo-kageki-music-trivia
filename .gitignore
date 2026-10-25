@@ -1,0 +1,28 @@
+# 依赖
+node_modules/
+
+# 构建产物
+dist/
+apps/web/public/assets/audio/
+apps/web/public/assets/covers/
+*.tsbuildinfo
+
+# 生成的音频切片（可由 music/ + tools/prepare-audio 重新生成）
+generated/
+
+# 环境与缓存
+.env
+.env.*
+!.env.example
+.vite/
+coverage/
+*.log
+
+# 编辑器
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# agent 工作文件
+agents-workspace/
