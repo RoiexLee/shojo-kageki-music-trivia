@@ -11,6 +11,7 @@ import fs from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createHash } from 'node:crypto';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..', '..');
 const MUSIC_DIR = path.join(ROOT, 'music');
@@ -20,6 +21,7 @@ const MANIFEST_PATH = path.join(ASSETS_DIR, 'manifest.json');
 
 import { SEGMENT_SPECS, chorusStartOf, requiredSourceDurationSec, deriveStartSec } from './util.mjs';
 import { segmentToArgs, buildCoverArgs, paramsEqual, alignSongs } from './ffmpeg.mjs';
+import { parseLrc, MIN_VALID_LINES } from './lyrics.mjs';
 import { run, probeDurationSec } from './proc.mjs';
 
 function parseArgs(argv) {
@@ -89,7 +91,7 @@ async function main() {
 
   if (opts.verify) return verify(prevManifest, songs);
 
-  // 前置时长校验
+  // 前置校验：源时长 + lrc 有效行数
   const tooShort = [];
   for (const song of targets) {
     const src = path.join(MUSIC_DIR, song.folder, `${song.folder}.mp3`);
@@ -97,9 +99,12 @@ async function main() {
     const need = requiredSourceDurationSec(chorusStartOf(song));
     if (dur === null) tooShort.push(`${song.folder}: 无法探测时长`);
     else if (dur < need) tooShort.push(`${song.folder}: 总时长 ${dur.toFixed(1)}s < 副歌起点+10s（${need}s）`);
+    const lrc = parseLrc(await fs.readFile(path.join(MUSIC_DIR, song.folder, `${song.folder}.lrc`), 'utf-8'));
+    if (lrc.skipped > 0) console.warn(`[警告] ${song.folder}: lrc 有 ${lrc.skipped} 行无法解析（已跳过）`);
+    if (lrc.lines.length < MIN_VALID_LINES) tooShort.push(`${song.folder}: lrc 有效行 ${lrc.lines.length} < ${MIN_VALID_LINES}，歌词模式不可用`);
   }
   if (tooShort.length) {
-    console.error(`[错误] 以下歌曲时长不足，请调低其 chorusStartSec 或更换音源:\n  - ${tooShort.join('\n  - ')}`);
+    console.error(`[错误] 以下歌曲源素材未通过校验:\n  - ${tooShort.join('\n  - ')}`);
     process.exit(1);
   }
 
@@ -121,7 +126,11 @@ async function main() {
 
 async function processSong(song, prev, opts, stats) {
   const chorusStart = chorusStartOf(song);
-  const params = { chorusStartSec: chorusStart, bitrate: '128k', generatedAt: new Date().toISOString() };
+  const lrc = await fs.readFile(path.join(MUSIC_DIR, song.folder, `${song.folder}.lrc`), 'utf-8');
+  const lyricsHash = createHash('sha256').update(lrc).digest('hex');
+  const { lines } = parseLrc(lrc);
+  if (lines.length < MIN_VALID_LINES) throw new Error(`${song.id}: 歌词有效行不足 ${MIN_VALID_LINES}`);
+  const params = { chorusStartSec: chorusStart, bitrate: '128k', lyricsHash, generatedAt: new Date().toISOString() };
   const prevParamsOk = prev !== null && paramsEqual(prev.params, params);
   const segments = {};
 
@@ -157,6 +166,21 @@ async function processSong(song, prev, opts, stats) {
     console.log(`  [${song.id}] cover ✓`);
   }
 
+  const lyricsAbs = path.join(ASSETS_DIR, 'lyrics', `${song.id}.json`);
+  const lyricsData = { id: song.id, lineCount: lines.length, sourceHash: lyricsHash, lines };
+  let lyricsUpToDate = false;
+  if (!opts.force && prev?.params.lyricsHash === lyricsHash && existsSync(lyricsAbs)) {
+    try { lyricsUpToDate = JSON.stringify(JSON.parse(await fs.readFile(lyricsAbs, 'utf-8'))) === JSON.stringify(lyricsData); }
+    catch { /* 损坏产物会由源歌词重建。 */ }
+  }
+  if (lyricsUpToDate) stats.skipped++;
+  else {
+    await fs.mkdir(path.dirname(lyricsAbs), { recursive: true });
+    await fs.writeFile(lyricsAbs, JSON.stringify(lyricsData, null, 2) + '\n', 'utf-8');
+    stats.built++;
+    console.log(`  [${song.id}] lyrics (${lines.length} 行) ✓`);
+  }
+
   return { id: song.id, folder: song.folder, title: song.title, segments, coverPath, params };
 }
 
@@ -184,12 +208,25 @@ async function verify(manifest, songs) {
     }
     const coverAbs = path.join(ASSETS_DIR, entry.coverPath);
     if (!existsSync(coverAbs)) problems.push(`${song.id}: 封面不存在 ${entry.coverPath}`);
+    try {
+      const content = await fs.readFile(path.join(MUSIC_DIR, song.folder, `${song.folder}.lrc`), 'utf-8');
+      const hash = createHash('sha256').update(content).digest('hex');
+      const expected = parseLrc(content).lines;
+      const lyrics = JSON.parse(await fs.readFile(path.join(ASSETS_DIR, 'lyrics', `${song.id}.json`), 'utf-8'));
+      if (lyrics.id !== song.id || lyrics.sourceHash !== hash || entry.params.lyricsHash !== hash
+        || lyrics.lineCount !== expected.length || expected.length < MIN_VALID_LINES
+        || JSON.stringify(lyrics.lines) !== JSON.stringify(expected)) {
+        problems.push(`${song.id}: 歌词内容、行数或源文件指纹不一致，请重新生成`);
+      }
+    } catch (err) {
+      problems.push(`${song.id}: 歌词校验失败（${err.message}）`);
+    }
   }
   if (problems.length) {
     console.error(`校验失败（${problems.length} 处）:\n  - ${problems.join('\n  - ')}`);
     process.exit(1);
   }
-  console.log(`校验通过：${songs.length} 首歌 × 5 片段 + 封面，路径与时长（±0.5s）全部一致。`);
+  console.log(`校验通过：${songs.length} 首歌 × 5 片段 + 封面 + 歌词，路径、时长（±0.5s）、歌词内容与源文件指纹全部一致。`);
 }
 
 main().catch((err) => { console.error(err.message ?? err); process.exit(1); });

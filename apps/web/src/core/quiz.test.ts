@@ -5,6 +5,9 @@ import {
   summarize,
   formatTime,
   DIFFICULTY_MAP,
+  MODE_DIFFICULTY_MAP,
+  lyricCandidates,
+  toggleSelection,
   mulberry32,
   shuffle,
   type Song,
@@ -130,5 +133,55 @@ describe('judge / summarize / formatTime', () => {
     expect(formatTime(45_000)).toBe('45秒');
     expect(formatTime(83_000)).toBe('1分23秒');
     expect(formatTime(0)).toBe('0秒');
+  });
+});
+
+describe('plan-003 模式矩阵与判定', () => {
+  const songs = makeSongs(12);
+  const lyrics = Object.fromEntries(songs.map((song) => [song.id, {
+    id: song.id,
+    lineCount: 2,
+    lines: [{ timeMs: 0, text: `${song.title} 的长歌词片段` }, { timeMs: 1000, text: '星光照亮舞台上的歌声' }],
+  }]));
+
+  it('四模式三难度都有完整规格', () => {
+    for (const mode of ['intro', 'lyrics', 'reverse', 'mix'] as const) {
+      for (const difficulty of ['easy', 'normal', 'hard'] as const) {
+        const spec = MODE_DIFFICULTY_MAP[mode][difficulty];
+        expect(spec.optionCount).toBeGreaterThanOrEqual(spec.answerCount);
+        const questions = buildQuiz(songs, { mode, difficulty, questionCount: 2, seed: 8 }, lyrics);
+        expect(questions).toHaveLength(2);
+        expect(questions[0].optionSongIds).toHaveLength(spec.optionCount);
+      }
+    }
+  });
+
+  it('歌词抽行去除短行、标题泄露与重复文本', () => {
+    const song = { id: 'x', title: 'Star Divine', type: 'OP', origin: 'x' };
+    expect(lyricCandidates(song, [
+      { timeMs: 0, text: '哈' },
+      { timeMs: 1, text: 'Star Divine 这是标题' },
+      { timeMs: 2, text: '可以留下的完整歌词' },
+      { timeMs: 3, text: '可以留下的完整歌词' },
+    ])).toEqual([{ timeMs: 2, text: '可以留下的完整歌词' }]);
+  });
+
+  it('mix 只有答案集合完全相等才判对，toggle 可取消且不超选', () => {
+    const question = buildQuiz(songs, { mode: 'mix', difficulty: 'easy', questionCount: 1, seed: 5 }, lyrics)[0];
+    expect(question.mode).toBe('mix');
+    if (question.mode !== 'mix') return;
+    const [first, second] = question.answerSongIds;
+    const distractor = question.optionSongIds.find((id) => !question.answerSongIds.includes(id))!;
+    expect(judge(question, question.answerSongIds)).toBe(true);
+    expect(judge(question, [...question.answerSongIds].reverse())).toBe(true);
+    expect(judge(question, [first, distractor])).toBe(false);
+    expect(judge(question, [first, first])).toBe(false);
+    expect(judge(question, question.answerSongIds.slice(0, 1))).toBe(false);
+    expect(judge(question, [...question.answerSongIds, distractor])).toBe(false);
+    expect(toggleSelection(question, [], first)).toEqual([first]);
+    expect(toggleSelection(question, [first], first)).toEqual([]);
+    expect(toggleSelection(question, [first], second)).toEqual([first, second]);
+    expect(toggleSelection(question, [first, second], distractor)).toEqual([first, second]);
+    expect(toggleSelection(question, [first], 'not-an-option')).toEqual([first]);
   });
 });

@@ -1,0 +1,39 @@
+import { describe, expect, it, vi } from 'vitest';
+import { renderToStaticMarkup } from 'react-dom/server';
+import { QuizPage } from './QuizPage.tsx';
+import type { MixQuestion } from '../core/quiz.ts';
+
+const question: MixQuestion = {
+  id: 'q1', mode: 'mix', answerSongIds: ['a', 'b'], optionSongIds: ['a', 'b', 'c', 'd'],
+  clips: [{ songId: 'a', segmentKey: 'chorus-10' }, { songId: 'b', segmentKey: 'chorus-10' }],
+};
+const songById = new Map(['a', 'b', 'c', 'd'].map((id) => [id, { id, title: `歌曲${id}`, type: 'OP', origin: '动画' }]));
+
+function render(selectedIds: string[], failedCount = 0, isPlaying = false) {
+  return renderToStaticMarkup(<QuizPage question={question} questions={[question]} index={0} answered selectedIds={selectedIds}
+    score={0} difficulty="easy" songById={songById} entryById={new Map()}
+    onSelect={vi.fn()} onConfirm={vi.fn()} onNext={vi.fn()} onExit={vi.fn()}
+    audio={{ isPlaying, needsGesture: false, queueIndex: 0, failedCount, replay: vi.fn(), resumeFromGesture: vi.fn(), play: vi.fn(), playQueue: vi.fn() }} />);
+}
+
+describe('答题页判定与音频反馈', () => {
+  it('选满但含干扰项时，显示错误与完整答案，不误报答对', () => {
+    const html = render(['a', 'c']);
+    expect(html).toContain('选错了。答案：歌曲a、歌曲b');
+    expect(html).not.toContain('答对了！');
+    expect(html).toContain('0 分');
+  });
+
+  it('答案集合正确才显示答对', () => {
+    expect(render(['b', 'a'])).toContain('答对了！');
+  });
+
+  it('坏片段有失败提示和重试入口，不播放时不宣称正在播放', () => {
+    const html = render(['a', 'c'], 1);
+    expect(html).toContain('1 段音频加载失败');
+    expect(html).toContain('重新加载并播放');
+    expect(html).toContain('暂未播放，可重放');
+    expect(html).not.toContain('正在播放');
+    expect(render(['a', 'c'], 0, true)).toContain('正在播放');
+  });
+});
