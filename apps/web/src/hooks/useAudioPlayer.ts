@@ -15,6 +15,8 @@ export function useAudioPlayer() {
   const play = useCallback((src: string) => queue.current?.play(src), []);
   const replay = useCallback(() => queue.current?.replay(), []);
   const stop = useCallback(() => queue.current?.stop(), []);
+  const pause = useCallback(() => queue.current?.pause(), []);
+  const resume = useCallback(() => queue.current?.resume(), []);
   const resumeFromGesture = useCallback(() => queue.current?.resumeFromGesture(), []);
-  return { ...state, playQueue, play, replay, stop, resumeFromGesture };
+  return { ...state, playQueue, play, replay, stop, pause, resume, resumeFromGesture };
 }

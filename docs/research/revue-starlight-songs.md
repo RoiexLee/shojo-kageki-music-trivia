@@ -175,9 +175,13 @@
 
 官方 YouTube 频道（MV/试听缩略图）：https://www.youtube.com/channel/UCpcs9GP_NIBxzDfNTWolNPw
 
-注意：官网图片经 JS 渲染，具体图片文件 URL 需浏览器开发者工具或另想办法提取；上述为页面级 URL。
+已通过官网 HTML/CSS 实际查证并在本地保存使用以下图片（不代表取得公开再分发授权）：`https://revuestarlight.com/wordpress/wp-content/themes/revuestarlight_v1/assets/images/common/logo_white@2x.png`（logo）；`https://revuestarlight.com/wordpress/wp-content/themes/revuestarlight_v1/assets/images/common/animation/tv/visual_pc.png`（1920×840 九人横幅）；`https://revuestarlight.com/wordpress/wp-content/themes/revuestarlight_v1/assets/images/common/animation/tv/bg_caststaff_pc.png`（舞台背景）。来源页为 `https://revuestarlight.com/animation/character/`。
 
-## 四、系列歌曲总量概况
+### 四、玩法参考差异
+
+MyGO 猜歌当前生产页面包含混音、倒放串烧等玩法。本项目的“混合连猜”采用副歌片段顺序连播，歌词猜歌是本项目新增模式；两者均不声称与参考页面实现完全相同。
+
+## 五、系列歌曲总量概况
 
 系列音乐发行分多条线，量级如下（以本次调研确认的锚点估算，非精确统计）：
 
@@ -189,7 +193,7 @@
 
 综合估算：不含手游 Re LIVE，全系列歌曲约 60-80 首；计入 Re LIVE 角色歌则超过 100 首。本游戏选用的 10 首仅为「Star 系列＋代表曲」的横截面。
 
-## 五、数据可信度说明
+## 六、数据可信度说明
 
 - **多源核实（高可信）**：Star Parade（官方音乐页＋リスアニ）、Star Darling（官方页＋canime）、綺羅星ディスタンス（bushiroad-music＋官网＋uta-net 三源）、You are a ghost…（fandom＋uta-net＋Spotify）、再生讃美曲（官方页＋官方 YouTube）、私たちはもう舞台の上（ポニーキャニオン＋官网＋Apple Music）、九九组 9 人声优（多个官方页一致列出）。Best Album 22 曲结构有官方商品页＋ポニーキャニオン新闻双重来源。
 - **单源或弱源（中低可信，使用时建议复核）**：恋は太陽 〜CIRCUS!〜 的「BD BOX 3 初回特典初出」细节主要来自搜索摘要（revuestarlight＋oricon 概括）；角色代表色**色名**来自官方应援色惯例＋Wikipedia/粉丝站汇总（中等）；hex 色值仅 #FB5458（華恋）一条且出自粉丝站/fandom 汇总（单源，低-中）；「总量概况」一节的数字为锚点估算而非逐碟清点。

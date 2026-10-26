@@ -20,6 +20,23 @@ function setup(errors: (Error | undefined)[] = []) {
 afterEach(() => vi.useRealTimers());
 
 describe('连播生命周期', () => {
+  it('暂停保留当前音频位置，继续不重建音频，退出后继续无效', async () => {
+    const { player, elements, state } = setup();
+    player.playQueue(['a.mp3', 'b.mp3']);
+    elements[0].currentTime = 3.5;
+    elements[0].onplay?.(new Event('play'));
+    player.pause();
+    expect(state()).toMatchObject({ isPlaying: false, isPaused: true });
+    player.resume();
+    await Promise.resolve();
+    expect(elements).toHaveLength(1);
+    expect(elements[0].currentTime).toBe(3.5);
+    expect(elements[0].play).toHaveBeenCalledTimes(2);
+    elements[0].onplay?.(new Event('play'));
+    expect(state()).toMatchObject({ isPlaying: true, isPaused: false });
+    player.stop(); player.resume();
+    expect(elements[0].play).toHaveBeenCalledTimes(2);
+  });
   it('结束后间隔 500ms，重放从第一首开始', () => {
     vi.useFakeTimers();
     const { player, elements, state } = setup();

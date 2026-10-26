@@ -13,7 +13,7 @@ function render(selectedIds: string[], failedCount = 0, isPlaying = false) {
   return renderToStaticMarkup(<QuizPage question={question} questions={[question]} index={0} answered selectedIds={selectedIds}
     score={0} difficulty="easy" songById={songById} entryById={new Map()}
     onSelect={vi.fn()} onConfirm={vi.fn()} onNext={vi.fn()} onExit={vi.fn()}
-    audio={{ isPlaying, needsGesture: false, queueIndex: 0, failedCount, replay: vi.fn(), resumeFromGesture: vi.fn(), play: vi.fn(), playQueue: vi.fn() }} />);
+    audio={{ isPlaying, isPaused: false, needsGesture: false, queueIndex: 0, failedCount, replay: vi.fn(), resumeFromGesture: vi.fn(), play: vi.fn(), playQueue: vi.fn(), stop: vi.fn(), pause: vi.fn(), resume: vi.fn() }} />);
 }
 
 describe('答题页判定与音频反馈', () => {

@@ -8,7 +8,7 @@
 npm run assets                    # 全量生成（幂等：params 一致且文件存在则跳过）
 npm run assets -- --only <id>     # 只处理指定歌曲（id 见 packages/shared/src/songs.json）
 npm run assets -- --force         # 忽略幂等，全量重建
-npm run assets -- --verify        # 只读校验：路径存在 + ffprobe 时长与标称一致（±0.5s）
+npm run assets -- --verify        # 只读校验：路径、ffprobe 时长、封面、歌词结构与 LRC 指纹
 ```
 
 ## 产物
@@ -17,7 +17,8 @@ npm run assets -- --verify        # 只读校验：路径存在 + ffprobe 时长
 - `audio/{id}/chorus-10.mp3` — 副歌切片（起点 = 该歌 `chorusStartSec`，默认 72s）
 - `audio/{id}/reverse-8.mp3` — 副歌段倒放
 - `covers/{id}.jpg` — 封面压缩（最长边 ≤512px，不放大小图）
-- `manifest.json` — 条目含 `segments`（五片段 path + 实测时长）、`coverPath`、`params`（chorusStartSec/bitrate/generatedAt）
+- `lyrics/{id}.json` — `{ id, lineCount, lines: [{ timeMs, text, translation? }] }`；有效歌词少于 8 行会阻止生成
+- `manifest.json` — 条目含 `segments`（五片段 path + 实测时长）、`coverPath`、`params`（chorusStartSec/bitrate/generatedAt/lrcSha256）
 
 ## 处理规则
 

@@ -1,11 +1,12 @@
 export interface AudioState {
   isPlaying: boolean;
+  isPaused: boolean;
   needsGesture: boolean;
   queueIndex: number;
   failedCount: number;
 }
 
-export const initialAudioState: AudioState = { isPlaying: false, needsGesture: false, queueIndex: 0, failedCount: 0 };
+export const initialAudioState: AudioState = { isPlaying: false, isPaused: false, needsGesture: false, queueIndex: 0, failedCount: 0 };
 
 /** 独立于 React，以便验证播放 promise、媒体事件与换题取消的竞态。 */
 export function createAudioQueue(createAudio: () => HTMLAudioElement, onChange: (state: AudioState) => void) {
@@ -36,7 +37,7 @@ export function createAudioQueue(createAudio: () => HTMLAudioElement, onChange: 
   function startClip(index: number) {
     cancel();
     const ticket = revision;
-    update({ queueIndex: index, isPlaying: false, needsGesture: false });
+    update({ queueIndex: index, isPlaying: false, isPaused: false, needsGesture: false });
     if (!sources[index]) return;
     const current = createAudio();
     audio = current;
@@ -49,16 +50,20 @@ export function createAudioQueue(createAudio: () => HTMLAudioElement, onChange: 
       update({ isPlaying: false, needsGesture: false, failedCount: state.failedCount + Number(failed) });
       if (index + 1 < sources.length) timer = setTimeout(() => startClip(index + 1), gap);
     };
-    current.onplay = () => { if (revision === ticket) update({ isPlaying: true, needsGesture: false }); };
+    current.onplay = () => { if (revision === ticket) update({ isPlaying: true, isPaused: false, needsGesture: false }); };
     current.onpause = () => { if (revision === ticket) update({ isPlaying: false }); };
     current.onended = () => advance(false);
     current.onerror = () => advance(true);
-    void current.play().catch((error: unknown) => {
+    const tryPlay = () => current.play().catch((error: unknown) => {
       if (revision !== ticket) return;
       if (error instanceof Error && error.name === 'NotAllowedError') update({ isPlaying: false, needsGesture: true });
       else if (!(error instanceof Error && error.name === 'AbortError')) advance(true);
     });
+    resumeCurrent = tryPlay;
+    void tryPlay();
   }
+
+  let resumeCurrent: (() => Promise<void>) | undefined;
 
   function playQueue(srcs: string[], gapMs = 500) {
     cancel();
@@ -72,8 +77,10 @@ export function createAudioQueue(createAudio: () => HTMLAudioElement, onChange: 
     playQueue,
     play: (src: string) => playQueue([src]),
     replay: () => playQueue(sources, gap),
+    pause: () => { if (audio) { audio.pause(); update({ isPlaying: false, isPaused: true }); } },
+    resume: () => { if (audio && state.isPaused) void resumeCurrent?.(); },
     resumeFromGesture: () => { if (sources.length) startClip(state.queueIndex); },
-    stop: () => { cancel(); update({ isPlaying: false, needsGesture: false }); },
+    stop: () => { cancel(); update({ isPlaying: false, isPaused: false, needsGesture: false }); },
     dispose: cancel,
   };
 }
