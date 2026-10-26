@@ -41,7 +41,7 @@ const DEFAULT_TRIO = [
 
 const COPY: Record<QuizMode, string> = {
   intro: '聆听曲中片段，猜出歌名',
-  lyrics: '根据一句中文歌词，认出歌曲',
+  lyrics: '展示日文歌词与中文译文，认出歌曲',
   reverse: '从倒放的旋律中，认出歌曲',
   mix: '两首副歌同步混合，全部选出',
 };
@@ -222,9 +222,6 @@ export function HomePage({
                   <span className="overture-gold-text">再赴舞台。</span>
                 </h1>
                 <p className="hero-subtitle">少女☆歌剧 Revue Starlight 猜歌挑战</p>
-                <p className="hero-meta">
-                  {songCount} 首歌曲 · 每局 10 题 · 三档难度
-                </p>
               </div>
 
               {/* 舞台前沿九九组颜色条（含全员高亮特殊标记 + 9 位角色代表色） */}
@@ -363,7 +360,7 @@ export function HomePage({
 
               <p className="mode-hint">
                 {mode === 'lyrics'
-                  ? '作答前显示中文翻译，提交后播放正确歌曲片段并揭晓原文。'
+                  ? '同时展示日文主词与中文辅助译文，提交后播放该句歌词附近的原曲片段。'
                   : mode === 'mix'
                     ? '两首片段同刻开始，可反复重听；选满后确认，全部选对才得分。'
                     : mode === 'reverse'

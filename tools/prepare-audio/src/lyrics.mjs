@@ -46,6 +46,7 @@ export function parseLrc(content) {
     if (body === '') continue; // 空时间戳行：间奏标记，静默跳过
     const { text, translation } = splitTranslation(body);
     if (text === '') { out.skipped++; continue; }
+    if (/^(?:翻译|翻譯|作词|作詞|作曲|编曲|編曲)\s*[：:]/.test(text)) continue;
     out.lines.push({ timeMs: timestampToMs(mm, ss, frac), text, ...(translation ? { translation } : {}) });
   }
   return out;

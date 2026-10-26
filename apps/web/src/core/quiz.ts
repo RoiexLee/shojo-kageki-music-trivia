@@ -120,6 +120,9 @@ export interface LyricsQuestion extends QuestionBase {
   answerSongId: string;
   lyricText: string;
   originalLyricText?: string;
+  lyricTimeMs?: number;
+  clipStartSec?: number;
+  clipDurationSec?: number;
   translation?: string;
   originHint?: string;
 }
@@ -215,19 +218,32 @@ export function buildQuiz(songs: Song[], config: QuizConfig, lyrics: LyricsById 
       optionSongIds: shuffle(options, rng),
     };
     if (config.mode === 'intro') return { ...common, mode: 'intro', segmentKey: DIFFICULTY_MAP[config.difficulty].segmentKey };
+    const allLines = lyrics[answer.id]?.lines ?? [];
     let line: LyricLine | undefined;
     if (config.mode === 'lyrics') {
-      const candidates = translationCandidates(answer, lyrics[answer.id]?.lines ?? []);
+      const candidates = translationCandidates(answer, allLines);
       if (!candidates.length) throw new Error(`《${answer.title}》没有可用的中文歌词译文，请返回选择其他模式或重新准备歌词资源。`);
       line = candidates[Math.floor(rng() * candidates.length)];
     } else if (spec.hint === 'lyric') {
-      const candidates = lyricCandidates(answer, lyrics[answer.id]?.lines ?? []);
+      const candidates = lyricCandidates(answer, allLines);
       if (!candidates.length) throw new Error(`《${answer.title}》没有可用的猜歌歌词，请返回选择其他模式或重新准备歌词资源。`);
       line = candidates[Math.floor(rng() * candidates.length)];
     }
     if (config.mode === 'reverse') return { ...common, mode: 'reverse', segmentKey: 'reverse-8', lyricHint: line?.text };
+    const lineIdx = line ? allLines.indexOf(line) : -1;
+    const nextLine = lineIdx >= 0 ? allLines[lineIdx + 1] : undefined;
+    const clipStartSec = Math.max(0, Number((line!.timeMs / 1000 - 0.5).toFixed(2)));
+    const rawSpanSec =
+      nextLine && nextLine.timeMs > line!.timeMs ? (nextLine.timeMs - line!.timeMs) / 1000 + 0.8 : 6;
+    const clipDurationSec = Number(Math.min(7.5, Math.max(4.5, rawSpanSec)).toFixed(2));
     return {
-      ...common, mode: 'lyrics', lyricText: line!.translation!, originalLyricText: line!.text,
+      ...common,
+      mode: 'lyrics',
+      lyricText: line!.translation!,
+      originalLyricText: line!.text,
+      lyricTimeMs: line!.timeMs,
+      clipStartSec,
+      clipDurationSec,
       originHint: spec.hint === 'origin' ? answer.origin : undefined,
     };
   });

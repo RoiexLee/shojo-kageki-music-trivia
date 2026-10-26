@@ -11,6 +11,11 @@ export interface PlaybackProgress {
   durationSec: number;
 }
 
+export interface PlaybackWindow {
+  startSec: number;
+  durationSec: number;
+}
+
 export const initialAudioState: AudioState = {
   isPlaying: false, isPaused: false, needsGesture: false, queueIndex: 0, failedCount: 0,
 };
@@ -35,6 +40,7 @@ export function createAudioQueue(
   let startedAt = 0;
   let offset = 0;
   let duration = 0;
+  let clipWindow: PlaybackWindow | null = null;
 
   function update(patch: Partial<AudioState>) {
     state = { ...state, ...patch };
@@ -83,8 +89,13 @@ export function createAudioQueue(
     const when = ctx.currentTime + 0.03;
     const gain = 1 / Math.max(1, decoded.length);
     ended = 0;
-    duration = Math.max(...decoded.map((buffer) => buffer.duration));
+    const rawDuration = Math.max(...decoded.map((buffer) => buffer.duration));
+    const winStart = clipWindow ? Math.max(0, Math.min(clipWindow.startSec, Math.max(0, rawDuration - 0.5))) : 0;
+    duration = clipWindow
+      ? Math.max(0.5, Math.min(clipWindow.durationSec, Math.max(0, rawDuration - winStart)))
+      : rawDuration;
     offset = Math.max(0, Math.min(fromOffset, duration));
+    const remainSec = Math.max(0.05, duration - offset);
     startedAt = when - offset;
     active = decoded.map((buffer) => {
       const source = ctx.createBufferSource();
@@ -105,7 +116,11 @@ export function createAudioQueue(
           update({ isPlaying: false, isPaused: false, needsGesture: false });
         }
       };
-      source.start(when, offset);
+      if (clipWindow) {
+        source.start(when, winStart + offset, remainSec);
+      } else {
+        source.start(when, offset);
+      }
       return source;
     });
     update({ isPlaying: true, isPaused: false, needsGesture: false });
@@ -121,7 +136,11 @@ export function createAudioQueue(
       }));
       if (ticket !== revision) return;
       buffers = decoded;
-      duration = Math.max(...decoded.map((buffer) => buffer.duration));
+      const rawDuration = Math.max(...decoded.map((buffer) => buffer.duration));
+      const winStart = clipWindow ? Math.max(0, Math.min(clipWindow.startSec, Math.max(0, rawDuration - 0.5))) : 0;
+      duration = clipWindow
+        ? Math.max(0.5, Math.min(clipWindow.durationSec, Math.max(0, rawDuration - winStart)))
+        : rawDuration;
       if (ctx.state === 'running') startBuffers(decoded, ticket);
       else update({ needsGesture: true });
     } catch (error) {
@@ -131,8 +150,9 @@ export function createAudioQueue(
     }
   }
 
-  function playQueue(srcs: string[], _gapMs = 500) {
+  function playQueue(srcs: string[], _gapMs = 500, window?: PlaybackWindow) {
     cancel();
+    clipWindow = window ?? null;
     sources = [...srcs];
     update({ ...initialAudioState });
     if (!sources.length) return;
@@ -200,8 +220,8 @@ export function createAudioQueue(
 
   return {
     playQueue,
-    play: (src: string) => playQueue([src]),
-    replay: () => playQueue(sources),
+    play: (src: string, window?: PlaybackWindow) => playQueue([src], 500, window),
+    replay: () => playQueue(sources, 500, clipWindow ?? undefined),
     pause,
     resume,
     resumeFromGesture,

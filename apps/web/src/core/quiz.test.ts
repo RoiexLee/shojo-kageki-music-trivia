@@ -177,6 +177,13 @@ describe('plan-003 模式矩阵与判定', () => {
         const questions = buildQuiz(songs, { mode, difficulty, questionCount: 2, seed: 8 }, lyrics);
         expect(questions).toHaveLength(2);
         expect(questions[0].optionSongIds).toHaveLength(spec.optionCount);
+        if (questions[0].mode === 'lyrics') {
+          expect(questions[0].originalLyricText).toBeTruthy();
+          expect(questions[0].lyricText).toBeTruthy();
+          expect(questions[0].clipStartSec).toBeGreaterThanOrEqual(0);
+          expect(questions[0].clipDurationSec).toBeGreaterThanOrEqual(4.5);
+          expect(questions[0].clipDurationSec).toBeLessThanOrEqual(7.5);
+        }
       }
     }
   });

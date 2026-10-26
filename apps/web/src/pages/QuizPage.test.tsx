@@ -79,13 +79,33 @@ describe('答题页判定与音频反馈', () => {
     expect(html).toContain('2 连击');
   });
 
-  it('坏片段有失败提示和重试入口，不播放时不宣称正在播放', () => {
+  it('坏片段有失败提示和重试入口，且选项卡片含封面、曲名与专辑出处，不含 A/B 字母角标', () => {
     const html = render(['a', 'c'], 1);
     expect(html).toContain('1 段音频加载失败');
     expect(html).toContain('重新加载并播放');
-    expect(html).toContain('暂未播放，可重放');
-    expect(html).not.toContain('正在播放');
-    expect(render(['a', 'c'], 0, true)).toContain('两首歌曲正在同步混合');
+    expect(html).toContain('从头重放');
+    expect(html).toContain('blade-option-cover');
+    expect(html).not.toContain('blade-letter-crest');
+    expect(html).not.toContain('已暂停，点击继续');
+  });
+
+  it('歌词题同时显示日文主歌词与中文辅助歌词，并在揭晓后定位该句歌词附近的原曲窗口', () => {
+    const lyricsQuestion = {
+      id: 'q2',
+      mode: 'lyrics' as const,
+      answerSongId: 'a',
+      optionSongIds: ['a', 'b', 'c'],
+      lyricText: '在塔顶上伸出手将那颗星抓住的人',
+      originalLyricText: 'あの星を掴むのはだあれ?',
+      lyricTimeMs: 13000,
+      clipStartSec: 12.5,
+      clipDurationSec: 6.5,
+    };
+    const resolvedBefore = resolveAudioSources(lyricsQuestion, false, entries);
+    expect(resolvedBefore.paths).toEqual([]);
+    const resolvedAfter = resolveAudioSources(lyricsQuestion, true, entries);
+    expect(resolvedAfter.paths).toEqual(['/assets/audio/a/full.mp3']);
+    expect(resolvedAfter.window).toEqual({ startSec: 12.5, durationSec: 6.5 });
   });
 
   it('混合题缺任一音源时返回空列表，不会静默只播放剩余轨道', () => {

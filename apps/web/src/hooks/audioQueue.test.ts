@@ -106,6 +106,12 @@ describe('Web Audio 同步混音生命周期', () => {
     const progress = player.getPlaybackProgress();
     expect(progress.durationSec).toBe(10);
     expect(progress.elapsedSec).toBeCloseTo(3.5, 2);
+
+    player.playQueue(['full.mp3'], 0, { startSec: 3.2, durationSec: 5.5 });
+    await vi.waitFor(() => expect(sources).toHaveLength(2));
+    expect(sources[1].start.mock.calls[0][0]).toBeCloseTo(13.56, 5);
+    expect(sources[1].start.mock.calls[0][1]).toBe(3.2);
+    expect(sources[1].start.mock.calls[0][2]).toBe(5.5);
   });
 
   it('旧 fetch 解码完成不能越题启动，失败请求支持取消', async () => {

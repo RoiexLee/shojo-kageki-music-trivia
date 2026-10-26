@@ -36,22 +36,39 @@ interface Props {
   onOpenJukeboxModal?: () => void;
 }
 
-/** 解析本题全部音源：缺任一轨时返回空列表，避免混合题静默丢轨后只播放一首。 */
+/** 解析本题全部音源：缺任一轨时返回空列表，避免混合题静默丢轨后只播放一首；歌词题优先截取对应歌词附近片段。 */
 export function resolveAudioSources(question: Question, answered: boolean, entryById: Map<string, ManifestEntry>) {
-  if (question.mode === 'lyrics' && !answered) return { paths: [] as string[], missing: false };
+  if (question.mode === 'lyrics' && !answered) return { paths: [] as string[], missing: false, window: undefined };
+  if (question.mode === 'lyrics') {
+    const entry = entryById.get(question.answerSongId);
+    if (!entry) return { paths: [] as string[], missing: true, window: undefined };
+    if (question.clipStartSec !== undefined) {
+      return {
+        paths: [assetUrl(`audio/${question.answerSongId}/full.mp3`)],
+        missing: false,
+        window: { startSec: question.clipStartSec, durationSec: question.clipDurationSec ?? 6 },
+      };
+    }
+    const fallbackPath = entry.segments['clip-10']?.path;
+    return {
+      paths: fallbackPath ? [assetUrl(fallbackPath)] : [],
+      missing: !fallbackPath,
+      window: undefined,
+    };
+  }
   const clips =
     question.mode === 'mix'
       ? question.clips
-      : [{ songId: question.answerSongId, segmentKey: question.mode === 'lyrics' ? 'clip-10' : question.segmentKey }];
+      : [{ songId: question.answerSongId, segmentKey: question.segmentKey }];
   const paths = clips.map(({ songId, segmentKey }) => entryById.get(songId)?.segments[segmentKey]?.path);
   const missing = paths.some((path) => !path);
-  return { paths: missing ? [] : paths.map((path) => assetUrl(path!)), missing };
+  return { paths: missing ? [] : paths.map((path) => assetUrl(path!)), missing, window: undefined };
 }
 
 export function QuizPage(props: Props) {
   const { question, index, answered, selectedIds, songById, entryById, audio, results = [] } = props;
   const heading = useRef<HTMLHeadingElement>(null);
-  const { paths: audioSources, missing: audioMissing } = useMemo(
+  const { paths: audioSources, missing: audioMissing, window: audioWindow } = useMemo(
     () => resolveAudioSources(question, answered, entryById),
     [question, answered, entryById],
   );
@@ -67,9 +84,9 @@ export function QuizPage(props: Props) {
       stop();
       return;
     }
-    playQueue(audioSources, 0);
+    playQueue(audioSources, 0, audioWindow);
     return stop;
-  }, [question.id, shouldPlay, audioSources, playQueue, stop]);
+  }, [question.id, shouldPlay, audioSources, audioWindow, playQueue, stop]);
 
   const answers = answerIds(question);
   const correct = judge(question, selectedIds);
@@ -100,15 +117,6 @@ export function QuizPage(props: Props) {
     return () => window.removeEventListener('keydown', onKeyDown);
   }, [answered, question, selectedIds.length, expected, props.onSelect, props.onConfirm, props.onNext]);
 
-  const status = audio.needsGesture
-    ? '点击播放，聆听本题'
-    : audio.isPaused
-      ? '已暂停，点击继续'
-      : audio.isPlaying
-        ? question.mode === 'mix'
-          ? '两首歌曲正在同步混合'
-          : '正在播放'
-        : '暂未播放，可重放';
   const playAction = audio.needsGesture ? audio.resumeFromGesture : audio.isPaused ? audio.resume : audio.replay;
   const showAudio = question.mode !== 'lyrics' || answered;
 
@@ -188,21 +196,21 @@ export function QuizPage(props: Props) {
         {/* 中央核心演剧台：歌剧台本卷轴 / 3D 黄金留声星盘 */}
         <div className="duel-centerpiece-deck">
           {question.mode === 'lyrics' && (
-            <section className="lyric-stage libretto-scroll-card" aria-label="中文歌词题面">
+            <section className="lyric-stage libretto-scroll-card" aria-label="歌词题面">
               <div className="libretto-crest-line" aria-hidden="true">
                 <span className="crest-ornament-wing" />
                 <span>✦ SEISHO OPERA LIBRETTO · 圣翔歌剧台本 ✦</span>
                 <span className="crest-ornament-wing" />
               </div>
-              <p lang="zh" className="libretto-verse-main">
-                「{question.lyricText}」
+              <p lang="ja" className="libretto-verse-main">
+                「{question.originalLyricText ?? question.lyricText}」
               </p>
-              {question.originHint && <small className="libretto-origin-hint">出处提示：{question.originHint}</small>}
-              {answered && question.originalLyricText && (
-                <p lang="ja" className="translation libretto-jp-reveal">
-                  原文：{question.originalLyricText}
+              {question.originalLyricText && (
+                <p lang="zh" className="libretto-verse-sub">
+                  {question.lyricText}
                 </p>
               )}
+              {question.originHint && <small className="libretto-origin-hint">出处提示：{question.originHint}</small>}
             </section>
           )}
 
@@ -229,15 +237,24 @@ export function QuizPage(props: Props) {
                   </svg>
                   <span>{audio.isPlaying ? '暂停' : audio.isPaused ? '继续播放' : '点击播放'}</span>
                 </button>
-                <button type="button" className="text-button gramophone-replay-btn" onClick={audio.replay}>
-                  ↺ 从头重放
+                <button type="button" className="secondary-button gramophone-replay-btn" onClick={audio.replay}>
+                  <svg
+                    viewBox="0 0 24 24"
+                    width="17"
+                    height="17"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M3 12a9 9 0 1 0 3-6.7L3 8" />
+                    <path d="M3 3v5h5" />
+                  </svg>
+                  <span>从头重放</span>
                 </button>
               </div>
-
-              <p role="status" className="media-status">
-                {status}
-                {question.mode === 'mix' && ' · 两轨同刻开始'}
-              </p>
             </section>
           )}
 
@@ -267,22 +284,18 @@ export function QuizPage(props: Props) {
               {question.mode === 'mix'
                 ? '选出听到的所有歌曲'
                 : question.mode === 'lyrics'
-                  ? '这句中文歌词来自哪首歌？'
+                  ? '这句歌词来自哪首歌？'
                   : '这段旋律来自哪首歌？'}
             </h2>
-            {question.mode === 'mix' ? (
+            {question.mode === 'mix' && (
               <span aria-live="polite" className="mix-selection-pill">
                 已选 {selectedIds.length} / {expected}
-              </span>
-            ) : (
-              <span className="hotkey-guide-tag" aria-hidden="true">
-                快捷键 1–{question.optionSongIds.length} 直接作答
               </span>
             )}
           </div>
 
           <div className="answer-grid blade-options-grid" role="group" aria-label="歌曲选项">
-            {question.optionSongIds.map((id, i) => {
+            {question.optionSongIds.map((id) => {
               const picked = selectedIds.includes(id);
               const isAnswer = answers.includes(id);
               const song = songById.get(id);
@@ -298,12 +311,17 @@ export function QuizPage(props: Props) {
                   disabled={answered}
                   onClick={() => props.onSelect(id)}
                 >
-                  <span className="answer-letter blade-letter-crest">
-                    {String.fromCharCode(65 + i)}
-                    <i className="blade-hotkey-badge" aria-hidden="true">
-                      {i + 1}
-                    </i>
-                  </span>
+                  <img
+                    className="blade-option-cover"
+                    src={coverSrc}
+                    alt=""
+                    width="56"
+                    height="56"
+                    loading="lazy"
+                    onError={(e) => {
+                      e.currentTarget.style.opacity = '0.25';
+                    }}
+                  />
                   <span className="answer-text blade-option-copy">
                     <strong>{song?.title ?? id}</strong>
                     <small>
@@ -314,19 +332,6 @@ export function QuizPage(props: Props) {
                       <small className="answer-verdict">{isAnswer ? '正确答案' : '你的选择'}</small>
                     )}
                   </span>
-                  {answered && isAnswer && (
-                    <img
-                      className="blade-answer-cover"
-                      src={coverSrc}
-                      alt=""
-                      width="52"
-                      height="52"
-                      loading="lazy"
-                      onError={(e) => {
-                        e.currentTarget.style.display = 'none';
-                      }}
-                    />
-                  )}
                 </button>
               );
             })}

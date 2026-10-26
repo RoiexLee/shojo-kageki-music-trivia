@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { createAudioQueue, initialAudioState, type PlaybackProgress } from './audioQueue.ts';
+import { createAudioQueue, initialAudioState, type PlaybackProgress, type PlaybackWindow } from './audioQueue.ts';
 
 export function useAudioPlayer() {
   const [state, setState] = useState(initialAudioState);
@@ -11,8 +11,8 @@ export function useAudioPlayer() {
     return () => { player.dispose(); queue.current = null; };
   }, []);
 
-  const playQueue = useCallback((srcs: string[], gapMs = 500) => queue.current?.playQueue(srcs, gapMs), []);
-  const play = useCallback((src: string) => queue.current?.play(src), []);
+  const playQueue = useCallback((srcs: string[], gapMs = 500, window?: PlaybackWindow) => queue.current?.playQueue(srcs, gapMs, window), []);
+  const play = useCallback((src: string, window?: PlaybackWindow) => queue.current?.play(src, window), []);
   const replay = useCallback(() => queue.current?.replay(), []);
   const stop = useCallback(() => queue.current?.stop(), []);
   const pause = useCallback(() => queue.current?.pause(), []);

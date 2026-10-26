@@ -63,7 +63,6 @@ export function TheaterHeader({
           >
             <GramophoneIcon size={15} />
             <span>试听曲库</span>
-            <em className="blade-counter">{songCount}</em>
           </button>
           <button
             type="button"
@@ -72,7 +71,6 @@ export function TheaterHeader({
           >
             <CrownEmblem size={15} />
             <span>九九组名鉴</span>
-            <em className="blade-counter">{TROUPE_MEMBERS.length}</em>
           </button>
         </nav>
       ) : (
@@ -81,7 +79,6 @@ export function TheaterHeader({
             <button type="button" className="hud-nav-blade" onClick={onOpenJukeboxModal}>
               <GramophoneIcon size={15} />
               <span>试听曲库 &amp; 九九组名鉴</span>
-              <em className="blade-counter">{songCount}</em>
             </button>
           </div>
         )
@@ -110,7 +107,6 @@ export function TheaterFooter() {
           <span key={m.id} className="footlight-gem" style={{ '--gem': m.color } as React.CSSProperties} title={`${m.name} (${m.cv})`} />
         ))}
       </div>
-      <p className="footlight-copyright">非官方粉丝作品 · 素材版权归原权利方 · 仅限本地学习</p>
     </footer>
   );
 }

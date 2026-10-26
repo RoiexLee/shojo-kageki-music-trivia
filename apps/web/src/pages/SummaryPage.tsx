@@ -118,10 +118,6 @@ export function SummaryPage({
       ctx.font = 'italic 20px serif';
       ctx.fillText(rank.quote, 600, 522);
 
-      ctx.fillStyle = '#9e8f85';
-      ctx.font = '18px sans-serif';
-      ctx.fillText('非官方粉丝作品 · 素材版权归原权利方 · 仅限本地学习', 600, 606);
-
       const blob = await new Promise<Blob>((resolve, reject) =>
         canvas.toBlob((value) => (value ? resolve(value) : reject(new Error('导出失败'))), 'image/png'),
       );
