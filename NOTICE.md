@@ -14,4 +14,10 @@
 - https://revuestarlight.com/wordpress/wp-content/themes/revuestarlight_v1/assets/images/common/animation/tv/visual_pc.png
 - https://revuestarlight.com/wordpress/wp-content/themes/revuestarlight_v1/assets/images/common/animation/tv/bg_caststaff_pc.png
 
+新增透明角色 PNG（核验日期：2026-10-26，响应类型均为 image/png，带透明通道）：
+
+- `apps/web/public/theme/characters/karen.png` — https://revuestarlight.com/wordpress/wp-content/themes/revuestarlight_v1/assets/images/common/animation/character/main/revue/pc/char_karen_revue@2x.png
+- `apps/web/public/theme/characters/hikari.png` — https://revuestarlight.com/wordpress/wp-content/themes/revuestarlight_v1/assets/images/common/animation/character/main/revue/pc/char_hikari_revue@2x.png
+- `apps/web/public/theme/characters/maya.png` — https://revuestarlight.com/wordpress/wp-content/themes/revuestarlight_v1/assets/images/common/animation/character/main/revue/pc/char_maya_revue@2x.png
+
 素材仅作本地开发预览，版权归 Project Revue Starlight 及相关权利方；不得公开再分发。

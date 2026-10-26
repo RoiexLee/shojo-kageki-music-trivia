@@ -34,7 +34,7 @@ export function QuizPage(props: Props) {
   const playAction = audio.needsGesture ? audio.resumeFromGesture : audio.isPaused ? audio.resume : audio.replay;
 
   return (
-    <main className="app-shell play-shell">
+    <main className="app-shell play-shell stage-enter">
       <Brand onHome={props.onExit} />
       <section className="quiz-body">
         <header className="quiz-heading">

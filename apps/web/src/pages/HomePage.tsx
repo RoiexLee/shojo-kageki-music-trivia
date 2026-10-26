@@ -1,5 +1,6 @@
 import { DIFFICULTY_LABEL, MODE_DIFFICULTY_MAP, MODE_LABEL, type Difficulty, type QuizMode } from '../core/quiz.ts';
 import { Arrow, Brand, Footer } from '../components/Brand.tsx';
+import { StageHero } from '../components/StageHero.tsx';
 
 interface Props {
   mode: QuizMode; onModeChange: (mode: QuizMode) => void;
@@ -17,7 +18,7 @@ export function HomePage({ mode, onModeChange, difficulty, onDifficultyChange, o
   const rule = mode === 'intro' ? `${difficulty === 'easy' ? 15 : difficulty === 'normal' ? 10 : 5} 秒片段`
     : mode === 'lyrics' ? '一句歌词' : mode === 'reverse' ? '8 秒倒放' : `${spec.answerCount} 首 × 10 秒`;
   return (
-    <main className="app-shell home-page">
+    <main className="app-shell home-page stage-enter">
       <Brand />
       <section className="hero" aria-labelledby="home-title">
         <div className="hero-copy">
@@ -25,7 +26,7 @@ export function HomePage({ mode, onModeChange, difficulty, onDifficultyChange, o
           <p className="hero-subtitle">少女☆歌剧 Revue Starlight 猜歌挑战</p>
           <p className="hero-meta">{songCount} 首歌曲 · 每局 10 题 · 三档难度</p>
         </div>
-        <img className="hero-art" src={`${import.meta.env.BASE_URL}theme/cast.png`} alt="身着舞台服的圣翔音乐学园九位舞台少女" width="1920" height="840" fetchPriority="high" />
+        <StageHero />
       </section>
       <section className="mode-section" aria-labelledby="mode-title">
         <h2 className="section-heading" id="mode-title">选择你的舞台</h2>

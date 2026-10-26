@@ -54,7 +54,7 @@ export function SummaryPage({ config, results, questions, songById, entryById, o
   }
 
   return (
-    <main className="app-shell result-shell">
+    <main className="app-shell result-shell stage-enter">
       <Brand onHome={onRestart} />
       <header className="result-heading">
         <p className="muted">{MODE_LABEL[config.mode]} · {DIFFICULTY_LABEL[config.difficulty]}</p>

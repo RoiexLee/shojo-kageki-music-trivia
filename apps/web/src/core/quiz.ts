@@ -217,12 +217,12 @@ export function summarize(results: QuestionResult[]): QuizSummary {
   };
 }
 
-/** 用时格式化：X分SS秒 / SS秒 */
+/** 用时格式化：中文单位前留空格，秒数始终两位（分享与成绩图共用）。 */
 export function formatTime(ms: number): string {
   const totalSec = Math.floor(ms / 1000);
   const min = Math.floor(totalSec / 60);
   const sec = totalSec % 60;
-  return min > 0 ? `${min}分${sec.toString().padStart(2, '0')}秒` : `${sec}秒`;
+  return min > 0 ? `${min} 分 ${sec.toString().padStart(2, '0')} 秒` : `${sec} 秒`;
 }
 
 /** 每局种子：URL ?seed= 优先（复现 bug 用），否则随机 */

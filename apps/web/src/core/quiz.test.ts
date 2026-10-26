@@ -129,10 +129,13 @@ describe('judge / summarize / formatTime', () => {
     expect(s).toEqual({ correct: 1, total: 2, elapsedMs: 4000 });
     expect(summarize([])).toEqual({ correct: 0, total: 0, elapsedMs: 0 });
   });
-  it('formatTime：秒 / 分秒补零', () => {
-    expect(formatTime(45_000)).toBe('45秒');
-    expect(formatTime(83_000)).toBe('1分23秒');
-    expect(formatTime(0)).toBe('0秒');
+  it('formatTime：中文单位前空格，覆盖秒、分钟和大于一小时', () => {
+    expect(formatTime(0)).toBe('0 秒');
+    expect(formatTime(45_000)).toBe('45 秒');
+    expect(formatTime(59_000)).toBe('59 秒');
+    expect(formatTime(60_000)).toBe('1 分 00 秒');
+    expect(formatTime(83_000)).toBe('1 分 23 秒');
+    expect(formatTime(3_661_000)).toBe('61 分 01 秒');
   });
 });
 
