@@ -28,9 +28,6 @@ export function TheaterHeader({
         height="38"
         alt="少女☆歌劇 レヴュースタァライト"
       />
-      <span className="crest-sub-pill" aria-hidden="true">
-        <StarEmblem size={11} /> 99TH STARLIGHT EDITION
-      </span>
     </span>
   );
 

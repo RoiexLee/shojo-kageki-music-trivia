@@ -11,6 +11,8 @@ interface TurntableVisualizerProps {
   coverUrls: string[];
   sampleFrequency?: (target: Uint8Array<ArrayBuffer>) => boolean;
   getPlaybackProgress?: () => PlaybackProgress;
+  onTogglePlay: () => void;
+  onReplay: () => void;
 }
 
 const BAR_COUNT = 42;
@@ -30,6 +32,8 @@ export function TurntableVisualizer({
   coverUrls,
   sampleFrequency,
   getPlaybackProgress,
+  onTogglePlay,
+  onReplay,
 }: TurntableVisualizerProps) {
   const [bars, setBars] = useState<number[]>(INITIAL_BARS);
   const [progress, setProgress] = useState<PlaybackProgress>({ elapsedSec: 0, durationSec: 0 });
@@ -195,6 +199,37 @@ export function TurntableVisualizer({
             <span className="timeline-spark" />
           </div>
         </div>
+      </div>
+
+      {/* 播放与重放控制栏：桌面端位于右下角且高度与左侧转盘齐平，移动端位于转盘右侧且高度对齐 */}
+      <div className="audio-controls gramophone-controls-bar">
+        <button
+          type="button"
+          className={`secondary-button gramophone-play-btn ${isPlaying ? 'is-playing' : ''}`}
+          onClick={onTogglePlay}
+        >
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            {isPlaying ? <path d="M6 4h4v16H6zm8 0h4v16h-4z" /> : <path d="m7 4 13 8-13 8z" />}
+          </svg>
+          <span>{isPlaying ? '暂停' : isPaused ? '继续播放' : '点击播放'}</span>
+        </button>
+        <button type="button" className="secondary-button gramophone-replay-btn" onClick={onReplay}>
+          <svg
+            viewBox="0 0 24 24"
+            width="17"
+            height="17"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M3 12a9 9 0 1 0 3-6.7L3 8" />
+            <path d="M3 3v5h5" />
+          </svg>
+          <span>从头重放</span>
+        </button>
       </div>
     </div>
   );

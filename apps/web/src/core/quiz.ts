@@ -11,9 +11,9 @@ export interface DifficultySpec {
 }
 
 export const DIFFICULTY_MAP: Record<Difficulty, DifficultySpec> = {
-  easy: { optionCount: 3, segmentKey: 'clip-15' },
-  normal: { optionCount: 4, segmentKey: 'clip-10' },
-  hard: { optionCount: 6, segmentKey: 'clip-5' },
+  easy: { optionCount: 4, segmentKey: 'clip-15' },
+  normal: { optionCount: 6, segmentKey: 'clip-10' },
+  hard: { optionCount: 8, segmentKey: 'clip-5' },
 };
 
 export const DIFFICULTY_LABEL: Record<Difficulty, string> = {
@@ -40,14 +40,14 @@ export const MODE_DIFFICULTY_MAP: Record<QuizMode, Record<Difficulty, ModeSpec>>
     hard: { ...DIFFICULTY_MAP.hard, answerCount: 1 },
   },
   lyrics: {
-    easy: { optionCount: 3, answerCount: 1, hint: 'origin' },
-    normal: { optionCount: 4, answerCount: 1 },
-    hard: { optionCount: 6, answerCount: 1 },
+    easy: { optionCount: 4, answerCount: 1, hint: 'origin' },
+    normal: { optionCount: 6, answerCount: 1 },
+    hard: { optionCount: 8, answerCount: 1 },
   },
   reverse: {
-    easy: { optionCount: 3, answerCount: 1, segmentKey: 'reverse-8', hint: 'lyric' },
-    normal: { optionCount: 4, answerCount: 1, segmentKey: 'reverse-8' },
-    hard: { optionCount: 6, answerCount: 1, segmentKey: 'reverse-8' },
+    easy: { optionCount: 4, answerCount: 1, segmentKey: 'reverse-8', hint: 'lyric' },
+    normal: { optionCount: 6, answerCount: 1, segmentKey: 'reverse-8' },
+    hard: { optionCount: 8, answerCount: 1, segmentKey: 'reverse-8' },
   },
   mix: {
     easy: { optionCount: 4, answerCount: 2, segmentKey: 'clip-10' },

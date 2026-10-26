@@ -142,9 +142,6 @@ export function QuizPage(props: Props) {
         {/* 顶部歌剧双翼仪表盘 HUD */}
         <header className="duel-hud-arch">
           <div className="duel-hud-left">
-            <button type="button" className="text-button back-button" onClick={props.onExit}>
-              ← 返回首页
-            </button>
             <div className="duel-mode-crest">
               <StarEmblem size={12} />
               <p className="muted">
@@ -224,37 +221,9 @@ export function QuizPage(props: Props) {
                 coverUrls={answerCoverUrls}
                 sampleFrequency={audio.sampleFrequency}
                 getPlaybackProgress={audio.getPlaybackProgress}
+                onTogglePlay={audio.isPlaying ? audio.pause : playAction}
+                onReplay={audio.replay}
               />
-
-              <div className="audio-controls gramophone-controls-bar">
-                <button
-                  type="button"
-                  className={`secondary-button gramophone-play-btn ${audio.isPlaying ? 'is-playing' : ''}`}
-                  onClick={audio.isPlaying ? audio.pause : playAction}
-                >
-                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
-                    {audio.isPlaying ? <path d="M6 4h4v16H6zm8 0h4v16h-4z" /> : <path d="m7 4 13 8-13 8z" />}
-                  </svg>
-                  <span>{audio.isPlaying ? '暂停' : audio.isPaused ? '继续播放' : '点击播放'}</span>
-                </button>
-                <button type="button" className="secondary-button gramophone-replay-btn" onClick={audio.replay}>
-                  <svg
-                    viewBox="0 0 24 24"
-                    width="17"
-                    height="17"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden="true"
-                  >
-                    <path d="M3 12a9 9 0 1 0 3-6.7L3 8" />
-                    <path d="M3 3v5h5" />
-                  </svg>
-                  <span>从头重放</span>
-                </button>
-              </div>
             </section>
           )}
 

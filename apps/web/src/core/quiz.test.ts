@@ -70,7 +70,7 @@ describe('buildQuiz', () => {
     expect(qs).toHaveLength(6);
   });
 
-  it('干扰项不含正确项；选项数符合难度（3/4/6）', () => {
+  it('干扰项不含正确项；选项数符合难度（4/6/8）', () => {
     const songs = makeSongs(15);
     for (const d of ['easy', 'normal', 'hard'] as const) {
       const qs = buildQuiz(songs, { mode: 'intro', difficulty: d, questionCount: 10, seed: 99 });
@@ -80,6 +80,9 @@ describe('buildQuiz', () => {
         expect(q.optionSongIds).toHaveLength(Math.min(DIFFICULTY_MAP[d].optionCount, songs.length));
       }
     }
+    expect(DIFFICULTY_MAP.easy.optionCount).toBe(4);
+    expect(DIFFICULTY_MAP.normal.optionCount).toBe(6);
+    expect(DIFFICULTY_MAP.hard.optionCount).toBe(8);
   });
 
   it('干扰项优先同 type：构造 5+ 同 type 时干扰项全为同 type', () => {
