@@ -12,6 +12,11 @@ describe('最佳成绩', () => {
     expect(saveBest('intro', 'easy', { correct: 4, total: 10, elapsedMs: 1 }).best.correct).toBe(5);
     expect(saveBest('intro', 'easy', { correct: 5, total: 10, elapsedMs: 90 }).best.elapsedMs).toBe(90);
     expect(saveBest('lyrics', 'easy', { correct: 1, total: 10, elapsedMs: 1 }).best.correct).toBe(1);
+    storage.set('best:intro:easy', JSON.stringify({ correct: 10, total: 10, elapsedMs: 1 }));
+    expect(saveBest('intro', 'easy', { correct: 0, total: 10, elapsedMs: 999 }).best.correct).toBe(5);
+    expect(storage.has('best:v2:intro:easy')).toBe(true);
+    storage.set('best:reverse:easy', JSON.stringify({ correct: 8, total: 10, elapsedMs: 1 }));
+    expect(saveBest('reverse', 'easy', { correct: 2, total: 10, elapsedMs: 999 }).best.correct).toBe(8);
     vi.unstubAllGlobals();
   });
 

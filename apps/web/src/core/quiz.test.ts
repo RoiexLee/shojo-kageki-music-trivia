@@ -7,6 +7,7 @@ import {
   DIFFICULTY_MAP,
   MODE_DIFFICULTY_MAP,
   lyricCandidates,
+  translationCandidates,
   toggleSelection,
   mulberry32,
   shuffle,
@@ -104,13 +105,13 @@ describe('buildQuiz', () => {
     expect(buildQuiz(songs, cfg)).toEqual(buildQuiz(songs, cfg));
   });
 
-  it('难度 → 片段映射（intro-15/10/5）', () => {
+  it('难度 → 曲中片段映射（clip-15/10/5）', () => {
     const songs = makeSongs(12);
     const pick = (d: 'easy' | 'normal' | 'hard') =>
       buildQuiz(songs, { mode: 'intro', difficulty: d, questionCount: 5, seed: 3 })[0].segmentKey;
-    expect(pick('easy')).toBe('intro-15');
-    expect(pick('normal')).toBe('intro-10');
-    expect(pick('hard')).toBe('intro-5');
+    expect(pick('easy')).toBe('clip-15');
+    expect(pick('normal')).toBe('clip-10');
+    expect(pick('hard')).toBe('clip-5');
   });
 });
 
@@ -144,7 +145,7 @@ describe('plan-003 模式矩阵与判定', () => {
   const lyrics = Object.fromEntries(songs.map((song) => [song.id, {
     id: song.id,
     lineCount: 2,
-    lines: [{ timeMs: 0, text: `${song.title} 的长歌词片段` }, { timeMs: 1000, text: '星光照亮舞台上的歌声' }],
+    lines: [{ timeMs: 0, text: `${song.title} 的长歌词片段`, translation: '这是可用的中文翻译片段' }, { timeMs: 1000, text: '星光照亮舞台上的歌声', translation: '星光照亮舞台上的歌声' }],
   }]));
 
   it('四模式三难度都有完整规格', () => {
@@ -169,6 +170,17 @@ describe('plan-003 模式矩阵与判定', () => {
     ])).toEqual([{ timeMs: 2, text: '可以留下的完整歌词' }]);
   });
 
+  it('中文歌词只取含汉字且无假名的译文，排除空译文、英文译文和标题重复', () => {
+    const song = { id: 'x', title: 'Star Divine', aliases: ['星之神性'], type: 'OP', origin: 'x' };
+    expect(translationCandidates(song, [
+      { timeMs: 0, text: '日文', translation: '' },
+      { timeMs: 1, text: '日文', translation: 'This is English only' },
+      { timeMs: 2, text: '日文', translation: '星之神性就是标题泄漏' },
+      { timeMs: 3, text: '日文', translation: '这是可用的中文翻译片段' },
+      { timeMs: 4, text: '日文', translation: '含假名かな的译文' },
+    ])).toEqual([{ timeMs: 3, text: '日文', translation: '这是可用的中文翻译片段' }]);
+  });
+
   it('mix 只有答案集合完全相等才判对，toggle 可取消且不超选', () => {
     const question = buildQuiz(songs, { mode: 'mix', difficulty: 'easy', questionCount: 1, seed: 5 }, lyrics)[0];
     expect(question.mode).toBe('mix');
@@ -181,6 +193,7 @@ describe('plan-003 模式矩阵与判定', () => {
     expect(judge(question, [first, first])).toBe(false);
     expect(judge(question, question.answerSongIds.slice(0, 1))).toBe(false);
     expect(judge(question, [...question.answerSongIds, distractor])).toBe(false);
+    expect(question.answerSongIds).toHaveLength(2);
     expect(toggleSelection(question, [], first)).toEqual([first]);
     expect(toggleSelection(question, [first], first)).toEqual([]);
     expect(toggleSelection(question, [first], second)).toEqual([first, second]);

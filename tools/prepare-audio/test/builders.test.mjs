@@ -48,8 +48,8 @@ describe('ffmpeg 参数构造（纯函数）', () => {
 });
 
 describe('util 规格', () => {
-  it('五个片段规格齐全', () => {
-    expect(SEGMENT_SPECS.map((s) => s.key)).toEqual(['intro-5', 'intro-10', 'intro-15', 'chorus-10', 'reverse-8']);
+  it('旧片段保留且新增曲中三档片段', () => {
+    expect(SEGMENT_SPECS.map((s) => s.key)).toEqual(['intro-5', 'intro-10', 'intro-15', 'clip-5', 'clip-10', 'clip-15', 'chorus-10', 'reverse-8']);
   });
   it('deriveStartSec：intro=0，其余=副歌起点', () => {
     expect(deriveStartSec({ kind: 'intro' }, 72)).toBe(0);
@@ -60,8 +60,8 @@ describe('util 规格', () => {
     expect(chorusStartOf({ chorusStartSec: 55 })).toBe(55);
     expect(chorusStartOf({})).toBe(72);
   });
-  it('requiredSourceDurationSec = 副歌起点 + 10', () => {
-    expect(requiredSourceDurationSec(72)).toBe(82);
+  it('requiredSourceDurationSec = 副歌起点 + 15', () => {
+    expect(requiredSourceDurationSec(72)).toBe(87);
   });
 });
 

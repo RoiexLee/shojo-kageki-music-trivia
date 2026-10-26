@@ -11,9 +11,9 @@ export interface DifficultySpec {
 }
 
 export const DIFFICULTY_MAP: Record<Difficulty, DifficultySpec> = {
-  easy: { optionCount: 3, segmentKey: 'intro-15' },
-  normal: { optionCount: 4, segmentKey: 'intro-10' },
-  hard: { optionCount: 6, segmentKey: 'intro-5' },
+  easy: { optionCount: 3, segmentKey: 'clip-15' },
+  normal: { optionCount: 4, segmentKey: 'clip-10' },
+  hard: { optionCount: 6, segmentKey: 'clip-5' },
 };
 
 export const DIFFICULTY_LABEL: Record<Difficulty, string> = {
@@ -23,7 +23,7 @@ export const DIFFICULTY_LABEL: Record<Difficulty, string> = {
 };
 
 export const MODE_LABEL: Record<QuizMode, string> = {
-  intro: '开头猜歌', lyrics: '歌词猜歌', reverse: '倒放猜歌', mix: '混合连猜',
+  intro: '片段猜歌', lyrics: '歌词猜歌', reverse: '倒放猜歌', mix: '混合猜歌',
 };
 
 export interface ModeSpec {
@@ -50,9 +50,9 @@ export const MODE_DIFFICULTY_MAP: Record<QuizMode, Record<Difficulty, ModeSpec>>
     hard: { optionCount: 6, answerCount: 1, segmentKey: 'reverse-8' },
   },
   mix: {
-    easy: { optionCount: 4, answerCount: 2, segmentKey: 'chorus-10' },
-    normal: { optionCount: 6, answerCount: 2, segmentKey: 'chorus-10' },
-    hard: { optionCount: 8, answerCount: 3, segmentKey: 'chorus-10' },
+    easy: { optionCount: 4, answerCount: 2, segmentKey: 'clip-10' },
+    normal: { optionCount: 6, answerCount: 2, segmentKey: 'clip-10' },
+    hard: { optionCount: 8, answerCount: 2, segmentKey: 'clip-10' },
   },
 };
 
@@ -91,6 +91,7 @@ export interface LyricsQuestion extends QuestionBase {
   mode: 'lyrics';
   answerSongId: string;
   lyricText: string;
+  originalLyricText?: string;
   translation?: string;
   originHint?: string;
 }
@@ -135,6 +136,21 @@ export function lyricCandidates(song: Song, lines: LyricLine[]): LyricLine[] {
   });
 }
 
+/** 中文题面只允许包含汉字、没有日文假名的非空译文。 */
+export function translationCandidates(song: Song, lines: LyricLine[]): LyricLine[] {
+  const normalize = (s: string) => s.normalize('NFKC').toLowerCase().replace(/[\s\p{P}\p{S}]/gu, '');
+  const titles = [song.title, ...(song.aliases ?? [])].map(normalize).filter(Boolean);
+  const seen = new Set<string>();
+  return lines.filter((line) => {
+    const translation = line.translation?.trim() ?? '';
+    const text = normalize(translation);
+    if (translation.length < 6 || !/[\u3400-\u9fff]/u.test(translation) || /[\u3040-\u30ff]/u.test(translation)
+      || seen.has(text) || titles.some((title) => text.includes(title))) return false;
+    seen.add(text);
+    return true;
+  });
+}
+
 export function buildQuiz(songs: Song[], config: QuizConfig & { mode: 'intro' }, lyrics?: LyricsById): IntroQuestion[];
 export function buildQuiz(songs: Song[], config: QuizConfig, lyrics?: LyricsById): Question[];
 export function buildQuiz(songs: Song[], config: QuizConfig, lyrics: LyricsById = {}): Question[] {
@@ -157,7 +173,7 @@ export function buildQuiz(songs: Song[], config: QuizConfig, lyrics: LyricsById 
         .slice(0, needOptions - answerSongIds.length).map((s) => s.id);
       return {
         id, mode: 'mix', answerSongIds,
-        clips: shuffle([...answerSongIds], rng).map((songId) => ({ songId, segmentKey: 'chorus-10' })),
+        clips: shuffle([...answerSongIds], rng).map((songId) => ({ songId, segmentKey: 'clip-10' })),
         optionSongIds: shuffle([...answerSongIds, ...distractors], rng),
       };
     }
@@ -172,14 +188,18 @@ export function buildQuiz(songs: Song[], config: QuizConfig, lyrics: LyricsById 
     };
     if (config.mode === 'intro') return { ...common, mode: 'intro', segmentKey: DIFFICULTY_MAP[config.difficulty].segmentKey };
     let line: LyricLine | undefined;
-    if (config.mode === 'lyrics' || spec.hint === 'lyric') {
+    if (config.mode === 'lyrics') {
+      const candidates = translationCandidates(answer, lyrics[answer.id]?.lines ?? []);
+      if (!candidates.length) throw new Error(`《${answer.title}》没有可用的中文歌词译文，请返回选择其他模式或重新准备歌词资源。`);
+      line = candidates[Math.floor(rng() * candidates.length)];
+    } else if (spec.hint === 'lyric') {
       const candidates = lyricCandidates(answer, lyrics[answer.id]?.lines ?? []);
       if (!candidates.length) throw new Error(`《${answer.title}》没有可用的猜歌歌词，请返回选择其他模式或重新准备歌词资源。`);
       line = candidates[Math.floor(rng() * candidates.length)];
     }
     if (config.mode === 'reverse') return { ...common, mode: 'reverse', segmentKey: 'reverse-8', lyricHint: line?.text };
     return {
-      ...common, mode: 'lyrics', lyricText: line!.text, translation: line!.translation,
+      ...common, mode: 'lyrics', lyricText: line!.translation!, originalLyricText: line!.text,
       originHint: spec.hint === 'origin' ? answer.origin : undefined,
     };
   });

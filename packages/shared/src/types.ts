@@ -28,8 +28,8 @@ export interface SongMeta {
   chorusStartSec?: number;
 }
 
-/** 可用片段键：难度对应的开头切片、副歌切片、倒放切片 */
-export type SegmentKey = 'intro-5' | 'intro-10' | 'intro-15' | 'chorus-10' | 'reverse-8';
+/** 可用片段键：曲中切片、兼容旧开头/副歌切片及倒放切片 */
+export type SegmentKey = 'intro-5' | 'intro-10' | 'intro-15' | 'clip-5' | 'clip-10' | 'clip-15' | 'chorus-10' | 'reverse-8';
 
 /** manifest 中单个片段的描述 */
 export interface SegmentInfo {

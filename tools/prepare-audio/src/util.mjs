@@ -3,6 +3,9 @@ export const SEGMENT_SPECS = [
   { key: 'intro-5', kind: 'intro', durationSec: 5 },
   { key: 'intro-10', kind: 'intro', durationSec: 10 },
   { key: 'intro-15', kind: 'intro', durationSec: 15 },
+  { key: 'clip-5', kind: 'chorus', durationSec: 5 },
+  { key: 'clip-10', kind: 'chorus', durationSec: 10 },
+  { key: 'clip-15', kind: 'chorus', durationSec: 15 },
   { key: 'chorus-10', kind: 'chorus', durationSec: 10 },
   { key: 'reverse-8', kind: 'reverse', durationSec: 8 },
 ];
@@ -23,7 +26,7 @@ export function chorusStartOf(song) {
   return typeof song.chorusStartSec === 'number' ? song.chorusStartSec : DEFAULT_CHORUS_START_SEC;
 }
 
-/** 副歌前置校验所需的最短源时长（副歌起点 + 10s 切片） */
+/** 曲中最长片段前置校验（副歌起点 + 15s） */
 export function requiredSourceDurationSec(chorusStartSec) {
-  return chorusStartSec + 10;
+  return chorusStartSec + 15;
 }

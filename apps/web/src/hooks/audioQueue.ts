@@ -6,81 +6,162 @@ export interface AudioState {
   failedCount: number;
 }
 
-export const initialAudioState: AudioState = { isPlaying: false, isPaused: false, needsGesture: false, queueIndex: 0, failedCount: 0 };
+export const initialAudioState: AudioState = {
+  isPlaying: false, isPaused: false, needsGesture: false, queueIndex: 0, failedCount: 0,
+};
 
-/** 独立于 React，以便验证播放 promise、媒体事件与换题取消的竞态。 */
-export function createAudioQueue(createAudio: () => HTMLAudioElement, onChange: (state: AudioState) => void) {
+type ContextLike = AudioContext;
+
+/** Web Audio 播放器：所有轨道先 fetch/decode，成功后用同一个 currentTime 排程。 */
+export function createAudioQueue(
+  _legacyCreateAudio: () => HTMLAudioElement,
+  onChange: (state: AudioState) => void,
+  createContext: () => ContextLike = () => new AudioContext(),
+) {
   let state = { ...initialAudioState };
-  let audio: HTMLAudioElement | null = null;
+  let context: ContextLike | null = null;
   let sources: string[] = [];
-  let gap = 500;
+  let buffers: AudioBuffer[] | null = null;
+  let active: AudioBufferSourceNode[] = [];
+  let controller: AbortController | null = null;
   let revision = 0;
-  let timer: ReturnType<typeof setTimeout> | undefined;
+  let ended = 0;
+  let startedAt = 0;
+  let offset = 0;
+  let duration = 0;
 
   function update(patch: Partial<AudioState>) {
     state = { ...state, ...patch };
     onChange(state);
   }
 
+  function ensureContext() {
+    if (!context) context = createContext();
+    return context;
+  }
+
+  function stopActive() {
+    for (const source of active) {
+      source.onended = null;
+      try { source.stop(); } catch { /* 已结束的 BufferSource 不能再次 stop。 */ }
+    }
+    active = [];
+  }
+
   function cancel() {
     revision++;
-    clearTimeout(timer);
-    if (audio) {
-      audio.onended = audio.onerror = audio.onplay = audio.onpause = null;
-      audio.pause();
-      audio.removeAttribute('src');
-      audio.load();
-      audio = null;
+    controller?.abort();
+    controller = null;
+    stopActive();
+    buffers = null;
+    ended = 0;
+    offset = 0;
+  }
+
+  function startBuffers(decoded: AudioBuffer[], ticket: number, fromOffset = 0) {
+    const ctx = ensureContext();
+    if (ticket !== revision || ctx.state !== 'running') return;
+    stopActive();
+    const when = ctx.currentTime + 0.03;
+    const gain = 1 / Math.max(1, decoded.length);
+    ended = 0;
+    offset = Math.max(0, Math.min(fromOffset, Math.max(...decoded.map((buffer) => buffer.duration))));
+    duration = Math.max(...decoded.map((buffer) => buffer.duration));
+    startedAt = when - offset;
+    active = decoded.map((buffer) => {
+      const source = ctx.createBufferSource();
+      const nodeGain = ctx.createGain();
+      source.buffer = buffer;
+      nodeGain.gain.value = gain;
+      source.connect(nodeGain);
+      nodeGain.connect(ctx.destination);
+      source.onended = () => {
+        if (ticket !== revision) return;
+        ended++;
+        if (ended >= decoded.length) {
+          active = [];
+          update({ isPlaying: false, isPaused: false, needsGesture: false });
+        }
+      };
+      source.start(when, offset);
+      return source;
+    });
+    update({ isPlaying: true, isPaused: false, needsGesture: false });
+  }
+
+  async function loadAndPrepare(ticket: number) {
+    const ctx = ensureContext();
+    try {
+      const decoded = await Promise.all(sources.map(async (src) => {
+        const response = await fetch(src, { signal: controller?.signal });
+        if (!response.ok) throw new Error(`音频加载失败（${response.status}）`);
+        return ctx.decodeAudioData(await response.arrayBuffer());
+      }));
+      if (ticket !== revision) return;
+      buffers = decoded;
+      if (ctx.state === 'running') startBuffers(decoded, ticket);
+      else update({ needsGesture: true });
+    } catch (error) {
+      if (ticket !== revision || (error instanceof DOMException && error.name === 'AbortError')) return;
+      buffers = null;
+      update({ isPlaying: false, isPaused: false, needsGesture: false, failedCount: sources.length });
     }
   }
 
-  function startClip(index: number) {
-    cancel();
-    const ticket = revision;
-    update({ queueIndex: index, isPlaying: false, isPaused: false, needsGesture: false });
-    if (!sources[index]) return;
-    const current = createAudio();
-    audio = current;
-    current.preload = 'auto';
-    current.src = sources[index];
-
-    const advance = (failed: boolean) => {
-      if (revision !== ticket) return;
-      cancel();
-      update({ isPlaying: false, needsGesture: false, failedCount: state.failedCount + Number(failed) });
-      if (index + 1 < sources.length) timer = setTimeout(() => startClip(index + 1), gap);
-    };
-    current.onplay = () => { if (revision === ticket) update({ isPlaying: true, isPaused: false, needsGesture: false }); };
-    current.onpause = () => { if (revision === ticket) update({ isPlaying: false }); };
-    current.onended = () => advance(false);
-    current.onerror = () => advance(true);
-    const tryPlay = () => current.play().catch((error: unknown) => {
-      if (revision !== ticket) return;
-      if (error instanceof Error && error.name === 'NotAllowedError') update({ isPlaying: false, needsGesture: true });
-      else if (!(error instanceof Error && error.name === 'AbortError')) advance(true);
-    });
-    resumeCurrent = tryPlay;
-    void tryPlay();
-  }
-
-  let resumeCurrent: (() => Promise<void>) | undefined;
-
-  function playQueue(srcs: string[], gapMs = 500) {
+  function playQueue(srcs: string[], _gapMs = 500) {
     cancel();
     sources = [...srcs];
-    gap = Math.max(0, gapMs);
     update({ ...initialAudioState });
-    if (sources.length) startClip(0);
+    if (!sources.length) return;
+    const ctx = ensureContext();
+    controller = new AbortController();
+    const ticket = revision;
+    if (ctx.state === 'suspended') update({ needsGesture: true });
+    void loadAndPrepare(ticket);
+  }
+
+  function resumeFromGesture() {
+    const ctx = ensureContext();
+    const ticket = revision;
+    // 必须在点击事件调用链内直接发起 resume；不等待 fetch/decode 完成。
+    void ctx.resume().then(() => {
+      if (ticket !== revision) return;
+      if (buffers && sources.length) startBuffers(buffers, ticket, state.isPaused ? offset : 0);
+    }).catch(() => { if (ticket === revision) update({ needsGesture: true }); });
+  }
+
+  function pause() {
+    const ctx = context;
+    if (!ctx || !state.isPlaying) return;
+    offset = Math.max(0, Math.min(duration, ctx.currentTime - startedAt));
+    stopActive();
+    update({ isPlaying: false, isPaused: true });
+    void ctx.suspend().catch(() => undefined);
+  }
+
+  function resume() {
+    const ctx = context;
+    if (!ctx || !state.isPaused || !buffers) return;
+    const ticket = revision;
+    if (ctx.state === 'suspended') {
+      // 继续按钮本身属于用户手势，直接在调用链里恢复上下文。
+      void ctx.resume().then(() => {
+        if (ticket !== revision || !buffers) return;
+        startBuffers(buffers, ticket, offset);
+      }).catch(() => { if (ticket === revision) update({ needsGesture: true }); });
+      return;
+    }
+    startBuffers(buffers, ticket, offset);
   }
 
   return {
     playQueue,
     play: (src: string) => playQueue([src]),
-    replay: () => playQueue(sources, gap),
-    pause: () => { if (audio) { audio.pause(); update({ isPlaying: false, isPaused: true }); } },
-    resume: () => { if (audio && state.isPaused) void resumeCurrent?.(); },
-    resumeFromGesture: () => { if (sources.length) startClip(state.queueIndex); },
+    replay: () => playQueue(sources),
+    pause,
+    resume,
+    resumeFromGesture,
     stop: () => { cancel(); update({ isPlaying: false, isPaused: false, needsGesture: false }); },
-    dispose: cancel,
+    dispose: () => { cancel(); void context?.close().catch(() => undefined); context = null; },
   };
 }

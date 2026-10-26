@@ -7,7 +7,8 @@ export function isBetterScore(candidate: QuizSummary, previous: QuizSummary | nu
 
 export function saveBest(mode: QuizMode, difficulty: Difficulty, score: QuizSummary): { best: QuizSummary; saved: boolean } {
   try {
-    const key = `best:${mode}:${difficulty}`;
+    // 片段、歌词和混合规则已变更，使用 v2；倒放规则保持兼容旧成绩。
+    const key = mode === 'reverse' ? `best:${mode}:${difficulty}` : `best:v2:${mode}:${difficulty}`;
     const raw: unknown = JSON.parse(localStorage.getItem(key) ?? 'null');
     let previous: QuizSummary | null = null;
     if (typeof raw === 'object' && raw !== null) {

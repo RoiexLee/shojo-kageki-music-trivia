@@ -98,7 +98,7 @@ async function main() {
     const dur = await probeDurationSec(src);
     const need = requiredSourceDurationSec(chorusStartOf(song));
     if (dur === null) tooShort.push(`${song.folder}: 无法探测时长`);
-    else if (dur < need) tooShort.push(`${song.folder}: 总时长 ${dur.toFixed(1)}s < 副歌起点+10s（${need}s）`);
+    else if (dur < need) tooShort.push(`${song.folder}: 总时长 ${dur.toFixed(1)}s < 副歌起点+15s（${need}s）`);
     const lrc = parseLrc(await fs.readFile(path.join(MUSIC_DIR, song.folder, `${song.folder}.lrc`), 'utf-8'));
     if (lrc.skipped > 0) console.warn(`[警告] ${song.folder}: lrc 有 ${lrc.skipped} 行无法解析（已跳过）`);
     if (lrc.lines.length < MIN_VALID_LINES) tooShort.push(`${song.folder}: lrc 有效行 ${lrc.lines.length} < ${MIN_VALID_LINES}，歌词模式不可用`);
@@ -226,7 +226,7 @@ async function verify(manifest, songs) {
     console.error(`校验失败（${problems.length} 处）:\n  - ${problems.join('\n  - ')}`);
     process.exit(1);
   }
-  console.log(`校验通过：${songs.length} 首歌 × 5 片段 + 封面 + 歌词，路径、时长（±0.5s）、歌词内容与源文件指纹全部一致。`);
+  console.log(`校验通过：${songs.length} 首歌 × ${SEGMENT_SPECS.length} 片段 + 封面 + 歌词，路径、时长（±0.5s）、歌词内容与源文件指纹全部一致。`);
 }
 
 main().catch((err) => { console.error(err.message ?? err); process.exit(1); });

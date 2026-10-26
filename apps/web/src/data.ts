@@ -6,7 +6,7 @@ export const songs = songsJson as Song[];
 export const assetUrl = (path: string) => `${import.meta.env.BASE_URL}assets/${path}`;
 
 const isObject = (value: unknown): value is Record<string, unknown> => typeof value === 'object' && value !== null;
-const segmentKeys = ['intro-5', 'intro-10', 'intro-15', 'chorus-10', 'reverse-8'] as const;
+const segmentKeys = ['intro-5', 'intro-10', 'intro-15', 'clip-5', 'clip-10', 'clip-15', 'chorus-10', 'reverse-8'] as const;
 
 export function parseManifest(value: unknown): Manifest {
   if (!isObject(value) || value.version !== 1 || typeof value.generatedAt !== 'string' || !Array.isArray(value.entries)) {

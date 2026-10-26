@@ -8,7 +8,7 @@ function manifest() {
     entries: songs.map((song) => ({
       id: song.id, folder: song.title, title: song.title, coverPath: `covers/${song.id}.jpg`,
       params: { chorusStartSec: 72, bitrate: '128k', generatedAt: '2026-10-26T00:00:00Z' },
-      segments: Object.fromEntries(['intro-5', 'intro-10', 'intro-15', 'chorus-10', 'reverse-8'].map((key) => [key, {
+      segments: Object.fromEntries(['intro-5', 'intro-10', 'intro-15', 'clip-5', 'clip-10', 'clip-15', 'chorus-10', 'reverse-8'].map((key) => [key, {
         path: `audio/${song.id}/${key}.mp3`, durationSec: Number(key.split('-')[1]),
       }])),
     })),

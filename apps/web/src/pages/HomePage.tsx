@@ -9,13 +9,13 @@ interface Props {
 }
 
 const COPY: Record<QuizMode, string> = {
-  intro: '聆听歌曲开头，猜出歌名', lyrics: '根据一句歌词，认出旋律',
-  reverse: '从倒放的旋律中，认出歌曲', mix: '多首副歌依次连播，全部选出',
+  intro: '聆听曲中片段，猜出歌名', lyrics: '根据一句中文歌词，认出歌曲',
+  reverse: '从倒放的旋律中，认出歌曲', mix: '两首副歌同步混合，全部选出',
 };
 
 export function HomePage({ mode, onModeChange, difficulty, onDifficultyChange, onStart, songCount, loading, error }: Props) {
   const spec = MODE_DIFFICULTY_MAP[mode][difficulty];
-  const rule = mode === 'intro' ? `${difficulty === 'easy' ? 15 : difficulty === 'normal' ? 10 : 5} 秒片段`
+  const rule = mode === 'intro' ? `${difficulty === 'easy' ? 15 : difficulty === 'normal' ? 10 : 5} 秒曲中片段`
     : mode === 'lyrics' ? '一句歌词' : mode === 'reverse' ? '8 秒倒放' : `${spec.answerCount} 首 × 10 秒`;
   return (
     <main className="app-shell home-page stage-enter">
@@ -47,7 +47,7 @@ export function HomePage({ mode, onModeChange, difficulty, onDifficultyChange, o
         <p className="setup-rule" aria-live="polite">{rule} · {spec.optionCount} 选 {spec.answerCount}</p>
         <button type="button" className="primary-button start-button" onClick={onStart} disabled={loading}>{loading ? '准备中…' : '开始答题'}<Arrow /></button>
       </section>
-      <p className="mode-hint">{mode === 'lyrics' ? '无需播放音频。简单难度附作品出处，作答后揭晓中文歌词。' : mode === 'mix' ? '片段间隔半秒，可反复重听；选满后确认，全部选对才得分。' : mode === 'reverse' ? '简单难度附一句歌词提示。片段可以无限次重听。' : '听不清也没关系，片段可以无限次重听。点击选项即提交答案。'}</p>
+      <p className="mode-hint">{mode === 'lyrics' ? '作答前显示中文翻译，提交后播放正确歌曲片段并揭晓原文。' : mode === 'mix' ? '两首片段同刻开始，可反复重听；选满后确认，全部选对才得分。' : mode === 'reverse' ? '简单难度附一句歌词提示。片段可以无限次重听。' : '听不清也没关系，片段可以无限次重听。点击选项即提交答案。'}</p>
       {error && <p role="alert" className="error-notice">{error} 可再次点击开始重试。</p>}
       <Footer />
     </main>
