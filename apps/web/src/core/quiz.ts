@@ -60,14 +60,42 @@ export interface LyricLine { timeMs: number; text: string; translation?: string 
 export interface LyricsData { id: string; lineCount: number; lines: LyricLine[] }
 export type LyricsById = Record<string, LyricsData>;
 
-/** 曲库条目（SongMeta 的最小消费面） */
+/** 曲库条目（SongMeta 的消费面，可选字段支持曲库图鉴与揭晓典藏卡展示） */
 export interface Song {
   id: string;
   title: string;
   type: string;
   origin: string;
   aliases?: string[];
+  romaji?: string;
+  singers?: string[];
+  description?: string;
+  folder?: string;
 }
+
+/** 圣翔音乐学园第 99 期生（スタァライト九九組）舞台代表色与声优档案 */
+export interface TroupeMember {
+  id: string;
+  number: number;
+  name: string;
+  romaji: string;
+  cv: string;
+  color: string;
+  colorName: string;
+  epithet: string;
+}
+
+export const TROUPE_MEMBERS: readonly TroupeMember[] = [
+  { id: 'karen', number: 1, name: '愛城華恋', romaji: 'Aijō Karen', cv: '小山百代', color: '#FB5458', colorName: '华恋红', epithet: '约定之星的舞台少女' },
+  { id: 'hikari', number: 29, name: '神楽ひかり', romaji: 'Kagura Hikari', cv: '三森すずこ', color: '#5A8DEE', colorName: '星光蓝', epithet: '远渡重洋的宿命星芒' },
+  { id: 'maya', number: 18, name: '天堂真矢', romaji: 'Tendō Maya', cv: '富田麻帆', color: '#EAE6F2', colorName: '孤高白', epithet: '立于顶点的首席主役' },
+  { id: 'junna', number: 25, name: '星見純那', romaji: 'Hoshimi Junna', cv: '佐藤日向', color: '#62C4E8', colorName: '苍穹水蓝', epithet: '紧握自己那颗星辰' },
+  { id: 'mahiru', number: 17, name: '露崎まひる', romaji: 'Tsuyuzaki Mahiru', cv: '岩田陽葵', color: '#86D66B', colorName: '晨曦黄绿', epithet: '温柔守望的向阳花' },
+  { id: 'nana', number: 15, name: '大場なな', romaji: 'Daiba Nana', cv: '小泉萌香', color: '#F4C84B', colorName: '轮回耀黄', epithet: '第99回圣翔祭的守护者' },
+  { id: 'claudine', number: 11, name: '西條クロディーヌ', romaji: 'Saijō Claudine', cv: '相羽あいな', color: '#F58840', colorName: '炽烈亮橙', epithet: '永不言败的法兰西荣光' },
+  { id: 'futaba', number: 2, name: '石動双葉', romaji: 'Isurugi Futaba', cv: '生田輝', color: '#9B6AD6', colorName: '疾风暗紫', epithet: '斩开迷雾的锐利锋芒' },
+  { id: 'kaoruko', number: 22, name: '花柳香子', romaji: 'Hanayagi Kaoruko', cv: '伊藤彩沙', color: '#F07CA5', colorName: '京洛樱粉', epithet: '千锤百炼的优雅花朵' },
+];
 
 export interface QuizConfig {
   mode: QuizMode;
@@ -234,6 +262,90 @@ export function summarize(results: QuestionResult[]): QuizSummary {
     correct: results.filter((r) => r.correct).length,
     total: results.length,
     elapsedMs: results.reduce((acc, r) => acc + r.elapsedMs, 0),
+  };
+}
+
+export interface StreakStats {
+  currentStreak: number;
+  maxStreak: number;
+  fastestMs: number | null;
+  avgMs: number;
+}
+
+/** 计算作答序列的当前连击、最高连击、最快正确单题用时与平均用时。 */
+export function computeStreaks(results: QuestionResult[]): StreakStats {
+  let currentStreak = 0;
+  let maxStreak = 0;
+  let fastestMs: number | null = null;
+  let totalMs = 0;
+  for (const r of results) {
+    totalMs += r.elapsedMs;
+    if (r.correct) {
+      currentStreak += 1;
+      if (currentStreak > maxStreak) maxStreak = currentStreak;
+      if (fastestMs === null || r.elapsedMs < fastestMs) fastestMs = r.elapsedMs;
+    } else {
+      currentStreak = 0;
+    }
+  }
+  return {
+    currentStreak,
+    maxStreak,
+    fastestMs,
+    avgMs: results.length > 0 ? Math.round(totalMs / results.length) : 0,
+  };
+}
+
+export interface StageRank {
+  tier: 'S+' | 'A' | 'B' | 'C';
+  code: string;
+  title: string;
+  subtitle: string;
+  quote: string;
+  accuracyPct: number;
+}
+
+/** 根据本局汇总成绩评定舞台少女星级（Stage Rank）。 */
+export function computeStageRank(summary: QuizSummary): StageRank {
+  const ratio = summary.total > 0 ? summary.correct / summary.total : 0;
+  const accuracyPct = Math.round(ratio * 100);
+  if (summary.total > 0 && summary.correct === summary.total) {
+    return {
+      tier: 'S+',
+      code: 'POSITION ZERO',
+      title: 'TOP STAR · 命运之主役',
+      subtitle: '凌驾于星光之巅，全曲目完美制霸！',
+      quote: '「わかります——你已摘下那颗无人能及的命运之星。」',
+      accuracyPct,
+    };
+  }
+  if (ratio >= 0.8) {
+    return {
+      tier: 'A',
+      code: 'BRILLIANT REVUE',
+      title: 'BRILLIANT · 耀眼舞台少女',
+      subtitle: '歌声与剑戟交织，聚光灯为你而倾泻！',
+      quote: '「舞台少女每时每刻都在歌唱中重生。」',
+      accuracyPct,
+    };
+  }
+  if (ratio >= 0.6) {
+    return {
+      tier: 'B',
+      code: 'RISING ACTRESS',
+      title: 'RISING · 新星初绽',
+      subtitle: '旋律已在心中回响，向着零点位置再度进发！',
+      quote: '「听见星辰的对白，再次迈向舞台中央。」',
+      accuracyPct,
+    };
+  }
+  return {
+    tier: 'C',
+    code: 'ENCORE CALL',
+    title: 'ENCORE · 再演序曲',
+    subtitle: '帷幕尚未真正落下，只要还在歌唱，选拔便永不终结。',
+    quote: '「我们早已立于舞台之上。」',
+    accuracyPct,
   };
 }
 

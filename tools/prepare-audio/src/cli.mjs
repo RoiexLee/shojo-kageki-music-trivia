@@ -152,6 +152,18 @@ async function processSong(song, prev, opts, stats) {
     console.log(`  [${song.id}] ${spec.key} ✓`);
   }
 
+  const fullRel = `audio/${song.id}/full.mp3`;
+  const fullAbs = path.join(ASSETS_DIR, fullRel);
+  if (!opts.force && existsSync(fullAbs)) {
+    stats.skipped++;
+  } else {
+    await fs.mkdir(path.dirname(fullAbs), { recursive: true });
+    const src = path.join(MUSIC_DIR, song.folder, `${song.folder}.mp3`);
+    await fs.copyFile(src, fullAbs);
+    stats.built++;
+    console.log(`  [${song.id}] full ✓`);
+  }
+
   const coverRel = `covers/${song.id}.jpg`;
   const coverAbs = path.join(ASSETS_DIR, coverRel);
   let coverPath = coverRel;
@@ -208,6 +220,8 @@ async function verify(manifest, songs) {
     }
     const coverAbs = path.join(ASSETS_DIR, entry.coverPath);
     if (!existsSync(coverAbs)) problems.push(`${song.id}: 封面不存在 ${entry.coverPath}`);
+    const fullAbs = path.join(ASSETS_DIR, 'audio', song.id, 'full.mp3');
+    if (!existsSync(fullAbs)) problems.push(`${song.id}: 全曲不存在 audio/${song.id}/full.mp3`);
     try {
       const content = await fs.readFile(path.join(MUSIC_DIR, song.folder, `${song.folder}.lrc`), 'utf-8');
       const hash = createHash('sha256').update(content).digest('hex');

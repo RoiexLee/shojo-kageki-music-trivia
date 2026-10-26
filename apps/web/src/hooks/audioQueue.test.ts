@@ -96,6 +96,18 @@ describe('Web Audio 同步混音生命周期', () => {
     expect(sources[4].start).toHaveBeenCalledWith(14.03, 0);
   });
 
+  it('支持进度读取与可选 AnalyserNode 频谱采样，无 createAnalyser 时安全降级', async () => {
+    const { player, sources, setTime } = setup();
+    const buf = new Uint8Array(16);
+    expect(player.sampleFrequency(buf)).toBe(false);
+    player.playQueue(['a.mp3']);
+    await vi.waitFor(() => expect(sources).toHaveLength(1));
+    setTime(13.53);
+    const progress = player.getPlaybackProgress();
+    expect(progress.durationSec).toBe(10);
+    expect(progress.elapsedSec).toBeCloseTo(3.5, 2);
+  });
+
   it('旧 fetch 解码完成不能越题启动，失败请求支持取消', async () => {
     let resolveFirst!: (value: Response) => void;
     const first = new Promise<Response>((resolve) => { resolveFirst = resolve; });

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { createAudioQueue, initialAudioState } from './audioQueue.ts';
+import { createAudioQueue, initialAudioState, type PlaybackProgress } from './audioQueue.ts';
 
 export function useAudioPlayer() {
   const [state, setState] = useState(initialAudioState);
@@ -18,5 +18,19 @@ export function useAudioPlayer() {
   const pause = useCallback(() => queue.current?.pause(), []);
   const resume = useCallback(() => queue.current?.resume(), []);
   const resumeFromGesture = useCallback(() => queue.current?.resumeFromGesture(), []);
-  return { ...state, playQueue, play, replay, stop, pause, resume, resumeFromGesture };
+  const sampleFrequency = useCallback((target: Uint8Array<ArrayBuffer>) => queue.current?.sampleFrequency(target) ?? false, []);
+  const getPlaybackProgress = useCallback((): PlaybackProgress => queue.current?.getPlaybackProgress() ?? { elapsedSec: 0, durationSec: 0 }, []);
+
+  return {
+    ...state,
+    playQueue,
+    play,
+    replay,
+    stop,
+    pause,
+    resume,
+    resumeFromGesture,
+    sampleFrequency,
+    getPlaybackProgress,
+  };
 }

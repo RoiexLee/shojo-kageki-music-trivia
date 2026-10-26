@@ -1,9 +1,11 @@
 import { useMemo, useRef, useState } from 'react';
-import { fetchLyrics, fetchManifest, songs } from './data.ts';
+import { assetUrl, fetchLyrics, fetchManifest, songs } from './data.ts';
 import { resolveSeed, type Difficulty, type LyricsById, type QuizConfig, type QuizMode } from './core/quiz.ts';
 import type { Manifest, ManifestEntry } from '@starlight/shared';
 import { useQuizEngine } from './hooks/useQuizEngine.ts';
 import { useAudioPlayer } from './hooks/useAudioPlayer.ts';
+import { TheaterBackdrop } from './components/TheaterBackdrop.tsx';
+import { JukeboxStudio } from './components/JukeboxStudio.tsx';
 import { HomePage } from './pages/HomePage.tsx';
 import { QuizPage } from './pages/QuizPage.tsx';
 import { SummaryPage } from './pages/SummaryPage.tsx';
@@ -18,12 +20,16 @@ export default function App() {
   const [lyrics, setLyrics] = useState<LyricsById | null>(null);
   const [loadError, setLoadError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [modalJukeboxOpen, setModalJukeboxOpen] = useState(false);
+  const [previewSongId, setPreviewSongId] = useState<string | null>(null);
+  const [stageAccent, setStageAccent] = useState<string>('#FB5458');
   const starting = useRef(false);
   const audio = useAudioPlayer();
   const engine = useQuizEngine(songs, config, lyrics ?? emptyLyrics);
   const songById = useMemo(() => new Map(songs.map((s) => [s.id, s])), []);
   const entryById = useMemo(
-    () => new Map<string, ManifestEntry>((manifest?.entries ?? []).map((e) => [e.id, e])), [manifest],
+    () => new Map<string, ManifestEntry>((manifest?.entries ?? []).map((e) => [e.id, e])),
+    [manifest],
   );
 
   async function start() {
@@ -31,6 +37,9 @@ export default function App() {
     starting.current = true;
     setLoading(true);
     setLoadError(null);
+    setModalJukeboxOpen(false);
+    setPreviewSongId(null);
+    audio.stop();
     try {
       const needsLyrics = mode === 'lyrics' || (mode === 'reverse' && difficulty === 'easy');
       const [m, l] = await Promise.all([
@@ -48,31 +57,118 @@ export default function App() {
     }
   }
 
-  function home() { audio.stop(); setConfig(null); setLoadError(null); }
+  function home() {
+    audio.stop();
+    setPreviewSongId(null);
+    setModalJukeboxOpen(false);
+    setConfig(null);
+    setLoadError(null);
+  }
 
-  if (!config) return (
-    <HomePage mode={mode} onModeChange={setMode} difficulty={difficulty} onDifficultyChange={setDifficulty}
-      onStart={start} songCount={songs.length} loading={loading} error={loadError} />
-  );
+  function handlePreviewSong(songId: string) {
+    setPreviewSongId(songId);
+    audio.play(assetUrl(`audio/${songId}/full.mp3`));
+    if (audio.needsGesture) {
+      audio.resumeFromGesture();
+    }
+  }
 
-  if (engine.state.error) return (
-    <main className="mx-auto flex min-h-screen max-w-xl flex-col items-center justify-center gap-4 px-6 text-center">
-      <h1 className="text-xl font-bold">暂时无法开演</h1>
-      <p role="alert">{engine.state.error}</p>
-      <button type="button" onClick={home} className="rounded-full bg-amber-300 px-6 py-3 font-bold text-purple-950">返回首页</button>
-    </main>
-  );
+  function handleStopPreview() {
+    audio.stop();
+    setPreviewSongId(null);
+  }
 
-  if (engine.state.phase === 'summary') return (
-    <SummaryPage config={config} results={engine.state.results} questions={engine.state.questions}
-      songById={songById} entryById={entryById} onRestart={home} />
-  );
+  const curtainKey = !config
+    ? 'lobby'
+    : engine.state.phase === 'summary'
+      ? 'finale'
+      : `duel-${engine.state.index}`;
 
-  if (!engine.state.current) return <p role="status" className="p-10 text-center">正在准备舞台…</p>;
   return (
-    <QuizPage question={engine.state.current} questions={engine.state.questions} index={engine.state.index}
-      answered={engine.state.answered} selectedIds={engine.state.selectedIds} score={engine.summary.correct}
-      difficulty={config.difficulty} songById={songById} entryById={entryById}
-      onSelect={engine.select} onConfirm={engine.confirm} onNext={engine.next} onExit={home} audio={audio} />
+    <>
+      <TheaterBackdrop accentColor={stageAccent} curtainKey={curtainKey} />
+
+      {!config ? (
+        <HomePage
+          mode={mode}
+          onModeChange={setMode}
+          difficulty={difficulty}
+          onDifficultyChange={setDifficulty}
+          onStart={start}
+          songCount={songs.length}
+          loading={loading}
+          error={loadError}
+          songs={songs}
+          onPreviewSong={handlePreviewSong}
+          previewingSongId={previewSongId}
+          isPlaying={audio.isPlaying}
+          onStopPreview={handleStopPreview}
+          onAccentChange={setStageAccent}
+        />
+      ) : engine.state.error ? (
+        <main className="opera-viewport error-viewport">
+          <div className="error-stage-card">
+            <h1>暂时无法开演</h1>
+            <p role="alert">{engine.state.error}</p>
+            <button type="button" onClick={home} className="primary-button imperial-cta-btn">
+              返回首页
+            </button>
+          </div>
+        </main>
+      ) : engine.state.phase === 'summary' ? (
+        <>
+          <SummaryPage
+            config={config}
+            results={engine.state.results}
+            questions={engine.state.questions}
+            songById={songById}
+            entryById={entryById}
+            onRestart={home}
+            onPreviewSong={handlePreviewSong}
+            previewingSongId={previewSongId}
+            isPlaying={audio.isPlaying}
+            onStopPreview={handleStopPreview}
+            onOpenJukeboxModal={() => setModalJukeboxOpen(true)}
+          />
+          {modalJukeboxOpen && (
+            <JukeboxStudio
+              mode="modal"
+              onClose={() => {
+                setModalJukeboxOpen(false);
+                handleStopPreview();
+              }}
+              songs={songs}
+              onPreviewSong={handlePreviewSong}
+              previewingSongId={previewSongId}
+              isPlaying={audio.isPlaying}
+              onStopPreview={handleStopPreview}
+              onAccentChange={setStageAccent}
+            />
+          )}
+        </>
+      ) : !engine.state.current ? (
+        <p role="status" className="p-10 text-center">
+          正在准备舞台…
+        </p>
+      ) : (
+        <QuizPage
+          question={engine.state.current}
+          questions={engine.state.questions}
+          index={engine.state.index}
+          answered={engine.state.answered}
+          selectedIds={engine.state.selectedIds}
+          score={engine.summary.correct}
+          difficulty={config.difficulty}
+          results={engine.state.results}
+          songById={songById}
+          entryById={entryById}
+          onSelect={engine.select}
+          onConfirm={engine.confirm}
+          onNext={engine.next}
+          onExit={home}
+          audio={audio}
+        />
+      )}
+    </>
   );
 }

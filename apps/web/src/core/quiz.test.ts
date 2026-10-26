@@ -4,6 +4,9 @@ import {
   judge,
   summarize,
   formatTime,
+  computeStreaks,
+  computeStageRank,
+  TROUPE_MEMBERS,
   DIFFICULTY_MAP,
   MODE_DIFFICULTY_MAP,
   lyricCandidates,
@@ -137,6 +140,24 @@ describe('judge / summarize / formatTime', () => {
     expect(formatTime(60_000)).toBe('1 分 00 秒');
     expect(formatTime(83_000)).toBe('1 分 23 秒');
     expect(formatTime(3_661_000)).toBe('61 分 01 秒');
+  });
+  it('computeStreaks：计算当前连击、最高连击、最快正确单题与平均用时', () => {
+    expect(computeStreaks([])).toEqual({ currentStreak: 0, maxStreak: 0, fastestMs: null, avgMs: 0 });
+    const stats = computeStreaks([
+      { questionId: 'q1', correct: true, elapsedMs: 3000 },
+      { questionId: 'q2', correct: true, elapsedMs: 1800 },
+      { questionId: 'q3', correct: false, elapsedMs: 900 },
+      { questionId: 'q4', correct: true, elapsedMs: 2200 },
+    ]);
+    expect(stats).toEqual({ currentStreak: 1, maxStreak: 2, fastestMs: 1800, avgMs: 1975 });
+  });
+  it('computeStageRank & TROUPE_MEMBERS：按正确率映射 S+/A/B/C 舞台星级，九九组共 9 人', () => {
+    expect(TROUPE_MEMBERS).toHaveLength(9);
+    expect(computeStageRank({ correct: 10, total: 10, elapsedMs: 25000 })).toMatchObject({ tier: 'S+', code: 'POSITION ZERO', accuracyPct: 100 });
+    expect(computeStageRank({ correct: 8, total: 10, elapsedMs: 30000 })).toMatchObject({ tier: 'A', code: 'BRILLIANT REVUE', accuracyPct: 80 });
+    expect(computeStageRank({ correct: 6, total: 10, elapsedMs: 35000 })).toMatchObject({ tier: 'B', code: 'RISING ACTRESS', accuracyPct: 60 });
+    expect(computeStageRank({ correct: 4, total: 10, elapsedMs: 40000 })).toMatchObject({ tier: 'C', code: 'ENCORE CALL', accuracyPct: 40 });
+    expect(computeStageRank({ correct: 0, total: 0, elapsedMs: 0 })).toMatchObject({ tier: 'C', accuracyPct: 0 });
   });
 });
 

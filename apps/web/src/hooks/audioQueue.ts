@@ -6,13 +6,18 @@ export interface AudioState {
   failedCount: number;
 }
 
+export interface PlaybackProgress {
+  elapsedSec: number;
+  durationSec: number;
+}
+
 export const initialAudioState: AudioState = {
   isPlaying: false, isPaused: false, needsGesture: false, queueIndex: 0, failedCount: 0,
 };
 
 type ContextLike = AudioContext;
 
-/** Web Audio 播放器：所有轨道先 fetch/decode，成功后用同一个 currentTime 排程。 */
+/** Web Audio 播放器：所有轨道先 fetch/decode，成功后用同一个 currentTime 排程，可选挂载 AnalyserNode。 */
 export function createAudioQueue(
   _legacyCreateAudio: () => HTMLAudioElement,
   onChange: (state: AudioState) => void,
@@ -20,6 +25,7 @@ export function createAudioQueue(
 ) {
   let state = { ...initialAudioState };
   let context: ContextLike | null = null;
+  let analyser: AnalyserNode | null = null;
   let sources: string[] = [];
   let buffers: AudioBuffer[] | null = null;
   let active: AudioBufferSourceNode[] = [];
@@ -36,7 +42,18 @@ export function createAudioQueue(
   }
 
   function ensureContext() {
-    if (!context) context = createContext();
+    if (!context) {
+      context = createContext();
+      if (typeof (context as Partial<AudioContext>).createAnalyser === 'function') {
+        try {
+          analyser = context.createAnalyser();
+          analyser.fftSize = 128;
+          analyser.smoothingTimeConstant = 0.78;
+        } catch {
+          analyser = null;
+        }
+      }
+    }
     return context;
   }
 
@@ -56,6 +73,7 @@ export function createAudioQueue(
     buffers = null;
     ended = 0;
     offset = 0;
+    duration = 0;
   }
 
   function startBuffers(decoded: AudioBuffer[], ticket: number, fromOffset = 0) {
@@ -65,8 +83,8 @@ export function createAudioQueue(
     const when = ctx.currentTime + 0.03;
     const gain = 1 / Math.max(1, decoded.length);
     ended = 0;
-    offset = Math.max(0, Math.min(fromOffset, Math.max(...decoded.map((buffer) => buffer.duration))));
     duration = Math.max(...decoded.map((buffer) => buffer.duration));
+    offset = Math.max(0, Math.min(fromOffset, duration));
     startedAt = when - offset;
     active = decoded.map((buffer) => {
       const source = ctx.createBufferSource();
@@ -75,11 +93,15 @@ export function createAudioQueue(
       nodeGain.gain.value = gain;
       source.connect(nodeGain);
       nodeGain.connect(ctx.destination);
+      if (analyser) {
+        try { nodeGain.connect(analyser); } catch { /* 忽略非标准上下文 */ }
+      }
       source.onended = () => {
         if (ticket !== revision) return;
         ended++;
         if (ended >= decoded.length) {
           active = [];
+          offset = 0;
           update({ isPlaying: false, isPaused: false, needsGesture: false });
         }
       };
@@ -99,6 +121,7 @@ export function createAudioQueue(
       }));
       if (ticket !== revision) return;
       buffers = decoded;
+      duration = Math.max(...decoded.map((buffer) => buffer.duration));
       if (ctx.state === 'running') startBuffers(decoded, ticket);
       else update({ needsGesture: true });
     } catch (error) {
@@ -154,6 +177,27 @@ export function createAudioQueue(
     startBuffers(buffers, ticket, offset);
   }
 
+  function sampleFrequency(target: Uint8Array<ArrayBuffer>): boolean {
+    if (!state.isPlaying || !analyser) return false;
+    try {
+      analyser.getByteFrequencyData(target);
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  function getPlaybackProgress(): PlaybackProgress {
+    if (state.isPlaying && context && duration > 0) {
+      const elapsedSec = Math.max(0, Math.min(duration, context.currentTime - startedAt));
+      return { elapsedSec, durationSec: duration };
+    }
+    if (state.isPaused && duration > 0) {
+      return { elapsedSec: offset, durationSec: duration };
+    }
+    return { elapsedSec: 0, durationSec: duration };
+  }
+
   return {
     playQueue,
     play: (src: string) => playQueue([src]),
@@ -161,7 +205,9 @@ export function createAudioQueue(
     pause,
     resume,
     resumeFromGesture,
+    sampleFrequency,
+    getPlaybackProgress,
     stop: () => { cancel(); update({ isPlaying: false, isPaused: false, needsGesture: false }); },
-    dispose: () => { cancel(); void context?.close().catch(() => undefined); context = null; },
+    dispose: () => { cancel(); analyser = null; void context?.close().catch(() => undefined); context = null; },
   };
 }

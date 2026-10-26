@@ -19,5 +19,11 @@
 - `apps/web/public/theme/characters/karen.png` — https://revuestarlight.com/wordpress/wp-content/themes/revuestarlight_v1/assets/images/common/animation/character/main/revue/pc/char_karen_revue@2x.png
 - `apps/web/public/theme/characters/hikari.png` — https://revuestarlight.com/wordpress/wp-content/themes/revuestarlight_v1/assets/images/common/animation/character/main/revue/pc/char_hikari_revue@2x.png
 - `apps/web/public/theme/characters/maya.png` — https://revuestarlight.com/wordpress/wp-content/themes/revuestarlight_v1/assets/images/common/animation/character/main/revue/pc/char_maya_revue@2x.png
+- `apps/web/public/theme/characters/mahiru.png` — https://revuestarlight.com/wordpress/wp-content/themes/revuestarlight_v1/assets/images/common/animation/character/main/revue/pc/char_mahiru_revue@2x.png
+- `apps/web/public/theme/characters/junna.png` — https://revuestarlight.com/wordpress/wp-content/themes/revuestarlight_v1/assets/images/common/animation/character/main/revue/pc/char_junna_revue@2x.png
+- `apps/web/public/theme/characters/nana.png` — https://revuestarlight.com/wordpress/wp-content/themes/revuestarlight_v1/assets/images/common/animation/character/main/revue/pc/char_nana_revue@2x.png
+- `apps/web/public/theme/characters/claudine.png` — https://revuestarlight.com/wordpress/wp-content/themes/revuestarlight_v1/assets/images/common/animation/character/main/revue/pc/char_claudine_revue@2x.png
+- `apps/web/public/theme/characters/futaba.png` — https://revuestarlight.com/wordpress/wp-content/themes/revuestarlight_v1/assets/images/common/animation/character/main/revue/pc/char_futaba_revue@2x.png
+- `apps/web/public/theme/characters/kaoruko.png` — https://revuestarlight.com/wordpress/wp-content/themes/revuestarlight_v1/assets/images/common/animation/character/main/revue/pc/char_kaoruko_revue@2x.png
 
 素材仅作本地开发预览，版权归 Project Revue Starlight 及相关权利方；不得公开再分发。
