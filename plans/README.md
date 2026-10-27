@@ -15,6 +15,10 @@
 | plan-006 | 舞台透明角色主视觉与动效 | 已提交 | plan-006(web): 舞台透明主视觉与动效升级 |
 | plan-007 | 片段、中文歌词与同步混合猜歌 | 已提交 | plan-007(web): 中文歌词揭晓试听与双曲混合猜歌 |
 | plan-008 | Starlight Grand Revue 华丽歌剧舞台前端完全重构 | 已提交 | plan-008(web): 歌剧舞台全量重构与高级动效升级 |
+| plan-009 | 整理音乐素材并扩充试听曲库 | 已提交 | plan-009(data): 整理音乐素材并扩充试听曲库 |
+| plan-010 | 修复短曲副歌起点并重建资源 | 已提交 | plan-010(data): 修复短曲副歌起点并重建资源 |
+| plan-011 | 补齐曲库歌曲元数据 | 已提交 | plan-011(data): 补齐曲库歌曲元数据 |
+| plan-012 | 按 Standard Readme 重写项目说明与部署建议 | 已提交 | plan-012(docs): 统一 README 与部署说明 |
 
 状态取值：`未开始 / 起草中 / 待评阅 / 评阅中 / 返修中 / 待实现 / 实现中 / 实现待评 / 已提交 / 已取消`。
 
@@ -42,4 +46,7 @@
 - 2026-10-26：plan-005 独立 implementation review PASS；63 项测试、build、assets verify 与生产预览证据通过。
 
 - 2026-10-26：plan-006 完成透明角色主视觉、响应式舞台动效与 reduced-motion 支持并提交；plan-007 计划评阅 PASS，开始实现曲中片段、中文歌词揭晓试听和双曲同步混合。
+
+- 2026-10-27：plan-012 计划评阅 PASS；开始按 Standard Readme 重写根 README，统一项目名并记录 GitHub Pages / Cloudflare Pages 的部署边界。
+- 2026-10-27：plan-012 implementation review PASS；README、测试、构建与 121 首歌曲资源校验均通过，已提交文档更新。
 
