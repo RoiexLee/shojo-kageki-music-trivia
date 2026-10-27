@@ -13,3 +13,5 @@
 - `npm test`：通过，共 73 个测试（新增 1 项）。
 - `npm run build`：通过。
 - `npm run assets -- --verify`：通过，121 首歌曲资源完整。
+- 修正后的构建已重新上传到 Cloudflare Pages：<https://3455128e.shojo-kageki-music-trivia.pages.dev>；项目主地址已指向新构建。
+- 线上 JS 验证包含 `TV 动画第 10 话`，旧的 `TV动画第10话` 文本不存在。

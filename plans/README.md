@@ -60,4 +60,5 @@
 - 2026-10-27：plan-015 Direct Upload 完成；Cloudflare Pages 默认地址可访问，线上资源 smoke test 通过。
 - 2026-10-27：plan-016 计划评阅 PASS；开始审查歌曲 description 的中日文与英文数字边界空格。
 - 2026-10-27：plan-016 implementation review PASS；16 条 description 修正完成，测试、构建和资源校验通过。
+- 2026-10-27：plan-016 修正后的构建已重新 Direct Upload 到 Cloudflare Pages，项目主地址已验证使用新 bundle。
 
