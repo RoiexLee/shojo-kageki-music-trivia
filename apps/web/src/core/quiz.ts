@@ -91,7 +91,7 @@ export const TROUPE_MEMBERS: readonly TroupeMember[] = [
   { id: 'maya', number: 18, name: '天堂真矢', romaji: 'Tendō Maya', cv: '富田麻帆', color: '#EAE6F2', colorName: '孤高白', epithet: '立于顶点的首席主役' },
   { id: 'junna', number: 25, name: '星見純那', romaji: 'Hoshimi Junna', cv: '佐藤日向', color: '#62C4E8', colorName: '苍穹水蓝', epithet: '紧握自己那颗星辰' },
   { id: 'mahiru', number: 17, name: '露崎まひる', romaji: 'Tsuyuzaki Mahiru', cv: '岩田陽葵', color: '#86D66B', colorName: '晨曦黄绿', epithet: '温柔守望的向阳花' },
-  { id: 'nana', number: 15, name: '大場なな', romaji: 'Daiba Nana', cv: '小泉萌香', color: '#F4C84B', colorName: '轮回耀黄', epithet: '第99回圣翔祭的守护者' },
+  { id: 'nana', number: 15, name: '大場なな', romaji: 'Daiba Nana', cv: '小泉萌香', color: '#F4C84B', colorName: '轮回耀黄', epithet: '第 99 回圣翔祭的守护者' },
   { id: 'claudine', number: 11, name: '西條クロディーヌ', romaji: 'Saijō Claudine', cv: '相羽あいな', color: '#F58840', colorName: '炽烈亮橙', epithet: '永不言败的法兰西荣光' },
   { id: 'futaba', number: 2, name: '石動双葉', romaji: 'Isurugi Futaba', cv: '生田輝', color: '#9B6AD6', colorName: '疾风暗紫', epithet: '斩开迷雾的锐利锋芒' },
   { id: 'kaoruko', number: 22, name: '花柳香子', romaji: 'Hanayagi Kaoruko', cv: '伊藤彩沙', color: '#F07CA5', colorName: '京洛樱粉', epithet: '千锤百炼的优雅花朵' },

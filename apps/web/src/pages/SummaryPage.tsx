@@ -197,7 +197,7 @@ export function SummaryPage({
               ) : record.saved ? (
                 <>
                   {record.isNewRecord && <span className="new-record-crown">✦ NEW RECORD</span>}
-                  本机最佳：{record.best.correct}/{record.best.total} · {formatTime(record.best.elapsedMs)}
+                  本机最佳：{record.best.correct} / {record.best.total} · {formatTime(record.best.elapsedMs)}
                 </>
               ) : (
                 '无法保存本机最佳成绩，仅显示本局结果。'

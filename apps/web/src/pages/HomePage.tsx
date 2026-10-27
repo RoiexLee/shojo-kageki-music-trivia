@@ -1,4 +1,4 @@
-import { useState, type PointerEvent } from 'react';
+import { useEffect, useState, type PointerEvent } from 'react';
 import {
   DIFFICULTY_LABEL,
   MODE_DIFFICULTY_MAP,
@@ -32,12 +32,7 @@ interface Props {
 }
 
 const base = import.meta.env.BASE_URL;
-
-const DEFAULT_TRIO = [
-  TROUPE_MEMBERS[0], // 愛城華恋
-  TROUPE_MEMBERS[1], // 神楽ひかり
-  TROUPE_MEMBERS[2], // 天堂真矢
-] as const;
+const AUTO_ROTATE_MS = 4600;
 
 const COPY: Record<QuizMode, string> = {
   intro: '聆听曲中片段，猜出歌名',
@@ -76,8 +71,7 @@ export function HomePage({
   onAccentChange,
 }: Props) {
   const [view, setView] = useState<LobbyView>('stage');
-  // 'all' 代表全员同台高亮；其余为 TROUPE_MEMBERS 的 id
-  const [selectedCastId, setSelectedCastId] = useState<string>('all');
+  const [selectedCastIndex, setSelectedCastIndex] = useState<number>(0);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
 
   const spec = MODE_DIFFICULTY_MAP[mode][difficulty];
@@ -90,8 +84,20 @@ export function HomePage({
           ? '8 秒倒放'
           : `${spec.answerCount} 首 × 10 秒`;
 
-  const focusedMember =
-    selectedCastId === 'all' ? null : (TROUPE_MEMBERS.find((m) => m.id === selectedCastId) ?? null);
+  const focusedMember = TROUPE_MEMBERS[selectedCastIndex] ?? TROUPE_MEMBERS[0];
+
+  // 默认自动轮播切换舞台少女立绘与舞台主题聚光色
+  useEffect(() => {
+    if (view !== 'stage') return;
+    const timer = window.setInterval(() => {
+      setSelectedCastIndex((prev) => (prev + 1) % TROUPE_MEMBERS.length);
+    }, AUTO_ROTATE_MS);
+    return () => window.clearInterval(timer);
+  }, [view, selectedCastIndex]);
+
+  useEffect(() => {
+    onAccentChange?.(focusedMember.color);
+  }, [focusedMember.color, onAccentChange]);
 
   function handleStagePointer(e: PointerEvent<HTMLDivElement>) {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -135,15 +141,17 @@ export function HomePage({
       ) : (
         <div className="grand-audition-deck">
           {/* 左翼：全景 3D 舞台少女剧场展示舱 */}
-          <section className="grand-stage-wing" aria-labelledby="home-title">
+          <section className="grand-stage-wing" aria-label="舞台少女主视觉">
             <div
-              className={`panoramic-stage-box ${focusedMember ? 'is-single-focus' : 'focus-all'}`}
-              aria-label="舞台少女主视觉"
+              className="panoramic-stage-box is-single-focus"
               onPointerMove={handleStagePointer}
               onPointerLeave={() => setTilt({ x: 0, y: 0 })}
-              style={{
-                transform: `perspective(1200px) rotateY(${tilt.x * 2.4}deg) rotateX(${-tilt.y * 1.8}deg)`,
-              }}
+              style={
+                {
+                  '--stage-focus-color': focusedMember.color,
+                  transform: `perspective(1200px) rotateY(${tilt.x * 2.4}deg) rotateX(${-tilt.y * 1.8}deg)`,
+                } as React.CSSProperties
+              }
             >
               {/* 舞台天顶横梁 */}
               <div className="stage-canopy-bar">
@@ -165,96 +173,52 @@ export function HomePage({
                 style={{ transform: `translate3d(${tilt.x * -10}px, ${tilt.y * -6}px, 0)` }}
               />
 
-              {/* 全员同台模式 vs 单角色聚光灯聚焦模式（支持全部 9 位角色官方透明立绘） */}
-              {focusedMember ? (
-                <img
-                  key={focusedMember.id}
-                  className="stage-character stage-character-solo is-focused"
-                  src={`${base}theme/characters/${focusedMember.id}.png`}
-                  alt=""
-                  width="1260"
-                  height="1740"
-                  onError={(event) => {
-                    event.currentTarget.style.display = 'none';
-                  }}
-                  data-character={focusedMember.name}
-                  style={{
-                    filter: `drop-shadow(0 0 32px ${focusedMember.color}99) drop-shadow(0 20px 28px #070309)`,
-                    transform: `translate3d(${tilt.x * 12}px, ${tilt.y * 6}px, 0)`,
-                  }}
-                />
-              ) : (
-                DEFAULT_TRIO.map((actor, index) => {
-                  const depth = index === 1 ? 14 : 8;
+              {/* 9 位角色官方透明立绘层：预挂载实现零闪烁丝滑聚光切换动画 */}
+              <div className="stage-characters-viewport" aria-hidden="true">
+                {TROUPE_MEMBERS.map((actor, idx) => {
+                  const isActive = idx === selectedCastIndex;
                   return (
                     <img
                       key={actor.id}
-                      className={`stage-character stage-character-${index}`}
+                      className={`stage-character stage-character-solo ${isActive ? 'is-active' : 'is-inactive'}`}
                       src={`${base}theme/characters/${actor.id}.png`}
                       alt=""
                       width="1260"
                       height="1740"
-                      loading={index === 0 ? 'eager' : 'lazy'}
+                      loading={idx < 2 ? 'eager' : 'lazy'}
                       onError={(event) => {
                         event.currentTarget.style.display = 'none';
                       }}
                       data-character={actor.name}
-                      style={{
-                        transform: `translate3d(${tilt.x * depth}px, ${tilt.y * (depth * 0.5)}px, 0)`,
-                      }}
+                      style={
+                        {
+                          '--char-glow': `${actor.color}99`,
+                          '--char-tx': `${tilt.x * 12}px`,
+                          '--char-ty': `${tilt.y * 6}px`,
+                        } as React.CSSProperties
+                      }
                     />
                   );
-                })
-              )}
+                })}
+              </div>
 
               <span className="stage-hero-star" aria-hidden="true">
                 ✦
               </span>
 
-              {/* 悬浮于舞台左下方的史诗标题与引言层 */}
-              <div className="stage-overture-overlay">
-                <div className="overture-eyebrow">
-                  <CrownEmblem size={14} />
-                  <span>STARLIGHT AUDITION · 聖翔音楽学園 第99期</span>
-                </div>
-                <h1 id="home-title">
-                  听见旋律，
-                  <span className="overture-gold-text">再赴舞台。</span>
-                </h1>
-                <p className="hero-subtitle">少女☆歌剧 Revue Starlight 猜歌挑战</p>
-              </div>
-
-              {/* 舞台前沿九九组颜色条（含全员高亮特殊标记 + 9 位角色代表色） */}
+              {/* 舞台前沿九九组颜色条（9 位角色代表色切换） */}
               <div className="stage-apron-console">
                 <div className="apron-troupe-matrix">
                   <div className="apron-gems-bar" role="group" aria-label="舞台少女立绘与代表色切换">
-                    <button
-                      type="button"
-                      className={`apron-gem-trigger apron-gem-all ${selectedCastId === 'all' ? 'is-active' : ''}`}
-                      onClick={() => {
-                        setSelectedCastId('all');
-                        onAccentChange?.('#FB5458');
-                      }}
-                      aria-label="全员同台"
-                      title="全员同台 · スタァライト九九組"
-                    >
-                      <span className="gem-all-emblem" aria-hidden="true">
-                        <CrownEmblem size={14} />
-                      </span>
-                    </button>
-
-                    {TROUPE_MEMBERS.map((m) => (
+                    {TROUPE_MEMBERS.map((m, idx) => (
                       <button
                         key={m.id}
                         type="button"
-                        className={`apron-gem-trigger ${selectedCastId === m.id ? 'is-active' : ''}`}
+                        className={`apron-gem-trigger ${selectedCastIndex === idx ? 'is-active' : ''}`}
                         style={{ '--gem-color': m.color } as React.CSSProperties}
-                        onClick={() => {
-                          setSelectedCastId(m.id);
-                          onAccentChange?.(m.color);
-                        }}
+                        onClick={() => setSelectedCastIndex(idx)}
                         aria-label={`${m.name}（${m.colorName}）`}
-                        title={`${m.name} · CV: ${m.cv}`}
+                        title={`${m.name} · CV. ${m.cv}`}
                       >
                         <span className="gem-rhombus" style={{ backgroundColor: m.color }} />
                       </button>
@@ -262,21 +226,13 @@ export function HomePage({
                   </div>
 
                   <div className="apron-member-ticker">
-                    {focusedMember ? (
-                      <span className="ticker-member-line">
-                        <i style={{ backgroundColor: focusedMember.color }} />
-                        <strong>{focusedMember.name}</strong>
-                        <small>
-                          CV. {focusedMember.cv} · 「{focusedMember.epithet}」
-                        </small>
-                      </span>
-                    ) : (
-                      <span className="ticker-member-line">
-                        <i style={{ backgroundColor: '#FCE6B2' }} />
-                        <strong>スタァライト九九組</strong>
-                        <small>聖翔音楽学園 第99期生 · 全员同台</small>
-                      </span>
-                    )}
+                    <span key={focusedMember.id} className="ticker-member-line">
+                      <i style={{ backgroundColor: focusedMember.color }} />
+                      <strong>{focusedMember.name}</strong>
+                      <small>
+                        CV. {focusedMember.cv} · 「{focusedMember.epithet}」
+                      </small>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -316,7 +272,7 @@ export function HomePage({
                     <div className="blade-record-ribbon" aria-hidden="true">
                       {best ? (
                         <em className="ribbon-has-best">
-                          <CrownEmblem size={13} /> 最佳 {best.correct}/{best.total} · {formatTime(best.elapsedMs)}
+                          <CrownEmblem size={13} /> 最佳 {best.correct} / {best.total} · {formatTime(best.elapsedMs)}
                         </em>
                       ) : (
                         <em>✦ {DIFFICULTY_LABEL[difficulty]}难度 · 尚未登台</em>

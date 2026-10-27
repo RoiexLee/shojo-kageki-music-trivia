@@ -427,7 +427,12 @@ h1[tabindex]:focus {
   border: 1px solid var(--border-gold-strong);
   overflow: hidden;
   background:
-    radial-gradient(circle at 50% 24%, rgba(185, 45, 84, 0.58) 0%, rgba(42, 16, 38, 0.92) 58%, #110713 100%);
+    radial-gradient(
+      circle at 50% 26%,
+      color-mix(in srgb, var(--stage-focus-color, #fb5458) 46%, transparent) 0%,
+      rgba(42, 16, 38, 0.92) 58%,
+      #110713 100%
+    );
   box-shadow:
     0 26px 68px rgba(0, 0, 0, 0.68),
     0 0 0 1px rgba(255, 255, 255, 0.08) inset,
@@ -435,7 +440,9 @@ h1[tabindex]:focus {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: transform 240ms var(--ease-out-expo);
+  transition:
+    transform 240ms var(--ease-out-expo),
+    background 680ms var(--ease-out-expo);
 }
 
 .panoramic-stage-box::before {
@@ -541,52 +548,45 @@ h1[tabindex]:focus {
   animation: beam-sway-b 7.5s ease-in-out infinite alternate;
 }
 
+.stage-characters-viewport {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  overflow: hidden;
+}
+
 .stage-character {
   position: absolute;
-  bottom: 4%;
-  width: 56%;
-  height: 92%;
+  top: 4%;
+  left: -6%;
+  width: 112%;
+  height: 114%;
   object-fit: contain;
-  object-position: bottom center;
-  filter: drop-shadow(0 20px 26px rgba(6, 2, 8, 0.82));
+  object-position: top center;
+  will-change: opacity, transform, filter;
   transition:
-    opacity 260ms var(--ease-out-expo),
-    filter 260ms var(--ease-out-expo),
-    transform 240ms var(--ease-out-expo);
-  animation: actor-entrance 750ms var(--ease-out-expo) both;
+    opacity 680ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 720ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 680ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.stage-character-0 {
-  left: -8%;
-  animation-delay: 80ms;
-}
-
-.stage-character-1 {
-  left: 24%;
+.stage-character-solo.is-inactive {
+  opacity: 0;
   z-index: 2;
-  animation-delay: 160ms;
+  transform: translate3d(26px, 12px, 0) scale(0.92);
+  filter: drop-shadow(0 0 0 transparent) blur(6px) brightness(1.25);
 }
 
-.stage-character-2 {
-  right: -10%;
-  z-index: 1;
-  animation-delay: 240ms;
-}
-
-.stage-character-solo {
-  left: 20%;
-  width: 60%;
-  z-index: 4;
-}
-
-.stage-character.is-focused {
-  z-index: 4;
+.stage-character-solo.is-active {
   opacity: 1;
-}
-
-.stage-character.is-dimmed {
-  opacity: 0.24;
-  filter: saturate(0.35) brightness(0.55);
+  z-index: 4;
+  transform: translate3d(var(--char-tx, 0px), var(--char-ty, 0px), 0) scale(1);
+  filter:
+    drop-shadow(0 0 34px var(--char-glow, rgba(251, 84, 88, 0.6)))
+    drop-shadow(0 20px 28px #070309)
+    blur(0px)
+    brightness(1);
 }
 
 .stage-hero-star {
@@ -674,7 +674,7 @@ h1[tabindex]:focus {
 .stage-apron-console {
   position: relative;
   z-index: 6;
-  margin: 0 16px 14px;
+  margin: auto 16px 14px;
   padding: 10px 14px;
   border-radius: 10px;
   border: 1px solid var(--border-gold);
@@ -799,6 +799,7 @@ h1[tabindex]:focus {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  animation: scene-rise 360ms var(--ease-out-expo) both;
 }
 
 .ticker-member-line i {

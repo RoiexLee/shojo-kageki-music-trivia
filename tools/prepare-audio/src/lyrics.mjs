@@ -7,7 +7,14 @@
 
 const TS_RE = /^\[(\d{1,3}):(\d{2})(?:[.:](\d{1,3}))?\](.*)$/;
 
-/** 剥离翻译后缀：返回 { text, translation? } */
+/** 中日文字符（不含中点 ・）与半角英数字之间自动补齐单个空格 */
+export function formatSpacing(str) {
+  return String(str)
+    .replace(/([\u4e00-\u9fff\u3040-\u309f\u30a0-\u30fa\u30fc-\u30ff])([A-Za-z0-9])/g, '$1 $2')
+    .replace(/([A-Za-z0-9])([\u4e00-\u9fff\u3040-\u309f\u30a0-\u30fa\u30fc-\u30ff])/g, '$1 $2');
+}
+
+/** 剥离翻译后缀：返回 { text, translation? }，兼容 `(翻译：…)`、`（翻译：…）` 及行尾括号中文译文 `日文(中文)` */
 export function splitTranslation(line) {
   const half = line.indexOf('(翻译：');
   const full = line.indexOf('（翻译：');
@@ -15,12 +22,40 @@ export function splitTranslation(line) {
   let closer = '';
   if (half >= 0 && (full < 0 || half < full)) { idx = half; closer = ')'; }
   else if (full >= 0) { idx = full; closer = '）'; }
-  if (idx < 0) return { text: line };
-  const text = line.slice(0, idx).trim();
-  let inner = line.slice(idx + 4); // 跳过「(翻译：」/「（翻译：」均为 4 字符
-  const end = inner.lastIndexOf(closer);
-  if (end >= 0) inner = inner.slice(0, end);
-  return { text, translation: inner.trim() };
+  if (idx >= 0) {
+    const text = formatSpacing(line.slice(0, idx).trim());
+    let inner = line.slice(idx + 4); // 跳过「(翻译：」/「（翻译：」均为 4 字符
+    const end = inner.lastIndexOf(closer);
+    if (end >= 0) inner = inner.slice(0, end);
+    return { text, translation: formatSpacing(inner.trim()) };
+  }
+
+  // 兼容行尾直接附带括号中文翻译的 LRC 格式：`日文歌词(中文翻译)`（支持内部嵌套括号）
+  const s = line.trim();
+  if (s.endsWith(')') || s.endsWith('）')) {
+    let depth = 0;
+    let openIdx = -1;
+    for (let i = s.length - 1; i >= 0; i--) {
+      const ch = s[i];
+      if (ch === ')' || ch === '）') depth++;
+      else if (ch === '(' || ch === '（') {
+        depth--;
+        if (depth === 0) {
+          openIdx = i;
+          break;
+        }
+      }
+    }
+    if (openIdx > 0) {
+      const text = formatSpacing(s.slice(0, openIdx).trim());
+      const inner = formatSpacing(s.slice(openIdx + 1, -1).trim());
+      if (text && inner && !/[\u3040-\u30ff]/.test(inner) && /[\u4e00-\u9fff]/.test(inner)) {
+        return { text, translation: inner };
+      }
+    }
+  }
+
+  return { text: formatSpacing(line) };
 }
 
 /** 时间戳 → 毫秒；frac 支持 1-3 位（补零到毫秒精度） */

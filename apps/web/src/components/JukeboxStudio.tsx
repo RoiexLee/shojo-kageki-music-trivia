@@ -239,7 +239,7 @@ export function JukeboxStudio({
                 >
                   <div className="dossier-info-col">
                     <div className="dossier-top">
-                      <span className="dossier-no">No.{String(m.number).padStart(2, '0')}</span>
+                      <span className="dossier-no">No. {String(m.number).padStart(2, '0')}</span>
                       <span className="dossier-color-chip">
                         <i className="dossier-gem" style={{ backgroundColor: m.color }} />
                         {m.colorName}

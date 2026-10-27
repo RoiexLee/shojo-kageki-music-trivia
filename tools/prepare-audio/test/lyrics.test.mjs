@@ -13,6 +13,16 @@ describe('splitTranslation', () => {
   it('全角括号剥离', () => {
     expect(splitTranslation('歯車（翻译：齿轮）')).toEqual({ text: '歯車', translation: '齿轮' });
   });
+  it('行尾直接括号中文翻译剥离（含嵌套括号）', () => {
+    expect(splitTranslation('ドレープカーテンの裏側(幕布背后)')).toEqual({
+      text: 'ドレープカーテンの裏側',
+      translation: '幕布背后',
+    });
+    expect(splitTranslation('あの日の自分に (そうと) 教えてあげたい(真想对那日的自己 (说没错) 把这些告诉其)')).toEqual({
+      text: 'あの日の自分に (そうと) 教えてあげたい',
+      translation: '真想对那日的自己 (说没错) 把这些告诉其',
+    });
+  });
   it('无翻译原样返回', () => {
     expect(splitTranslation('Star Divine')).toEqual({ text: 'Star Divine' });
   });
