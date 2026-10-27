@@ -1,11 +1,12 @@
 import { describe, it, expect } from 'vitest';
-import { readFileSync, readdirSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { parseSongs } from '../src/songs.ts';
 import songsJson from '../src/songs.json';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..', '..');
+const MUSIC_DIR = path.join(ROOT, 'music');
 
 const validEntry = {
   id: 'test-song', folder: 'Test Song', title: 'Test Song', romaji: 'Test Song',
@@ -42,10 +43,10 @@ describe('parseSongs 校验', () => {
   });
 });
 
-describe('songs.json 与 music/ 动态对账', () => {
+describe.skipIf(!existsSync(MUSIC_DIR))('songs.json 与 music/ 动态对账', () => {
   it('条目数 === music/ 文件夹数，且 folder 与文件系统逐一对应', () => {
     const songs = parseSongs(songsJson);
-    const musicFolders = readdirSync(path.join(ROOT, 'music'), { withFileTypes: true })
+    const musicFolders = readdirSync(MUSIC_DIR, { withFileTypes: true })
       .filter((d) => d.isDirectory() && d.name !== '_tmp')
       .map((d) => d.name);
     expect(songs, '条目数应与 music/ 文件夹数一致（不硬编码数值）').toHaveLength(musicFolders.length);
@@ -60,7 +61,7 @@ describe('songs.json 与 music/ 动态对账', () => {
     const songs = parseSongs(songsJson);
     for (const s of songs) {
       for (const ext of ['mp3', 'lrc', 'jpg']) {
-        const p = path.join(ROOT, 'music', s.folder, `${s.folder}.${ext}`);
+        const p = path.join(MUSIC_DIR, s.folder, `${s.folder}.${ext}`);
         expect(() => readFileSync(p), `${p} 应存在`).not.toThrow();
       }
     }

@@ -22,3 +22,6 @@ Thumbs.db
 
 # agent 工作文件
 agents-workspace/
+
+# 本地部署源素材（公开代码镜像不得提交）
+music/

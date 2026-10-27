@@ -53,4 +53,4 @@ Questions and pull requests for code, tests, and documentation are welcome. Befo
 
 ## License
 
-The code and documentation in this project are licensed under the [MIT License](LICENSE).
+[MIT](LICENSE) © RoiexLee

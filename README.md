@@ -53,4 +53,4 @@ npm run assets -- --verify
 
 ## 许可证
 
-本项目代码与文档采用 [MIT License](LICENSE)。
+[MIT](LICENSE) © RoiexLee

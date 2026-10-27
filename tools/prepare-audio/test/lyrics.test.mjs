@@ -1,10 +1,11 @@
 import { describe, it, expect } from 'vitest';
 import { parseLrc, splitTranslation, timestampToMs, MIN_VALID_LINES } from '../src/lyrics.mjs';
-import { readFileSync, readdirSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..', '..');
+const musicDir = path.join(ROOT, 'music');
 
 describe('splitTranslation', () => {
   it('半角括号剥离', () => {
@@ -60,8 +61,7 @@ describe('parseLrc', () => {
     expect(r.skipped).toBe(1);
   });
 
-  it('对 music/ 全部 10 个真实 lrc 解析成功且达到有效行阈值（只读）', () => {
-    const musicDir = path.join(ROOT, 'music');
+  it.skipIf(!existsSync(musicDir))('对 music/ 全部真实 lrc 解析成功且达到有效行阈值（只读）', () => {
     const folders = readdirSync(musicDir, { withFileTypes: true })
       .filter((d) => d.isDirectory() && d.name !== '_tmp')
       .map((d) => d.name);
