@@ -1194,7 +1194,8 @@
     "singers": [
       "三森すずこ"
     ],
-    "description": "待补"
+    "description": "待补",
+    "chorusStartSec": 47
   },
   {
     "id": "song-080",
