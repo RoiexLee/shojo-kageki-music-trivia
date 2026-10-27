@@ -22,6 +22,7 @@
 | plan-013 | 拆分双语 README、统一项目名并确定代码许可证 | 已提交 | plan-013(docs): 拆分双语 README 并统一许可证 |
 | plan-014 | 建立不含本地素材的 GitHub 代码镜像 | 已提交 | plan-014(repo): 准备公开代码镜像 |
 | plan-015 | 从本地完整工作区直接部署 Cloudflare Pages | 已提交 | plan-015(deploy): 记录 GitHub 镜像与 Cloudflare 部署 |
+| plan-016 | 统一歌曲描述的中日文与英文数字空格 | 已提交 | plan-016(data): 规范歌曲描述空格 |
 
 状态取值：`未开始 / 起草中 / 待评阅 / 评阅中 / 返修中 / 待实现 / 实现中 / 实现待评 / 已提交 / 已取消`。
 
@@ -57,4 +58,6 @@
 - 2026-10-27：plan-014、plan-015 计划评阅 PASS；开始准备 GitHub 代码镜像清理与 Cloudflare Direct Upload 两条独立交付链。
 - 2026-10-27：plan-014 公开镜像完成；GitHub 仓库创建并推送，远程 clone 审计无 music 历史对象。
 - 2026-10-27：plan-015 Direct Upload 完成；Cloudflare Pages 默认地址可访问，线上资源 smoke test 通过。
+- 2026-10-27：plan-016 计划评阅 PASS；开始审查歌曲 description 的中日文与英文数字边界空格。
+- 2026-10-27：plan-016 implementation review PASS；16 条 description 修正完成，测试、构建和资源校验通过。
 

@@ -41,6 +41,14 @@ describe('parseSongs 校验', () => {
   it('aliases/singers 非字符串数组被拒绝', () => {
     expect(() => parseSongs([{ ...validEntry, singers: '九九組' }])).toThrow(/singers 必须是 string\[\]/);
   });
+
+  it('歌曲 description 的中日文与英文数字边界保留空格', () => {
+    const mixedBoundary = /[\u3400-\u4dbf\u4e00-\u9fff\u3040-\u30ff][A-Za-z0-9]|[A-Za-z0-9][\u3400-\u4dbf\u4e00-\u9fff\u3040-\u30ff]/u;
+    const invalid = parseSongs(songsJson)
+      .filter((song) => mixedBoundary.test(song.description))
+      .map((song) => song.id);
+    expect(invalid).toEqual([]);
+  });
 });
 
 describe.skipIf(!existsSync(MUSIC_DIR))('songs.json 与 music/ 动态对账', () => {
