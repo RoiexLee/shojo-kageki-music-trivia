@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { TROUPE_MEMBERS, type LyricsData, type Song } from '../core/quiz.ts';
 import { assetUrl, parseLyrics } from '../data.ts';
 import { GramophoneIcon, StarEmblem } from './TheaterIcons.tsx';
@@ -20,8 +20,8 @@ const base = import.meta.env.BASE_URL;
 
 /**
  * 试听曲库 & 九九组名鉴：
- * - 曲库殿堂：左侧 10 首名曲黑胶唱片架 + 右侧大师级黑胶唱机、全曲播放与中日双语完整台本鉴赏
- * - 九九组名鉴：9 位 99 期舞台少女立绘档案卡片阵 + 专属应援色舞台追光联动
+ * - 曲库殿堂：左侧按歌名排序的黑胶唱片架 + 右侧大师级黑胶唱机、全曲播放与中日双语完整台本鉴赏
+ * - 九九组名鉴：按学号排序的 9 位 99 期舞台少女立绘档案卡片阵 + 专属应援色舞台追光联动
  */
 export function JukeboxStudio({
   mode,
@@ -34,8 +34,12 @@ export function JukeboxStudio({
   onStopPreview,
   onAccentChange,
 }: JukeboxStudioProps) {
+  const sortedSongs = useMemo(
+    () => [...songs].sort((a, b) => a.title.localeCompare(b.title, 'ja', { numeric: true, sensitivity: 'base' })),
+    [songs],
+  );
   const [tab, setTab] = useState<'songs' | 'troupe'>(initialTab);
-  const [selectedSongId, setSelectedSongId] = useState<string>(songs[0]?.id ?? 'hoshi-no-dialogue');
+  const [selectedSongId, setSelectedSongId] = useState<string>(sortedSongs[0]?.id ?? 'san-nana-go-ichi-zero');
   const [selectedMemberId, setSelectedMemberId] = useState<string>(TROUPE_MEMBERS[0].id);
   const [lyricsPreview, setLyricsPreview] = useState<LyricsData | null>(null);
 
@@ -80,7 +84,7 @@ export function JukeboxStudio({
     return () => window.removeEventListener('keydown', onKey);
   }, [mode, onClose]);
 
-  const activeSong = songs.find((s) => s.id === selectedSongId) ?? songs[0];
+  const activeSong = sortedSongs.find((s) => s.id === selectedSongId) ?? sortedSongs[0];
   const isCurrentSongPlaying = previewingSongId === activeSong?.id && isPlaying;
 
   const content = (
@@ -98,9 +102,9 @@ export function JukeboxStudio({
 
       {tab === 'songs' && activeSong ? (
         <div className="jukebox-master-layout">
-          {/* 左侧：10 首名曲黑胶唱片架 */}
+          {/* 左侧：按歌曲名称排序的黑胶唱片架 */}
           <div className="jukebox-rack-list" role="listbox" aria-label="收录歌曲列表">
-            {songs.map((song, idx) => {
+            {sortedSongs.map((song, idx) => {
               const isSelected = song.id === activeSong.id;
               const isThisPlaying = previewingSongId === song.id && isPlaying;
               const cover = assetUrl(`covers/${song.id}.jpg`);

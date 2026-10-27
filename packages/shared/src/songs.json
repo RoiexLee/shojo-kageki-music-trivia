@@ -1,58 +1,189 @@
 [
   {
-    "id": "hoshi-no-dialogue",
-    "folder": "星のダイアローグ",
-    "title": "星のダイアローグ",
-    "romaji": "Hoshi no Daiarogu",
-    "aliases": ["繁星的对白", "星之对话", "Star Dialogue"],
-    "type": "OP",
-    "origin": "2018 TV 动画",
-    "singers": ["スタァライト九九組"],
-    "description": "2018 TV 动画 OP，九九组全员合唱的青春宣言，Star 系列曲开山之作。"
+    "id": "san-nana-go-ichi-zero",
+    "folder": "3・7・5・1・0",
+    "title": "3・7・5・1・0",
+    "romaji": "San Nana Go Ichi Zero",
+    "aliases": [
+      "37510"
+    ],
+    "type": "舞台挿入歌",
+    "origin": "舞台 The LIVE #2 Transition（2018）",
+    "singers": [
+      "スタァライト九九組"
+    ],
+    "description": "舞台 #2 Transition 开场曲，幕布背后紧握双手迈向狂热舞台。"
   },
   {
-    "id": "star-divine",
-    "folder": "Star Divine",
-    "title": "Star Divine",
-    "romaji": "Sutaa Dibain",
-    "aliases": ["星之神性"],
-    "type": "主題歌",
-    "origin": "舞台 The LIVE #1（2017）／1st 单曲",
-    "singers": ["スタァライト九九組"],
-    "description": "企划开山曲、九九组 1st 出道单曲，命运舞台对决的象征。"
+    "id": "99-illusion",
+    "folder": "99 ILLUSION!",
+    "title": "99 ILLUSION!",
+    "romaji": "99 Illusion",
+    "aliases": [
+      "99 幻象"
+    ],
+    "type": "舞台主題歌",
+    "origin": "舞台 The LIVE #2 Transition（2018）／4th 单曲",
+    "singers": [
+      "スタァライト九九組"
+    ],
+    "description": "舞台 #2 Transition 主题曲，第 99 期生剑指未来的疾走感代表作。"
   },
   {
-    "id": "star-diamond",
-    "folder": "Star Diamond",
-    "title": "Star Diamond",
-    "romaji": "Sutaa Daiamondo",
-    "aliases": [],
+    "id": "bright-light",
+    "folder": "Bright!Light!",
+    "title": "Bright! Light!",
+    "romaji": "Bright Light",
+    "aliases": [
+      "Bright!Light!"
+    ],
+    "type": "カップリング曲",
+    "origin": "3rd 单曲《Fly Me to the Star》C/W（2018）",
+    "singers": [
+      "スタァライト九九組"
+    ],
+    "description": "收录于 TV 动画 ED 单曲的轻快全员曲，聚光灯点亮前的心跳加速。"
+  },
+  {
+    "id": "circle-of-the-revue",
+    "folder": "Circle of the Revue",
+    "title": "Circle of the Revue",
+    "romaji": "Circle of the Revue",
+    "aliases": [
+      "Revue 之环"
+    ],
     "type": "シングル表題曲",
-    "origin": "6th 单曲（2019）／劇場版 ロンド・ロンド・ロンド（movie ver.）",
-    "singers": ["スタァライト九九組"],
-    "description": "以 3rd スタァライブ 为主题的 9 人曲，剧场版另有 4 人 movie ver.。"
+    "origin": "1st スタァライブ 限定单曲（2018）",
+    "singers": [
+      "スタァライト九九組"
+    ],
+    "description": "1st スタァライブ Starry Sky 限定曲，描绘舞台少女轮回交锋的宿命之环。"
   },
   {
-    "id": "star-parade",
-    "folder": "Star Parade",
-    "title": "Star Parade",
-    "romaji": "Sutaa Pareedo",
-    "aliases": ["星辰游行"],
-    "type": "シングル表題曲",
-    "origin": "7th 单曲（2020-02-19）",
-    "singers": ["スタァライト九九組"],
-    "description": "横浜アリーナ 3rd スタァライブ 后 9 人羁绊之作。"
+    "id": "fly-me-to-the-star",
+    "folder": "Fly Me to the Star",
+    "title": "Fly Me to the Star",
+    "romaji": "Fly Me to the Star",
+    "aliases": [
+      "带我飞向星辰"
+    ],
+    "type": "ED",
+    "origin": "2018 TV 动画 ED／3rd 单曲",
+    "singers": [
+      "スタァライト九九組"
+    ],
+    "description": "2018 TV 动画片尾曲，每话由不同角色组合献唱的爵士风抒情名曲。"
   },
   {
-    "id": "watashitachi-wa-mou-butai-no-ue",
-    "folder": "私たちはもう舞台の上",
-    "title": "私たちはもう舞台の上",
-    "romaji": "Watashitachi wa Mou Butai no Ue",
-    "aliases": ["我们已在舞台之上"],
-    "type": "劇場版主題歌",
-    "origin": "劇場版 少女☆歌劇 レヴュースタァライト（2021）",
-    "singers": ["スタァライト九九組"],
-    "description": "2021 剧场版主题歌，九九组对舞台少女身份的最终回答。"
+    "id": "glittering-stars",
+    "folder": "Glittering Stars",
+    "title": "Glittering Stars",
+    "romaji": "Glittering Stars",
+    "aliases": [
+      "闪耀群星"
+    ],
+    "type": "舞台挿入歌",
+    "origin": "舞台 The LIVE #1（2017）",
+    "singers": [
+      "スタァライト九九組"
+    ],
+    "description": "初代舞台 #1 经典剧场曲，从舞台望向观众席星海的感动瞬间。"
+  },
+  {
+    "id": "green-dazzling-light",
+    "folder": "Green Dazzling Light",
+    "title": "Green Dazzling Light",
+    "romaji": "Green Dazzling Light",
+    "aliases": [
+      "翠绿炫光"
+    ],
+    "type": "舞台挿入歌",
+    "origin": "舞台 The LIVE #2 Transition（2018）",
+    "singers": [
+      "スタァライト九九組"
+    ],
+    "description": "舞台 #2 谢幕曲，幕布降下时闪耀的翠绿星光与迈向明日的约定。"
+  },
+  {
+    "id": "lesson-na-week",
+    "folder": "Lessonナweek!!",
+    "title": "Lesson ナ week!!",
+    "romaji": "Lesson na Week",
+    "aliases": [
+      "Lessonナweek!!"
+    ],
+    "type": "カップリング曲",
+    "origin": "7th 单曲《Star Parade》C/W（2020）",
+    "singers": [
+      "星見純那",
+      "露崎まひる",
+      "大場なな",
+      "石動双葉",
+      "花柳香子"
+    ],
+    "description": "7th 单曲分组曲，5 人充满活力地宣誓每日切磋琢磨锻炼技艺。"
+  },
+  {
+    "id": "my-friend-arrie",
+    "folder": "My friend 〜Arrie〜",
+    "title": "My friend 〜Arrie〜",
+    "romaji": "My Friend ~Arrie~",
+    "aliases": [
+      "我的朋友 Arrie"
+    ],
+    "type": "キャラソン",
+    "origin": "2018 TV 动画 BD BOX 1 特典 CD",
+    "singers": [
+      "スタァライト九九組",
+      "愛城華恋",
+      "露崎まひる"
+    ],
+    "description": "TV 动画 BD BOX 1 特典曲，雨过天晴后交织旋律与和声的温暖友情歌。"
+  },
+  {
+    "id": "polestar",
+    "folder": "Polestar",
+    "title": "Polestar",
+    "romaji": "Polestar",
+    "aliases": [
+      "北极星"
+    ],
+    "type": "アルバム新曲",
+    "origin": "精选辑 Best Album（2021）",
+    "singers": [
+      "スタァライト九九組"
+    ],
+    "description": "九九组首张精选辑《Best Album》主打新曲，致无可替代的挚友与星辰。"
+  },
+  {
+    "id": "pride",
+    "folder": "PRIDE",
+    "title": "PRIDE",
+    "romaji": "Pride",
+    "aliases": [
+      "矜持与骄傲"
+    ],
+    "type": "舞台挿入歌",
+    "origin": "舞台 The LIVE #3 Growth（2020）",
+    "singers": [
+      "スタァライト九九組"
+    ],
+    "description": "舞台 #3 Growth 剧中曲，直面挫折与孤独、赌上舞台少女自尊的咏叹。"
+  },
+  {
+    "id": "re-play",
+    "folder": "Re_PLAY",
+    "title": "Re:PLAY",
+    "romaji": "Re Play",
+    "aliases": [
+      "Re_PLAY"
+    ],
+    "type": "舞台挿入歌",
+    "origin": "舞台 The LIVE #3 Growth（2020）",
+    "singers": [
+      "スタァライト九九組"
+    ],
+    "description": "舞台 #3 Growth 曲目，在橘色夏日晚霞与漫天星斗下重返青春舞台。"
   },
   {
     "id": "star-darling",
@@ -62,194 +193,67 @@
     "aliases": [],
     "type": "ゲーム OP",
     "origin": "游戏 舞台奏像劇 遙かなるエルドラド（2024）",
-    "singers": ["スタァライト九九組"],
+    "singers": [
+      "スタァライト九九組"
+    ],
     "description": "主机游戏《遙かなるエルドラド》OP，最新的 Star 系列全员曲。"
   },
   {
-    "id": "kiraboshi-distance",
-    "folder": "綺羅星ディスタンス",
-    "title": "綺羅星ディスタンス",
-    "romaji": "Kiraboshi Disutansu",
-    "aliases": ["绮罗星距离"],
-    "type": "舞台主題歌",
-    "origin": "舞台 The LIVE #4 Climax（2023）",
-    "singers": ["スタァライト九九組"],
-    "description": "舞台 The LIVE #4 Climax 主题曲，王道剧摇滚曲风的集大成之作。"
-  },
-  {
-    "id": "gekijo-no-ghost",
-    "folder": "You are a ghost, I am a ghost 〜劇場のゴースト〜",
-    "title": "You are a ghost, I am a ghost 〜劇場のゴースト〜",
-    "romaji": "You are a ghost, I am a ghost ~Gekijou no Ghost~",
-    "aliases": ["剧场的幽灵", "你是幽灵我是幽灵"],
-    "type": "キャラソン",
-    "origin": "2018 TV 动画 BD BOX 2 特典 CD",
-    "singers": ["スタァライト九九組", "神楽ひかり", "天堂真矢", "星見純那", "大場なな"],
-    "description": "以剧场幽灵为题的暗色调角色歌，主唱 4 人咏唱对舞台的献身。"
-  },
-  {
-    "id": "saisei-sanbika",
-    "folder": "再生讃美曲",
-    "title": "再生讃美曲",
-    "romaji": "Saisei Sanbikyoku",
-    "aliases": ["再生赞美曲"],
-    "type": "劇場版主題歌",
-    "origin": "劇場版 ロンド・ロンド・ロンド（2020）",
-    "singers": ["スタァライト九九組"],
-    "description": "总集篇剧场版 Rondo Rondo Rondo 主题曲，庄严圣咏风全员曲。"
-  },
-  {
-    "id": "koi-wa-taiyou",
-    "folder": "恋は太陽 〜CIRCUS!〜",
-    "title": "恋は太陽 〜CIRCUS!〜",
-    "romaji": "Koi wa Taiyou ~CIRCUS!~",
-    "aliases": ["恋是太阳"],
-    "type": "キャラソン",
-    "origin": "2018 TV 动画 BD BOX 3 特典 CD",
-    "singers": ["スタァライト九九組", "石動双葉", "花柳香子"],
-    "description": "马戏团主题的热闹角色歌，小丑与空中秋千的舞台意象。"
-  },
-  {
-    "id": "san-nana-go-ichi-zero",
-    "folder": "3・7・5・1・0",
-    "title": "3・7・5・1・0",
-    "romaji": "San Nana Go Ichi Zero",
-    "aliases": ["37510"],
-    "type": "舞台挿入歌",
-    "origin": "舞台 The LIVE #2 Transition（2018）",
-    "singers": ["スタァライト九九組"],
-    "description": "舞台 #2 Transition 开场曲，幕布背后紧握双手迈向狂热舞台。"
-  },
-  {
-    "id": "99-illusion",
-    "folder": "99 ILLUSION!",
-    "title": "99 ILLUSION!",
-    "romaji": "99 Illusion",
-    "aliases": ["99 幻象"],
-    "type": "舞台主題歌",
-    "origin": "舞台 The LIVE #2 Transition（2018）／4th 单曲",
-    "singers": ["スタァライト九九組"],
-    "description": "舞台 #2 Transition 主题曲，第 99 期生剑指未来的疾走感代表作。"
-  },
-  {
-    "id": "bright-light",
-    "folder": "Bright!Light!",
-    "title": "Bright! Light!",
-    "romaji": "Bright Light",
-    "aliases": ["Bright!Light!"],
-    "type": "カップリング曲",
-    "origin": "3rd 单曲《Fly Me to the Star》C/W（2018）",
-    "singers": ["スタァライト九九組"],
-    "description": "收录于 TV 动画 ED 单曲的轻快全员曲，聚光灯点亮前的心跳加速。"
-  },
-  {
-    "id": "circle-of-the-revue",
-    "folder": "Circle of the Revue",
-    "title": "Circle of the Revue",
-    "romaji": "Circle of the Revue",
-    "aliases": ["Revue 之环"],
+    "id": "star-diamond",
+    "folder": "Star Diamond",
+    "title": "Star Diamond",
+    "romaji": "Sutaa Daiamondo",
+    "aliases": [],
     "type": "シングル表題曲",
-    "origin": "1st スタァライブ 限定单曲（2018）",
-    "singers": ["スタァライト九九組"],
-    "description": "1st スタァライブ Starry Sky 限定曲，描绘舞台少女轮回交锋的宿命之环。"
+    "origin": "6th 单曲（2019）／劇場版 ロンド・ロンド・ロンド（movie ver.）",
+    "singers": [
+      "スタァライト九九組"
+    ],
+    "description": "以 3rd スタァライブ 为主题的 9 人曲，剧场版另有 4 人 movie ver.。"
   },
   {
-    "id": "fly-me-to-the-star",
-    "folder": "Fly Me to the Star",
-    "title": "Fly Me to the Star",
-    "romaji": "Fly Me to the Star",
-    "aliases": ["带我飞向星辰"],
-    "type": "ED",
-    "origin": "2018 TV 动画 ED／3rd 单曲",
-    "singers": ["スタァライト九九組"],
-    "description": "2018 TV 动画片尾曲，每话由不同角色组合献唱的爵士风抒情名曲。"
+    "id": "star-divine",
+    "folder": "Star Divine",
+    "title": "Star Divine",
+    "romaji": "Sutaa Dibain",
+    "aliases": [
+      "星之神性"
+    ],
+    "type": "主題歌",
+    "origin": "舞台 The LIVE #1（2017）／1st 单曲",
+    "singers": [
+      "スタァライト九九組"
+    ],
+    "description": "企划开山曲、九九组 1st 出道单曲，命运舞台对决的象征。"
   },
   {
-    "id": "glittering-stars",
-    "folder": "Glittering Stars",
-    "title": "Glittering Stars",
-    "romaji": "Glittering Stars",
-    "aliases": ["闪耀群星"],
-    "type": "舞台挿入歌",
-    "origin": "舞台 The LIVE #1（2017）",
-    "singers": ["スタァライト九九組"],
-    "description": "初代舞台 #1 经典剧场曲，从舞台望向观众席星海的感动瞬间。"
-  },
-  {
-    "id": "green-dazzling-light",
-    "folder": "Green Dazzling Light",
-    "title": "Green Dazzling Light",
-    "romaji": "Green Dazzling Light",
-    "aliases": ["翠绿炫光"],
-    "type": "舞台挿入歌",
-    "origin": "舞台 The LIVE #2 Transition（2018）",
-    "singers": ["スタァライト九九組"],
-    "description": "舞台 #2 谢幕曲，幕布降下时闪耀的翠绿星光与迈向明日的约定。"
-  },
-  {
-    "id": "lesson-na-week",
-    "folder": "Lessonナweek!!",
-    "title": "Lesson ナ week!!",
-    "romaji": "Lesson na Week",
-    "aliases": ["Lessonナweek!!"],
-    "type": "カップリング曲",
-    "origin": "7th 单曲《Star Parade》C/W（2020）",
-    "singers": ["星見純那", "露崎まひる", "大場なな", "石動双葉", "花柳香子"],
-    "description": "7th 单曲分组曲，5 人充满活力地宣誓每日切磋琢磨锻炼技艺。"
-  },
-  {
-    "id": "my-friend-arrie",
-    "folder": "My friend 〜Arrie〜",
-    "title": "My friend 〜Arrie〜",
-    "romaji": "My Friend ~Arrie~",
-    "aliases": ["我的朋友 Arrie"],
-    "type": "キャラソン",
-    "origin": "2018 TV 动画 BD BOX 1 特典 CD",
-    "singers": ["スタァライト九九組", "愛城華恋", "露崎まひる"],
-    "description": "TV 动画 BD BOX 1 特典曲，雨过天晴后交织旋律与和声的温暖友情歌。"
-  },
-  {
-    "id": "polestar",
-    "folder": "Polestar",
-    "title": "Polestar",
-    "romaji": "Polestar",
-    "aliases": ["北极星"],
-    "type": "アルバム新曲",
-    "origin": "精选辑 Best Album（2021）",
-    "singers": ["スタァライト九九組"],
-    "description": "九九组首张精选辑《Best Album》主打新曲，致无可替代的挚友与星辰。"
-  },
-  {
-    "id": "pride",
-    "folder": "PRIDE",
-    "title": "PRIDE",
-    "romaji": "Pride",
-    "aliases": ["矜持与骄傲"],
-    "type": "舞台挿入歌",
-    "origin": "舞台 The LIVE #3 Growth（2020）",
-    "singers": ["スタァライト九九組"],
-    "description": "舞台 #3 Growth 剧中曲，直面挫折与孤独、赌上舞台少女自尊的咏叹。"
-  },
-  {
-    "id": "re-play",
-    "folder": "Re_PLAY",
-    "title": "Re:PLAY",
-    "romaji": "Re Play",
-    "aliases": ["Re_PLAY"],
-    "type": "舞台挿入歌",
-    "origin": "舞台 The LIVE #3 Growth（2020）",
-    "singers": ["スタァライト九九組"],
-    "description": "舞台 #3 Growth 曲目，在橘色夏日晚霞与漫天星斗下重返青春舞台。"
+    "id": "star-parade",
+    "folder": "Star Parade",
+    "title": "Star Parade",
+    "romaji": "Sutaa Pareedo",
+    "aliases": [
+      "星辰游行"
+    ],
+    "type": "シングル表題曲",
+    "origin": "7th 单曲（2020-02-19）",
+    "singers": [
+      "スタァライト九九組"
+    ],
+    "description": "横浜アリーナ 3rd スタァライブ 后 9 人羁绊之作。"
   },
   {
     "id": "still-in-a-dream",
     "folder": "Still in a dream",
     "title": "Still in a dream",
     "romaji": "Still in a Dream",
-    "aliases": ["仍在梦中"],
+    "aliases": [
+      "仍在梦中"
+    ],
     "type": "舞台挿入歌",
     "origin": "舞台 The LIVE #1（2017）",
-    "singers": ["スタァライト九九組"],
+    "singers": [
+      "スタァライト九九組"
+    ],
     "description": "初代舞台 #1 抒情插入曲，在梦境与舞台交界处追寻光芒。"
   },
   {
@@ -257,10 +261,14 @@
     "folder": "Tear",
     "title": "Tear",
     "romaji": "Tear",
-    "aliases": ["泪光"],
+    "aliases": [
+      "泪光"
+    ],
     "type": "舞台挿入歌",
     "origin": "舞台 The LIVE #2 Transition（2018）",
-    "singers": ["スタァライト九九組"],
+    "singers": [
+      "スタァライト九九組"
+    ],
     "description": "舞台 #2 哀婉动人的抒情曲，将滑落的泪水化作舞台上闪耀的结晶。"
   },
   {
@@ -268,10 +276,14 @@
     "folder": "The Show Must Go On!",
     "title": "The Show Must Go On!",
     "romaji": "The Show Must Go On",
-    "aliases": ["演出必须继续"],
+    "aliases": [
+      "演出必须继续"
+    ],
     "type": "舞台挿入歌",
     "origin": "舞台 The LIVE #1（2017）",
-    "singers": ["スタァライト九九組"],
+    "singers": [
+      "スタァライト九九組"
+    ],
     "description": "初代舞台 #1 狂飙突进的剧场曲，无论发生什么演出都必须继续。"
   },
   {
@@ -279,32 +291,49 @@
     "folder": "TOP",
     "title": "TOP",
     "romaji": "Top",
-    "aliases": ["顶点"],
+    "aliases": [
+      "顶点"
+    ],
     "type": "舞台挿入歌",
     "origin": "舞台 The LIVE #3 Growth（2020）",
-    "singers": ["スタァライト九九組"],
+    "singers": [
+      "スタァライト九九組"
+    ],
     "description": "舞台 #3 Growth 激烈竞演曲，向着首席顶点发起无畏冲击。"
   },
   {
-    "id": "yoroshiku-kukkugumi",
-    "folder": "よろしく九九組",
-    "title": "よろしく九九組",
-    "romaji": "Yoroshiku Kukkugumi",
-    "aliases": ["请多指教九九组"],
-    "type": "カップリング曲",
-    "origin": "2nd 单曲《スタァライトシアター》C/W（2018）",
-    "singers": ["スタァライト九九組"],
-    "description": "九九组 9 人逐一接力自我介绍的欢快名刺曲，演唱会气氛王牌。"
+    "id": "gekijo-no-ghost",
+    "folder": "You are a ghost, I am a ghost 〜劇場のゴースト〜",
+    "title": "You are a ghost, I am a ghost 〜劇場のゴースト〜",
+    "romaji": "You are a ghost, I am a ghost ~Gekijou no Ghost~",
+    "aliases": [
+      "剧场的幽灵",
+      "你是幽灵我是幽灵"
+    ],
+    "type": "キャラソン",
+    "origin": "2018 TV 动画 BD BOX 2 特典 CD",
+    "singers": [
+      "スタァライト九九組",
+      "神楽ひかり",
+      "天堂真矢",
+      "星見純那",
+      "大場なな"
+    ],
+    "description": "以剧场幽灵为题的暗色调角色歌，主唱 4 人咏唱对舞台的献身。"
   },
   {
     "id": "caramelize-finale",
     "folder": "キャラメリーゼフィナーレ",
     "title": "キャラメリーゼフィナーレ",
     "romaji": "Kyarameriize Finaare",
-    "aliases": ["焦糖色终幕"],
+    "aliases": [
+      "焦糖色终幕"
+    ],
     "type": "カップリング曲",
     "origin": "舞台 4th 单曲《綺羅星ディスタンス》C/W（2023）",
-    "singers": ["スタァライト九九組"],
+    "singers": [
+      "スタァライト九九組"
+    ],
     "description": "舞台 #4 Climax 单曲 C/W 曲，甜美华丽的焦糖色谢幕乐章。"
   },
   {
@@ -312,10 +341,14 @@
     "folder": "キラめきのありか",
     "title": "キラめきのありか",
     "romaji": "Kirameki no Arika",
-    "aliases": ["闪耀的所在"],
+    "aliases": [
+      "闪耀的所在"
+    ],
     "type": "シングル表題曲",
     "origin": "1st スタァライブ 纪念曲（2018）",
-    "singers": ["スタァライト九九組"],
+    "singers": [
+      "スタァライト九九組"
+    ],
     "description": "寻觅心中闪耀之处的抒情合唱曲，温柔映照舞台少女的初心。"
   },
   {
@@ -323,10 +356,15 @@
     "folder": "サイカイ合図",
     "title": "サイカイ合図",
     "romaji": "Saikai Aizu",
-    "aliases": ["再会暗号", "重开信号"],
+    "aliases": [
+      "再会暗号",
+      "重开信号"
+    ],
     "type": "舞台主題歌",
     "origin": "舞台 The LIVE #3 Growth（2020）／舞台 2nd 单曲",
-    "singers": ["スタァライト九九組"],
+    "singers": [
+      "スタァライト九九組"
+    ],
     "description": "舞台 #3 Growth 主题曲，双关『再会』与『重开』的青春疾走感乐曲。"
   },
   {
@@ -334,10 +372,15 @@
     "folder": "スタァライトシアター",
     "title": "スタァライトシアター",
     "romaji": "Sutaaraito Shiataa",
-    "aliases": ["星光剧场", "Starlight Theater"],
+    "aliases": [
+      "星光剧场",
+      "Starlight Theater"
+    ],
     "type": "シングル表題曲",
     "origin": "2nd 单曲（2018）",
-    "singers": ["スタァライト九九組"],
+    "singers": [
+      "スタァライト九九組"
+    ],
     "description": "九九组 2nd 单曲表题曲，邀请观众步入星光璀璨的圣翔剧场。"
   },
   {
@@ -345,10 +388,14 @@
     "folder": "ディスカバリー!",
     "title": "ディスカバリー!",
     "romaji": "Disukabarii",
-    "aliases": ["Discovery!"],
+    "aliases": [
+      "Discovery!"
+    ],
     "type": "ゲーム OP",
     "origin": "手游 Re LIVE 主题曲／《星のダイアローグ》C/W（2018）",
-    "singers": ["スタァライト九九組"],
+    "singers": [
+      "スタァライト九九組"
+    ],
     "description": "手游《Re LIVE》初代主题曲，踏上未知舞台新大陆的元气探险曲。"
   },
   {
@@ -356,154 +403,172 @@
     "folder": "バックコール",
     "title": "バックコール",
     "romaji": "Bakku Kooru",
-    "aliases": ["Back Call", "幕后呼唤"],
+    "aliases": [
+      "Back Call",
+      "幕后呼唤"
+    ],
     "type": "舞台挿入歌",
     "origin": "舞台 The LIVE #3 Growth（2020）",
-    "singers": ["スタァライト九九組"],
+    "singers": [
+      "スタァライト九九組"
+    ],
     "description": "舞台 #3 Growth 幕间曲，回响在后台走廊里的坚毅呼声。",
     "chorusStartSec": 18
+  },
+  {
+    "id": "yoroshiku-kukkugumi",
+    "folder": "よろしく九九組",
+    "title": "よろしく九九組",
+    "romaji": "Yoroshiku Kukkugumi",
+    "aliases": [
+      "请多指教九九组"
+    ],
+    "type": "カップリング曲",
+    "origin": "2nd 单曲《スタァライトシアター》C/W（2018）",
+    "singers": [
+      "スタァライト九九組"
+    ],
+    "description": "九九组 9 人逐一接力自我介绍的欢快名刺曲，演唱会气氛王牌。"
   },
   {
     "id": "romantic-cruisin",
     "folder": "ロマンティッククルージン",
     "title": "ロマンティッククルージン",
     "romaji": "Romantikku Kuruujin",
-    "aliases": ["浪漫巡航", "Romantic Cruisin'"],
+    "aliases": [
+      "浪漫巡航",
+      "Romantic Cruisin'"
+    ],
     "type": "カップリング曲",
     "origin": "3rd 单曲《Fly Me to the Star》C/W（2018）",
-    "singers": ["スタァライト九九組"],
+    "singers": [
+      "スタァライト九九組"
+    ],
     "description": "充满跃动节奏感的浪漫巡航曲，Live 现场挥舞毛巾的经典曲目。"
   },
   {
-    "id": "hyakushoku-remain",
-    "folder": "百色リメイン",
-    "title": "百色リメイン",
-    "romaji": "Hyakushoku Rimein",
-    "aliases": ["百色留存"],
-    "type": "舞台主題歌",
-    "origin": "舞台 The LIVE #2 revival（2019）",
-    "singers": ["スタァライト九九組"],
-    "description": "舞台 #2 再演纪念单曲，拥有角色分唱多版本的绚烂抒情曲。"
-  },
-  {
-    "id": "watashitachi-no-iru-riyuu",
-    "folder": "私たちの居る理由",
-    "title": "私たちの居る理由",
-    "romaji": "Watashitachi no Iru Riyuu",
-    "aliases": ["我们存在的理由"],
-    "type": "舞台挿入歌",
-    "origin": "舞台 The LIVE #2 Transition（2018）",
-    "singers": ["スタァライト九九組"],
-    "description": "舞台 #2 剧中歌，道出每位舞台少女在恐惧与梦想间伫立舞台的理由。"
-  },
-  {
-    "id": "madobe-no-highlight",
-    "folder": "窓辺のハイライト",
-    "title": "窓辺のハイライト",
-    "romaji": "Madobe no Hairaito",
-    "aliases": ["窗边的高光"],
+    "id": "negai-wa-hikari-ni-natte",
+    "folder": "願いは光になって",
+    "title": "願いは光になって",
+    "romaji": "Negai wa Hikari ni Natte",
+    "aliases": [
+      "愿望化作光芒"
+    ],
     "type": "カップリング曲",
-    "origin": "舞台单曲《百色リメイン》C/W（2019）",
-    "singers": ["スタァライト九九組"],
-    "description": "映照在窗边玻璃上的光影记忆，静谧而深情的九九组合唱曲。"
-  },
-  {
-    "id": "yakusoku-tower",
-    "folder": "約束タワー",
-    "title": "約束タワー",
-    "romaji": "Yakusoku Tawaa",
-    "aliases": ["约定之塔"],
-    "type": "シングル表題曲",
-    "origin": "5th 单曲（2019）",
-    "singers": ["スタァライト九九組"],
-    "description": "九九组 5th 单曲表题曲，围绕象征命运与重逢的东京塔展开的赞歌。"
-  },
-  {
-    "id": "junjou-unclassified",
-    "folder": "純情アンクラシファイド",
-    "title": "純情アンクラシファイド",
-    "romaji": "Junjou Ankurasifaido",
-    "aliases": ["纯情 Unclassified"],
-    "type": "カップリング曲",
-    "origin": "7th 单曲《Star Parade》C/W（2020）",
-    "singers": ["愛城華恋", "神楽ひかり", "天堂真矢", "西條クロディーヌ"],
-    "description": "華恋、ひかり、真矢、クロディーヌ 4 人献唱的帅气摇滚风分组曲。"
+    "origin": "1st 单曲《プロローグ -Star Divine-》C/W（2017）",
+    "singers": [
+      "スタァライト九九組"
+    ],
+    "description": "出道单曲收录曲，重温初次相遇时的悸动，将心愿化作照亮舞台的光芒。"
   },
   {
     "id": "gunjou",
     "folder": "群青",
     "title": "群青",
     "romaji": "Gunjou",
-    "aliases": ["群青"],
+    "aliases": [
+      "群青"
+    ],
     "type": "舞台挿入歌",
     "origin": "舞台 The LIVE #2 Transition（2018）",
-    "singers": ["スタァライト九九組"],
+    "singers": [
+      "スタァライト九九組"
+    ],
     "description": "舞台 #2 剧中歌，跨越春夏秋冬集结于校舍的少女们高唱的群青战歌。"
   },
   {
-    "id": "butai-ni-koishite",
-    "folder": "舞台に恋して",
-    "title": "舞台に恋して",
-    "romaji": "Butai ni Koishite",
-    "aliases": ["爱上舞台"],
-    "type": "カップリング曲",
-    "origin": "单曲《Star Darling》C/W（2024）",
-    "singers": ["スタァライト九九組"],
-    "description": "《Star Darling》C/W 曲，踏着轻快步伐倾诉对舞台始终如一的热恋。"
+    "id": "saisei-sanbika",
+    "folder": "再生讃美曲",
+    "title": "再生讃美曲",
+    "romaji": "Saisei Sanbikyoku",
+    "aliases": [
+      "再生赞美曲"
+    ],
+    "type": "劇場版主題歌",
+    "origin": "劇場版 ロンド・ロンド・ロンド（2020）",
+    "singers": [
+      "スタァライト九九組"
+    ],
+    "description": "总集篇剧场版 Rondo Rondo Rondo 主题曲，庄严圣咏风全员曲。"
   },
   {
-    "id": "butai-preparation",
-    "folder": "舞台プレパレイション",
-    "title": "舞台プレパレイション",
-    "romaji": "Butai Purepareishon",
-    "aliases": ["舞台准备", "Stage Preparation"],
-    "type": "カップリング曲",
-    "origin": "5th 单曲《約束タワー》C/W（2019）",
-    "singers": ["スタァライト九九組"],
-    "description": "圣翔祭开演前全员忙乱筹备的欢快歌曲，充满青春学园气息。"
+    "id": "watashitachi-no-iru-riyuu",
+    "folder": "私たちの居る理由",
+    "title": "私たちの居る理由",
+    "romaji": "Watashitachi no Iru Riyuu",
+    "aliases": [
+      "我们存在的理由"
+    ],
+    "type": "舞台挿入歌",
+    "origin": "舞台 The LIVE #2 Transition（2018）",
+    "singers": [
+      "スタァライト九九組"
+    ],
+    "description": "舞台 #2 剧中歌，道出每位舞台少女在恐惧与梦想间伫立舞台的理由。"
   },
   {
-    "id": "butai-shoujo-taisou",
-    "folder": "舞台少女体操",
-    "title": "舞台少女体操",
-    "romaji": "Butai Shoujo Taisou",
-    "aliases": ["舞台少女体操"],
-    "type": "カップリング曲",
-    "origin": "6th 单曲《Star Diamond》C/W（2019）",
-    "singers": ["スタァライト九九組"],
-    "description": "深呼吸伸展脊背的热身体操歌，趣味十足的圣翔日常练习曲。"
+    "id": "watashitachi-wa-mou-butai-no-ue",
+    "folder": "私たちはもう舞台の上",
+    "title": "私たちはもう舞台の上",
+    "romaji": "Watashitachi wa Mou Butai no Ue",
+    "aliases": [
+      "我们已在舞台之上"
+    ],
+    "type": "劇場版主題歌",
+    "origin": "劇場版 少女☆歌劇 レヴュースタァライト（2021）",
+    "singers": [
+      "スタァライト九九組"
+    ],
+    "description": "2021 剧场版主题歌，九九组对舞台少女身份的最终回答。"
   },
   {
-    "id": "butai-shoujo-kokoroe",
-    "folder": "舞台少女心得",
-    "title": "舞台少女心得",
-    "romaji": "Butai Shoujo Kokoroe",
-    "aliases": ["舞台少女心得"],
+    "id": "junjou-unclassified",
+    "folder": "純情アンクラシファイド",
+    "title": "純情アンクラシファイド",
+    "romaji": "Junjou Ankurasifaido",
+    "aliases": [
+      "纯情 Unclassified"
+    ],
     "type": "カップリング曲",
-    "origin": "1st 单曲《プロローグ -Star Divine-》C/W（2017）",
-    "singers": ["スタァライト九九組"],
-    "description": "挺直脊背凛然抬眸，铭刻圣翔音乐学园舞台少女精神的经典曲目。"
+    "origin": "7th 单曲《Star Parade》C/W（2020）",
+    "singers": [
+      "愛城華恋",
+      "神楽ひかり",
+      "天堂真矢",
+      "西條クロディーヌ"
+    ],
+    "description": "華恋、ひかり、真矢、クロディーヌ 4 人献唱的帅气摇滚风分组曲。"
   },
   {
-    "id": "butaiura-no-revue",
-    "folder": "舞台裏のレヴュー",
-    "title": "舞台裏のレヴュー",
-    "romaji": "Butaiura no Revyuu",
-    "aliases": ["幕后的 Revue"],
-    "type": "カップリング曲",
-    "origin": "舞台单曲《サイカイ合図》C/W（2020）",
-    "singers": ["スタァライト九九組"],
-    "description": "描绘登台前一刻后台 9 人相互鼓劲、对话交织的戏剧感乐曲。"
+    "id": "hoshi-no-dialogue",
+    "folder": "星のダイアローグ",
+    "title": "星のダイアローグ",
+    "romaji": "Hoshi no Daiarogu",
+    "aliases": [
+      "繁星的对白",
+      "星之对话",
+      "Star Dialogue"
+    ],
+    "type": "OP",
+    "origin": "2018 TV 动画",
+    "singers": [
+      "スタァライト九九組"
+    ],
+    "description": "2018 TV 动画 OP，九九组全员合唱的青春宣言，Star 系列曲开山之作。"
   },
   {
     "id": "aoi-arashi",
     "folder": "青い嵐",
     "title": "青い嵐",
     "romaji": "Aoi Arashi",
-    "aliases": ["青色之岚"],
+    "aliases": [
+      "青色之岚"
+    ],
     "type": "舞台挿入歌",
     "origin": "舞台 The LIVE #2 Transition（2018）",
-    "singers": ["スタァライト九九組"],
+    "singers": [
+      "スタァライト九九組"
+    ],
     "description": "舞台 #2 剧中歌，卷起青色风暴与奔涌热情的激昂对决曲。"
   },
   {
@@ -511,21 +576,168 @@
     "folder": "青春トラベラー",
     "title": "青春トラベラー",
     "romaji": "Seishun Toraberaa",
-    "aliases": ["青春旅行者", "Youth Traveler"],
+    "aliases": [
+      "青春旅行者",
+      "Youth Traveler"
+    ],
     "type": "カップリング曲",
     "origin": "舞台 2nd 单曲《サイカイ合図》C/W（2020）",
-    "singers": ["スタァライト九九組"],
+    "singers": [
+      "スタァライト九九組"
+    ],
     "description": "手持没有期限的车票，九九组一同踏上无尽青春旅途的清爽乐曲。"
   },
   {
-    "id": "negai-wa-hikari-ni-natte",
-    "folder": "願いは光になって",
-    "title": "願いは光になって",
-    "romaji": "Negai wa Hikari ni Natte",
-    "aliases": ["愿望化作光芒"],
+    "id": "madobe-no-highlight",
+    "folder": "窓辺のハイライト",
+    "title": "窓辺のハイライト",
+    "romaji": "Madobe no Hairaito",
+    "aliases": [
+      "窗边的高光"
+    ],
+    "type": "カップリング曲",
+    "origin": "舞台单曲《百色リメイン》C/W（2019）",
+    "singers": [
+      "スタァライト九九組"
+    ],
+    "description": "映照在窗边玻璃上的光影记忆，静谧而深情的九九组合唱曲。"
+  },
+  {
+    "id": "hyakushoku-remain",
+    "folder": "百色リメイン",
+    "title": "百色リメイン",
+    "romaji": "Hyakushoku Rimein",
+    "aliases": [
+      "百色留存"
+    ],
+    "type": "舞台主題歌",
+    "origin": "舞台 The LIVE #2 revival（2019）",
+    "singers": [
+      "スタァライト九九組"
+    ],
+    "description": "舞台 #2 再演纪念单曲，拥有角色分唱多版本的绚烂抒情曲。"
+  },
+  {
+    "id": "butai-ni-koishite",
+    "folder": "舞台に恋して",
+    "title": "舞台に恋して",
+    "romaji": "Butai ni Koishite",
+    "aliases": [
+      "爱上舞台"
+    ],
+    "type": "カップリング曲",
+    "origin": "单曲《Star Darling》C/W（2024）",
+    "singers": [
+      "スタァライト九九組"
+    ],
+    "description": "《Star Darling》C/W 曲，踏着轻快步伐倾诉对舞台始终如一的热恋。"
+  },
+  {
+    "id": "butai-preparation",
+    "folder": "舞台プレパレイション",
+    "title": "舞台プレパレイション",
+    "romaji": "Butai Purepareishon",
+    "aliases": [
+      "舞台准备",
+      "Stage Preparation"
+    ],
+    "type": "カップリング曲",
+    "origin": "5th 单曲《約束タワー》C/W（2019）",
+    "singers": [
+      "スタァライト九九組"
+    ],
+    "description": "圣翔祭开演前全员忙乱筹备的欢快歌曲，充满青春学园气息。"
+  },
+  {
+    "id": "butai-shoujo-kokoroe",
+    "folder": "舞台少女心得",
+    "title": "舞台少女心得",
+    "romaji": "Butai Shoujo Kokoroe",
+    "aliases": [
+      "舞台少女心得"
+    ],
     "type": "カップリング曲",
     "origin": "1st 单曲《プロローグ -Star Divine-》C/W（2017）",
-    "singers": ["スタァライト九九組"],
-    "description": "出道单曲收录曲，重温初次相遇时的悸动，将心愿化作照亮舞台的光芒。"
+    "singers": [
+      "スタァライト九九組"
+    ],
+    "description": "挺直脊背凛然抬眸，铭刻圣翔音乐学园舞台少女精神的经典曲目。"
+  },
+  {
+    "id": "butai-shoujo-taisou",
+    "folder": "舞台少女体操",
+    "title": "舞台少女体操",
+    "romaji": "Butai Shoujo Taisou",
+    "aliases": [
+      "舞台少女体操"
+    ],
+    "type": "カップリング曲",
+    "origin": "6th 单曲《Star Diamond》C/W（2019）",
+    "singers": [
+      "スタァライト九九組"
+    ],
+    "description": "深呼吸伸展脊背的热身体操歌，趣味十足的圣翔日常练习曲。"
+  },
+  {
+    "id": "butaiura-no-revue",
+    "folder": "舞台裏のレヴュー",
+    "title": "舞台裏のレヴュー",
+    "romaji": "Butaiura no Revyuu",
+    "aliases": [
+      "幕后的 Revue"
+    ],
+    "type": "カップリング曲",
+    "origin": "舞台单曲《サイカイ合図》C/W（2020）",
+    "singers": [
+      "スタァライト九九組"
+    ],
+    "description": "描绘登台前一刻后台 9 人相互鼓劲、对话交织的戏剧感乐曲。"
+  },
+  {
+    "id": "yakusoku-tower",
+    "folder": "約束タワー",
+    "title": "約束タワー",
+    "romaji": "Yakusoku Tawaa",
+    "aliases": [
+      "约定之塔"
+    ],
+    "type": "シングル表題曲",
+    "origin": "5th 单曲（2019）",
+    "singers": [
+      "スタァライト九九組"
+    ],
+    "description": "九九组 5th 单曲表题曲，围绕象征命运与重逢的东京塔展开的赞歌。"
+  },
+  {
+    "id": "koi-wa-taiyou",
+    "folder": "恋は太陽 〜CIRCUS!〜",
+    "title": "恋は太陽 〜CIRCUS!〜",
+    "romaji": "Koi wa Taiyou ~CIRCUS!~",
+    "aliases": [
+      "恋是太阳"
+    ],
+    "type": "キャラソン",
+    "origin": "2018 TV 动画 BD BOX 3 特典 CD",
+    "singers": [
+      "スタァライト九九組",
+      "石動双葉",
+      "花柳香子"
+    ],
+    "description": "马戏团主题的热闹角色歌，小丑与空中秋千的舞台意象。"
+  },
+  {
+    "id": "kiraboshi-distance",
+    "folder": "綺羅星ディスタンス",
+    "title": "綺羅星ディスタンス",
+    "romaji": "Kiraboshi Disutansu",
+    "aliases": [
+      "绮罗星距离"
+    ],
+    "type": "舞台主題歌",
+    "origin": "舞台 The LIVE #4 Climax（2023）",
+    "singers": [
+      "スタァライト九九組"
+    ],
+    "description": "舞台 The LIVE #4 Climax 主题曲，王道剧摇滚曲风的集大成之作。"
   }
 ]

@@ -96,8 +96,6 @@ export function TheaterFooter() {
     <footer className="theater-footlight-bar">
       <div className="footlight-divider" aria-hidden="true">
         <span className="footlight-ray" />
-        <span className="footlight-zero-plaque">⊕ POSITION ZERO · SEISHO MUSIC ACADEMY 99TH</span>
-        <span className="footlight-ray" />
       </div>
       <div className="footlight-gems" aria-hidden="true">
         {TROUPE_MEMBERS.map((m) => (
