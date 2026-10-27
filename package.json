@@ -1,8 +1,9 @@
 {
-  "name": "starlight-song-quiz",
+  "name": "shojo-kageki-music-trivia",
   "private": true,
   "version": "0.1.0",
   "description": "少女☆歌剧 Revue Starlight 网页猜歌游戏（非官方粉丝作品）",
+  "license": "MIT",
   "type": "module",
   "workspaces": [
     "apps/*",

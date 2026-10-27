@@ -124,7 +124,7 @@ export function SummaryPage({
       const url = URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
-      link.download = `starlight-${config.mode}-${config.seed}.png`;
+      link.download = `shojo-kageki-music-trivia-${config.mode}-${config.seed}.png`;
       link.click();
       setTimeout(() => URL.revokeObjectURL(url), 1000);
       setNotice('成绩图片已生成，下载已开始。');

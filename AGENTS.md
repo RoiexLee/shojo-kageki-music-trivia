@@ -1,4 +1,4 @@
-# AGENTS.md — 少女歌剧 Revue Starlight 猜歌 · Agent 协作规范
+# AGENTS.md — 少女☆歌剧 Revue Starlight 猜歌 · Agent 协作规范
 
 本文件是本仓库所有 agent（与人类协作者）的**最高行为准则**。开始任何工作前必须先读完本文件。
 
