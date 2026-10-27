@@ -129,7 +129,7 @@ export function JukeboxStudio({
                   </div>
                   <div className="rack-item-info">
                     <div className="rack-item-top">
-                      <span className="rack-index">#{String(idx + 1).padStart(2, '0')}</span>
+                      <span className="rack-index">#{String(idx + 1).padStart(3, '0')}</span>
                       <span className="rack-type-tag">{song.type}</span>
                     </div>
                     <strong>{song.title}</strong>
