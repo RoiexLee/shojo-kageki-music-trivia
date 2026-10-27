@@ -744,33 +744,37 @@
     "id": "song-049",
     "folder": "-Star Divine- フィナーレ",
     "title": "-Star Divine- フィナーレ",
-    "romaji": "-Star Divine- フィナーレ",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Star Divine Finale",
+    "aliases": [
+      "-Star Divine- フィナーレ"
+    ],
+    "type": "TVアニメ挿入歌",
+    "origin": "2018 TVアニメ第10話／劇中歌アルバムVol.2「ラ レヴュー ド ソワレ」",
     "singers": [
       "小山百代",
       "三森すずこ",
       "富田麻帆",
       "相羽あいな"
     ],
-    "description": "待补"
+    "description": "TV动画第10话的四人版 Star Divine，命运对决在终幕再次点燃。"
   },
   {
     "id": "song-050",
     "folder": "1等星のプロキオン",
     "title": "1等星のプロキオン",
-    "romaji": "1等星のプロキオン",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Ittōsei no Purokion",
+    "aliases": [
+      "Procyon the Bright"
+    ],
+    "type": "レヴュー曲",
+    "origin": "レヴューアルバム「ラ・レヴュー・エターナル」（2019）／3rdスタァライブ「Starry Diamond」",
     "singers": [
       "岩田陽葵",
       "和氣あず未",
       "潘めぐみ",
       "竹達彩奈"
     ],
-    "description": "待补"
+    "description": "以小犬座神话为题的竞演曲，追逐能让观众绽放笑容的第一星等。"
   },
   {
     "id": "song-051",
@@ -778,13 +782,13 @@
     "title": "Dream of You",
     "romaji": "Dream of You",
     "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "type": "劇場版主題歌CDカップリング",
+    "origin": "劇場版 少女☆歌劇 レヴュースタァライト 主題歌CD（2021）",
     "singers": [
       "小山百代",
       "三森すずこ"
     ],
-    "description": "待补"
+    "description": "华恋与光演唱的剧场版关联曲，在回望与约定之间轻声交谈。"
   },
   {
     "id": "song-052",
@@ -792,13 +796,13 @@
     "title": "Fancy You",
     "romaji": "Fancy You",
     "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "type": "限定シングル収録曲",
+    "origin": "限定シングル「プリンシパル -Fancy You-」（2017）",
     "singers": [
       "小山百代",
       "三森すずこ"
     ],
-    "description": "待补"
+    "description": "华恋与光以轻快节奏唱出的初期双人曲，闪耀着恋慕与憧憬。"
   },
   {
     "id": "song-053",
@@ -806,12 +810,12 @@
     "title": "Fly Me to the Star #3",
     "romaji": "Fly Me to the Star #3",
     "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "type": "TVアニメEDバージョン",
+    "origin": "2018 TVアニメED「Fly Me to the Star」角色版本",
     "singers": [
       "三森すずこ"
     ],
-    "description": "待补"
+    "description": "TV动画片尾曲的第三话角色版本，以独唱重新描摹星夜旋律。"
   },
   {
     "id": "song-054",
@@ -819,13 +823,13 @@
     "title": "Fly Me to the Star #4",
     "romaji": "Fly Me to the Star #4",
     "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "type": "TVアニメEDバージョン",
+    "origin": "2018 TVアニメED「Fly Me to the Star」角色版本",
     "singers": [
       "小山百代",
       "三森すずこ"
     ],
-    "description": "待补"
+    "description": "TV动画片尾曲的第四话双人版本，温柔而克制地唱向星辰。"
   },
   {
     "id": "song-055",
@@ -833,12 +837,12 @@
     "title": "Fly Me to the Star #5",
     "romaji": "Fly Me to the Star #5",
     "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "type": "TVアニメEDバージョン",
+    "origin": "2018 TVアニメED「Fly Me to the Star」角色版本",
     "singers": [
       "岩田陽葵"
     ],
-    "description": "待补"
+    "description": "TV动画片尾曲的第五话角色版本，将孤独与希望交织成爵士小调。"
   },
   {
     "id": "song-056",
@@ -846,13 +850,13 @@
     "title": "Fly Me to the Star #6",
     "romaji": "Fly Me to the Star #6",
     "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "type": "TVアニメEDバージョン",
+    "origin": "2018 TVアニメED「Fly Me to the Star」角色版本",
     "singers": [
       "伊藤彩沙",
       "生田輝"
     ],
-    "description": "待补"
+    "description": "TV动画片尾曲的第六话双人版本，像舞台谢幕后的一次并肩回望。"
   },
   {
     "id": "song-057",
@@ -860,12 +864,12 @@
     "title": "Fly Me to the Star #8",
     "romaji": "Fly Me to the Star #8",
     "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "type": "TVアニメEDバージョン",
+    "origin": "2018 TVアニメED「Fly Me to the Star」角色版本",
     "singers": [
       "小山百代"
     ],
-    "description": "待补"
+    "description": "TV动画片尾曲的第八话角色版本，以独唱延续星光主题。"
   },
   {
     "id": "song-058",
@@ -873,13 +877,13 @@
     "title": "Fly Me to the Star #9",
     "romaji": "Fly Me to the Star #9",
     "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "type": "TVアニメEDバージョン",
+    "origin": "2018 TVアニメED「Fly Me to the Star」角色版本",
     "singers": [
       "佐藤日向",
       "小泉萌香"
     ],
-    "description": "待补"
+    "description": "TV动画片尾曲的第九话双人版本，唱出走向终幕前的微光。"
   },
   {
     "id": "song-059",
@@ -887,13 +891,13 @@
     "title": "Fly Me to the Star #10",
     "romaji": "Fly Me to the Star #10",
     "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "type": "TVアニメEDバージョン",
+    "origin": "2018 TVアニメED「Fly Me to the Star」角色版本",
     "singers": [
       "富田麻帆",
       "相羽あいな"
     ],
-    "description": "待补"
+    "description": "TV动画片尾曲的第十话双人版本，与终局前的命运呼应。"
   },
   {
     "id": "song-060",
@@ -901,8 +905,8 @@
     "title": "Fly Me to the Star #11",
     "romaji": "Fly Me to the Star #11",
     "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "type": "TVアニメEDバージョン",
+    "origin": "2018 TVアニメED「Fly Me to the Star」角色版本",
     "singers": [
       "岩田陽葵",
       "小泉萌香",
@@ -912,7 +916,7 @@
       "佐藤日向",
       "相羽あいな"
     ],
-    "description": "待补"
+    "description": "TV动画片尾曲的第十一话群像版本，汇聚九九组走过的星路。"
   },
   {
     "id": "song-061",
@@ -920,15 +924,15 @@
     "title": "GANG☆STAR",
     "romaji": "GANG☆STAR",
     "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "type": "限定シングル収録曲",
+    "origin": "限定シングル「プリンシパル -Fancy You-」（2017）",
     "singers": [
       "富田麻帆",
       "相羽あいな",
       "生田輝",
       "伊藤彩沙"
     ],
-    "description": "待补"
+    "description": "真矢、克洛迪娜、双叶与香子的四人曲，强势节拍展现舞台上的锋芒。"
   },
   {
     "id": "song-062",
@@ -936,8 +940,8 @@
     "title": "Gilded Dreams",
     "romaji": "Gilded Dreams",
     "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "type": "舞台テーマソング",
+    "origin": "舞台「少女☆歌劇 レヴュースタァライト -The MUSICAL- 遙かなるエルドラド」主题曲CD（2026）",
     "singers": [
       "佐藤日向",
       "岩田陽葵",
@@ -948,135 +952,141 @@
       "伊藤彩沙",
       "富田麻帆"
     ],
-    "description": "待补"
+    "description": "新舞台主题曲，以明亮而多变的声响歌唱被爱憎淬炼的意志。"
   },
   {
     "id": "song-063",
     "folder": "LIFE IS LIKE A VOYAGE (ひかり×華恋ver.)",
     "title": "LIFE IS LIKE A VOYAGE (ひかり×華恋ver.)",
-    "romaji": "LIFE IS LIKE A VOYAGE (ひかり×華恋ver.)",
+    "romaji": "Life Is Like a Voyage (Hikari × Karen ver.)",
     "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "type": "ゲーム劇中歌",
+    "origin": "游戏「舞台奏像劇 遙かなるエルドラド」剧中歌专辑（2024）",
     "singers": [
       "三森すずこ",
       "小山百代"
     ],
-    "description": "待补"
+    "description": "光与华恋的双人版本，在远航意象中唱出彼此守望的决心。"
   },
   {
     "id": "song-064",
     "folder": "LIFE IS LIKE A VOYAGE (まひる×ななver.)",
     "title": "LIFE IS LIKE A VOYAGE (まひる×ななver.)",
-    "romaji": "LIFE IS LIKE A VOYAGE (まひる×ななver.)",
+    "romaji": "Life Is Like a Voyage (Mahiru × Nana ver.)",
     "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "type": "ゲーム劇中歌",
+    "origin": "游戏「舞台奏像劇 遙かなるエルドラド」剧中歌专辑（2024）",
     "singers": [
       "岩田陽葵",
       "小泉萌香"
     ],
-    "description": "待补"
+    "description": "真昼与娜娜的双人版本，描绘并肩航行时温柔而坚定的羁绊。"
   },
   {
     "id": "song-065",
     "folder": "LIFE IS LIKE A VOYAGE (香子×真矢ver.)",
     "title": "LIFE IS LIKE A VOYAGE (香子×真矢ver.)",
-    "romaji": "LIFE IS LIKE A VOYAGE (香子×真矢ver.)",
+    "romaji": "Life Is Like a Voyage (Kaoruko × Maya ver.)",
     "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "type": "ゲーム劇中歌",
+    "origin": "游戏「舞台奏像劇 遙かなるエルドラド」剧中歌专辑（2024）",
     "singers": [
       "伊藤彩沙",
       "富田麻帆"
     ],
-    "description": "待补"
+    "description": "香子与真矢的双人版本，在航海主题中交锋出优雅与自尊。"
   },
   {
     "id": "song-066",
     "folder": "LIFE IS LIKE A VOYAGE (純那×華恋ver.)",
     "title": "LIFE IS LIKE A VOYAGE (純那×華恋ver.)",
-    "romaji": "LIFE IS LIKE A VOYAGE (純那×華恋ver.)",
+    "romaji": "Life Is Like a Voyage (Junna × Karen ver.)",
     "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "type": "ゲーム劇中歌",
+    "origin": "游戏「舞台奏像劇 遙かなるエルドラド」剧中歌专辑（2024）",
     "singers": [
       "佐藤日向",
       "小山百代"
     ],
-    "description": "待补"
+    "description": "纯那与华恋的双人版本，将追梦的直率与相互鼓励写入航海诗篇。"
   },
   {
     "id": "song-067",
     "folder": "LIFE IS LIKE A VOYAGE (双葉×クロディーヌver.)",
     "title": "LIFE IS LIKE A VOYAGE (双葉×クロディーヌver.)",
-    "romaji": "LIFE IS LIKE A VOYAGE (双葉×クロディーヌver.)",
+    "romaji": "Life Is Like a Voyage (Futaba × Claudine ver.)",
     "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "type": "ゲーム劇中歌",
+    "origin": "游戏「舞台奏像劇 遙かなるエルドラド」剧中歌专辑（2024）",
     "singers": [
       "生田輝",
       "相羽あいな"
     ],
-    "description": "待补"
+    "description": "双叶与克洛迪娜的双人版本，以截然不同的气质共同驶向远方。"
   },
   {
     "id": "song-068",
     "folder": "MEDAL SUZDAL PANIC◎○●",
     "title": "MEDAL SUZDAL PANIC◎○●",
-    "romaji": "MEDAL SUZDAL PANIC◎○●",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Medal Suzdal Panic",
+    "aliases": [
+      "MEDAL SUZDAL PANIC◎○●"
+    ],
+    "type": "劇場版劇中歌",
+    "origin": "劇場版 少女☆歌劇 レヴュースタァライト 劇中歌アルバムVol.1（2021）",
     "singers": [
       "三森すずこ",
       "岩田陽葵"
     ],
-    "description": "待补"
+    "description": "光与真昼的剧场版对唱曲，夸张节奏包裹着角色间炽烈的情绪。"
   },
   {
     "id": "song-069",
     "folder": "My Cheer Girl! ～ウォークオーバーより～",
     "title": "My Cheer Girl! ～ウォークオーバーより～",
-    "romaji": "My Cheer Girl! ～ウォークオーバーより～",
+    "romaji": "My Cheer Girl! ~Walkover yori~",
     "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "type": "ゲーム劇中歌",
+    "origin": "游戏「舞台奏像劇 遙かなるエルドラド」剧中歌EP（2024）",
     "singers": [
       "小山百代",
       "岩田陽葵",
       "相羽あいな",
       "生田輝"
     ],
-    "description": "待补"
+    "description": "华恋、真昼、克洛迪娜与双叶的活力合唱，为舞台注入不服输的应援能量。"
   },
   {
     "id": "song-070",
     "folder": "RE_CREATE",
     "title": "RE_CREATE",
-    "romaji": "RE_CREATE",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Re:Create",
+    "aliases": [
+      "RE_CREATE"
+    ],
+    "type": "TVアニメ劇中歌",
+    "origin": "2018 TVアニメ剧中歌专辑Vol.2「ラ レヴュー ド ソワレ」",
     "singers": [
       "三森すずこ",
       "小泉萌香"
     ],
-    "description": "待补"
+    "description": "光与娜娜的剧中歌，在再创造的旋律里直面轮回与舞台的代价。"
   },
   {
     "id": "song-071",
     "folder": "RE_CREATE(movie ver.)",
     "title": "RE_CREATE(movie ver.)",
-    "romaji": "RE_CREATE(movie ver.)",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Re:Create (movie ver.)",
+    "aliases": [
+      "RE_CREATE(movie ver.)"
+    ],
+    "type": "劇場版劇中歌",
+    "origin": "劇場版「ロンド・ロンド・ロンド」剧中歌 movie ver.（2020）",
     "singers": [
       "三森すずこ",
       "小泉萌香"
     ],
-    "description": "待补"
+    "description": "剧场版重构版本，以更浓缩的编曲重新呈现光与娜娜的宿命对唱。"
   },
   {
     "id": "song-072",
@@ -1084,29 +1094,29 @@
     "title": "Resist",
     "romaji": "Resist",
     "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "type": "舞台劇中歌",
+    "origin": "舞台「少女☆歌劇 レヴュースタァライト -The LIVE- #3 Growth」（2020）",
     "singers": [
       "小山百代",
       "三森すずこ"
     ],
-    "description": "待补"
+    "description": "Growth舞台中的抗争曲，唱出面对挫折仍要继续前进的坚韧。"
   },
   {
     "id": "song-073",
     "folder": "Star Diamond(movie ver.)",
     "title": "Star Diamond(movie ver.)",
-    "romaji": "Star Diamond(movie ver.)",
+    "romaji": "Star Diamond (movie ver.)",
     "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "type": "劇場版劇中歌",
+    "origin": "劇場版「ロンド・ロンド・ロンド」主题歌CD（2020）",
     "singers": [
       "小山百代",
       "三森すずこ",
       "富田麻帆",
       "相羽あいな"
     ],
-    "description": "待补"
+    "description": "华恋、光、真矢与克洛迪娜的剧场版版本，四颗星在再生产舞台交汇。"
   },
   {
     "id": "song-074",
@@ -1114,8 +1124,8 @@
     "title": "Still, I Go",
     "romaji": "Still, I Go",
     "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "type": "舞台テーマソングカップリング",
+    "origin": "舞台「The MUSICAL 遙かなるエルドラド」主题曲CD（2026）",
     "singers": [
       "佐藤日向",
       "岩田陽葵",
@@ -1126,7 +1136,7 @@
       "伊藤彩沙",
       "富田麻帆"
     ],
-    "description": "待补"
+    "description": "与 Gilded Dreams 对照的主题曲，回望奔向梦想的旅程后仍选择继续前行。"
   },
   {
     "id": "song-075",
@@ -1134,27 +1144,29 @@
     "title": "The Star Knows",
     "romaji": "The Star Knows",
     "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "type": "TVアニメ劇中歌",
+    "origin": "2018 TVアニメ剧中歌／舞台「The LIVE」曲目系谱",
     "singers": [
       "佐藤日向",
       "小山百代"
     ],
-    "description": "待补"
+    "description": "纯那与华恋的舞台对唱，星辰见证两人对主角位置与成长的执着。"
   },
   {
     "id": "song-076",
     "folder": "The Star Knows ～Another～",
     "title": "The Star Knows ～Another～",
-    "romaji": "The Star Knows ～Another～",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "The Star Knows ~Another~",
+    "aliases": [
+      "The Star Knows ～Another～"
+    ],
+    "type": "劇場版関連曲",
+    "origin": "劇場版「ロンド・ロンド・ロンド」相关曲／再生讃美曲CD（2020）",
     "singers": [
       "佐藤日向",
       "小山百代"
     ],
-    "description": "待补"
+    "description": "The Star Knows 的另一版本，延续纯那与华恋在星光下的对话。"
   },
   {
     "id": "song-077",
@@ -1162,148 +1174,167 @@
     "title": "Unfinished Song",
     "romaji": "Unfinished Song",
     "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "type": "プレクエルEP劇中歌",
+    "origin": "九九组 prequel EP「Acte Zéro」（2025）",
     "singers": [
       "富田麻帆",
       "相羽あいな"
     ],
-    "description": "待补"
+    "description": "真矢与克洛迪娜的相遇前奏曲，在未完成的歌中写下彼此的竞争与默契。"
   },
   {
     "id": "song-078",
     "folder": "wi(l)d-screen baroque",
     "title": "wi(l)d-screen baroque",
-    "romaji": "wi(l)d-screen baroque",
+    "romaji": "Wi(l)d-screen Baroque",
     "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "type": "劇場版劇中歌",
+    "origin": "劇場版 少女☆歌劇 レヴュースタァライト（2021）",
     "singers": [
       "小泉萌香"
     ],
-    "description": "待补"
+    "description": "剧场版“皆杀し的Revue”的核心曲，以狂放的舞台想象撕开现实与幻梦。"
   },
   {
     "id": "song-079",
     "folder": "ジャンヌダルク",
     "title": "ジャンヌダルク",
-    "romaji": "ジャンヌダルク",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Jeanne d’Arc",
+    "aliases": [
+      "圣女贞德"
+    ],
+    "type": "舞台劇中歌",
+    "origin": "舞台「The LIVE」#1 revival 特典CD（2018）",
     "singers": [
       "三森すずこ"
     ],
-    "description": "待补",
+    "description": "神楽ひかり的独唱曲，以圣女贞德意象写出舞台上的孤高与决意。",
     "chorusStartSec": 47
   },
   {
     "id": "song-080",
     "folder": "スーパー スタァ スペクタクル",
     "title": "スーパー スタァ スペクタクル",
-    "romaji": "スーパー スタァ スペクタクル",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Sūpā Sutā Supekutakuru",
+    "aliases": [
+      "Super Star Spectacle"
+    ],
+    "type": "劇場版劇中歌",
+    "origin": "剧场版「少女☆歌劇 レヴュースタァライト」（2021）剧中歌Vol.2",
     "singers": [
       "小山百代",
       "三森すずこ"
     ],
-    "description": "待补"
+    "description": "华恋与光的终幕二重唱，把告别、约定与再次相遇唱成壮阔舞台。"
   },
   {
     "id": "song-081",
     "folder": "スタァライト",
     "title": "スタァライト",
-    "romaji": "スタァライト",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Sutāraito",
+    "aliases": [
+      "Starlight"
+    ],
+    "type": "TVアニメ劇中歌",
+    "origin": "TV动画第12话／剧场版相关音乐（2018）",
     "singers": [
       "小山百代",
       "三森すずこ"
     ],
-    "description": "待补"
+    "description": "华恋与光共同演唱的核心主题曲，回应两人从约定走向未来的舞台。"
   },
   {
     "id": "song-082",
     "folder": "スタァライト(movie ver.)",
     "title": "スタァライト(movie ver.)",
-    "romaji": "スタァライト(movie ver.)",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Sutāraito (movie ver.)",
+    "aliases": [
+      "Starlight (movie ver.)"
+    ],
+    "type": "劇場版バージョン曲",
+    "origin": "总集篇剧场版「ロンド・ロンド・ロンド」剧中歌CD（2020）",
     "singers": [
       "小山百代",
       "三森すずこ"
     ],
-    "description": "待补"
+    "description": "《スタァライト》的剧场版版本，以重编曲回望两位舞台少女的再生产。"
   },
   {
     "id": "song-083",
     "folder": "ゼウスの仲裁",
     "title": "ゼウスの仲裁",
-    "romaji": "ゼウスの仲裁",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Zeusu no Chūsai",
+    "aliases": [
+      "宙斯的仲裁"
+    ],
+    "type": "スタリラ劇中歌",
+    "origin": "《ラ・レヴュー・エターナル》（2019）／Starry Diamond双子座Revue",
     "singers": [
       "相羽あいな",
       "遠野ひかる",
       "倉知玲鳳"
     ],
-    "description": "待补"
+    "description": "克洛迪娜、栞与文演绎双子座神话，争执与仲裁在轻快节奏中交锋。"
   },
   {
     "id": "song-084",
     "folder": "ハッピーin our room",
     "title": "ハッピーin our room",
-    "romaji": "ハッピーin our room",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Happī in our room",
+    "aliases": [
+      "Happy in our room"
+    ],
+    "type": "EP収録曲",
+    "origin": "九九组 prequel EP《Acte Zero》（2025）",
     "singers": [
       "小山百代",
       "岩田陽葵"
     ],
-    "description": "待补"
+    "description": "华恋与真昼的明快二重唱，把同住日常与互相打气写成温暖房间。"
   },
   {
     "id": "song-085",
     "folder": "ハローミューズ",
     "title": "ハローミューズ",
-    "romaji": "ハローミューズ",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Harō Myūzu",
+    "aliases": [
+      "Hello Muse"
+    ],
+    "type": "EP収録曲",
+    "origin": "九九组 prequel EP《Acte Zero》（2025）",
     "singers": [
       "佐藤日向",
       "小泉萌香"
     ],
-    "description": "待补"
+    "description": "纯那与大场奈奈演唱的舞台序曲，向缪斯与创作冲动发出轻盈问候。"
   },
   {
     "id": "song-086",
     "folder": "ペン_力_刀",
     "title": "ペン_力_刀",
-    "romaji": "ペン_力_刀",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Pen: Chikara: Katana",
+    "aliases": [
+      "Pen: Power: Sword",
+      "笔：力：刀"
+    ],
+    "type": "劇場版劇中歌",
+    "origin": "剧场版「少女☆歌劇 レヴュースタァライト」剧中歌Vol.2（2021）",
     "singers": [
       "佐藤日向",
       "小泉萌香"
     ],
-    "description": "待补"
+    "description": "纯那与奈奈以笔、力量和刀为意象，唱出创作与战斗彼此相连的决意。"
   },
   {
     "id": "song-087",
     "folder": "ポジションゼロへ！",
     "title": "ポジションゼロへ！",
-    "romaji": "ポジションゼロへ！",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Pojishon Zero e!",
+    "aliases": [
+      "向 Position Zero 前进！"
+    ],
+    "type": "舞台関連曲",
+    "origin": "スタァライト舞台／ライブ相关曲目",
     "singers": [
       "小山百代",
       "富田麻帆",
@@ -1314,30 +1345,34 @@
       "生田輝",
       "伊藤彩沙"
     ],
-    "description": "待补"
+    "description": "九九组成员共同奔向 Position Zero 的群像曲，强调同台竞争与并肩前进。"
   },
   {
     "id": "song-088",
     "folder": "わがままハイウェイ",
     "title": "わがままハイウェイ",
-    "romaji": "わがままハイウェイ",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Wagamama Haiwei",
+    "aliases": [
+      "Selfish Highway"
+    ],
+    "type": "劇場版関連曲",
+    "origin": "剧场版「少女☆歌劇 レヴュースタァライト」相关曲目",
     "singers": [
       "生田輝",
       "伊藤彩沙"
     ],
-    "description": "待补"
+    "description": "双叶与香子的轻快二重唱，把任性、速度与幼驯染的默契写成公路般的舞台。"
   },
   {
     "id": "song-089",
     "folder": "闇を照らすもの",
     "title": "闇を照らすもの",
-    "romaji": "闇を照らすもの",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Yami o Terasu Mono",
+    "aliases": [
+      "照亮黑暗之物"
+    ],
+    "type": "スタリラ劇中歌",
+    "origin": "Revue Album《アルカナ・アルカディア》（2022）",
     "singers": [
       "潘めぐみ",
       "竹達彩奈",
@@ -1345,16 +1380,18 @@
       "佐々木未来",
       "富田美憂"
     ],
-    "description": "待补"
+    "description": "多校舞台少女共同面对黑暗的群像曲，在低沉氛围中保留向光而行的力量。"
   },
   {
     "id": "song-090",
     "folder": "永遠ハ死シテ生キル",
     "title": "永遠ハ死シテ生キル",
-    "romaji": "永遠ハ死シテ生キル",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Eien wa Shishite Ikiru",
+    "aliases": [
+      "永远死去而生"
+    ],
+    "type": "スタリラ劇中歌",
+    "origin": "Revue Album《アルカナ・アルカディア》（2022）",
     "singers": [
       "野本ほたる",
       "竹内夢",
@@ -1362,311 +1399,360 @@
       "三森すずこ",
       "相羽あいな"
     ],
-    "description": "待补"
+    "description": "跨校组合演唱的史诗曲，以死亡与重生的悖论书写舞台少女的再生产。"
   },
   {
     "id": "song-091",
     "folder": "花咲か唄",
     "title": "花咲か唄",
-    "romaji": "花咲か唄",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Hanasaka Uta",
+    "aliases": [
+      "花开之歌"
+    ],
+    "type": "TVアニメ挿入歌",
+    "origin": "TV动画第6话／剧中歌专辑Vol.1《ラ レヴュー ド マチネ》（2018）",
     "singers": [
       "生田輝",
       "伊藤彩沙"
     ],
-    "description": "待补"
+    "description": "双叶与香子的二重唱，在花与故乡意象中唱出幼驯染之间的牵绊。"
   },
   {
     "id": "song-092",
     "folder": "逆境のオリオン",
     "title": "逆境のオリオン",
-    "romaji": "逆境のオリオン",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Gyakkyō no Orion",
+    "aliases": [
+      "逆境的猎户座"
+    ],
+    "type": "スタリラ劇中歌",
+    "origin": "《ラ・レヴュー・エターナル》（2019）／3rd Starry Diamond猎户座Revue",
     "singers": [
       "小山百代",
       "三森すずこ",
       "野本ほたる"
     ],
-    "description": "待补"
+    "description": "华恋、光与晶围绕猎户座神话展开对决，逆境中的星光成为舞台胜负。"
   },
   {
     "id": "song-093",
     "folder": "誇りと驕り",
     "title": "誇りと驕り",
-    "romaji": "誇りと驕り",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Hokori to Ogori",
+    "aliases": [
+      "Pride and Arrogance",
+      "骄傲与自尊"
+    ],
+    "type": "TVアニメ挿入歌",
+    "origin": "TV动画第3话／剧中歌专辑Vol.1《ラ レヴュー ド マチネ》（2018）",
     "singers": [
       "小山百代",
       "富田麻帆"
     ],
-    "description": "待补"
+    "description": "华恋与真矢的首场正面Revue，骄傲与尊严在激烈对唱中碰撞。"
   },
   {
     "id": "song-094",
     "folder": "誇りと驕り(movie ver.)",
     "title": "誇りと驕り(movie ver.)",
-    "romaji": "誇りと驕り(movie ver.)",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Hokori to Ogori (movie ver.)",
+    "aliases": [
+      "Pride and Arrogance (movie ver.)"
+    ],
+    "type": "劇場版バージョン曲",
+    "origin": "《再生讃美曲》剧场版剧中歌CD（2020）",
     "singers": [
       "小山百代",
       "富田麻帆"
     ],
-    "description": "待补"
+    "description": "《誇りと驕り》的剧场版版本，保留真矢与华恋对峙时的锋利张力。"
   },
   {
     "id": "song-095",
     "folder": "御してぎょしゃ座",
     "title": "御してぎょしゃ座",
-    "romaji": "御してぎょしゃ座",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Oshite Gyosha-za",
+    "aliases": [
+      "御驾御夫座"
+    ],
+    "type": "スタリラ劇中歌",
+    "origin": "《ラ・レヴュー・エターナル》（2019）／Starry Diamond御夫座Revue",
     "singers": [
       "佐藤日向",
       "竹内夢",
       "佐伯伊織",
       "富田美憂"
     ],
-    "description": "待补"
+    "description": "纯那、芽衣芳、ゆゆ子与拉拉菲的御夫座Revue，智慧、落语与英雄想象交错。"
   },
   {
     "id": "song-096",
     "folder": "罪がないのならばそれが罪だ",
     "title": "罪がないのならばそれが罪だ",
-    "romaji": "罪がないのならばそれが罪だ",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Tsumi ga Nai no Naraba Sore ga Tsumi da",
+    "aliases": [
+      "若无罪那便是罪"
+    ],
+    "type": "スタリラ劇中歌",
+    "origin": "Revue Album《アルカナ・アルカディア》（2022）",
     "singers": [
       "和氣あず未",
       "倉知玲鳳",
       "岩田陽葵",
       "小泉萌香"
     ],
-    "description": "待补"
+    "description": "四位舞台少女在审判般的舞台上追问罪与信念，旋律庄严而带有戏剧张力。"
   },
   {
     "id": "song-097",
     "folder": "十五時ミステリ ～週末探偵劇より～",
     "title": "十五時ミステリ ～週末探偵劇より～",
-    "romaji": "十五時ミステリ ～週末探偵劇より～",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Jūgoji Mystery ~Shūmatsu Tanteigeki yori~",
+    "aliases": [
+      "十五时谜案"
+    ],
+    "type": "角色／企划曲",
+    "origin": "舞台少女系列角色歌与特别企划收录曲",
     "singers": [
       "佐藤日向",
       "小泉萌香",
       "伊藤彩沙"
     ],
-    "description": "待补"
+    "description": "纯那、真昼与香子组成的侦探剧风格小组曲，轻快节奏中展开周末谜案。"
   },
   {
     "id": "song-098",
     "folder": "宵・花咲か唄",
     "title": "宵・花咲か唄",
-    "romaji": "宵・花咲か唄",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Yoi・Hanasaka Uta",
+    "aliases": [
+      "夜・花咲か唄"
+    ],
+    "type": "劇場版関連曲",
+    "origin": "《再生讃美曲》相关剧中歌收录（2020）",
     "singers": [
       "生田輝",
       "伊藤彩沙"
     ],
-    "description": "待补"
+    "description": "《花咲か唄》的夜色变奏，双叶与香子在柔和旋律中唱出更成熟的牵绊。"
   },
   {
     "id": "song-099",
     "folder": "情熱の目覚めるとき",
     "title": "情熱の目覚めるとき",
-    "romaji": "情熱の目覚めるとき",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Jōnetsu no Mezameru Toki",
+    "aliases": [
+      "热情觉醒之时",
+      "The Awakening of a Passion"
+    ],
+    "type": "限定シングル収録曲",
+    "origin": "限定单曲《プリンシパル -Fancy You-》（2017）",
     "singers": [
       "佐藤日向",
       "岩田陽葵",
       "小泉萌香"
     ],
-    "description": "待补"
+    "description": "纯那、真昼与奈奈的组合曲，描写沉睡热情被舞台重新唤醒的瞬间。"
   },
   {
     "id": "song-100",
     "folder": "信じる者に門は開かれる",
     "title": "信じる者に門は開かれる",
-    "romaji": "信じる者に門は開かれる",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Shinjiru Mono ni Mon wa Hirakareru",
+    "aliases": [
+      "门为信者而开"
+    ],
+    "type": "スタリラ劇中歌",
+    "origin": "Revue Album《アルカナ・アルカディア》（2022）",
     "singers": [
       "佐藤日向",
       "伊藤彩沙",
       "紡木吏佐",
       "佐伯伊織"
     ],
-    "description": "待补"
+    "description": "纯那、香子、塁与ゆゆ子合唱的启程曲，相信同伴便能打开通往舞台的门。"
   },
   {
     "id": "song-101",
     "folder": "世界を灰にするまで",
     "title": "世界を灰にするまで",
-    "romaji": "世界を灰にするまで",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Sekai o Hai ni Suru Made",
+    "aliases": [
+      "直到世界化为灰烬",
+      "Until the World Is Turned to Ash"
+    ],
+    "type": "TVアニメ挿入歌",
+    "origin": "TV动画第1话／剧中歌专辑Vol.1《ラ レヴュー ド マチネ》（2018）",
     "singers": [
       "佐藤日向",
       "三森すずこ",
       "小山百代"
     ],
-    "description": "待补"
+    "description": "纯那、光与华恋的首场Revue曲，歌唱把世界烧成灰烬也要追逐舞台的决心。"
   },
   {
     "id": "song-102",
     "folder": "世界を灰にするまで(movie ver.)",
     "title": "世界を灰にするまで(movie ver.)",
-    "romaji": "世界を灰にするまで(movie ver.)",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Sekai o Hai ni Suru Made (movie ver.)",
+    "aliases": [
+      "Until the World Is Turned to Ash (movie ver.)"
+    ],
+    "type": "劇場版バージョン曲",
+    "origin": "剧场版相关剧中歌收录（2021）",
     "singers": [
       "佐藤日向",
       "三森すずこ",
       "小山百代"
     ],
-    "description": "待补"
+    "description": "《世界を灰にするまで》的剧场版版本，保留三人对舞台与命运的炽烈宣言。"
   },
   {
     "id": "song-103",
     "folder": "星々の絆",
     "title": "星々の絆",
-    "romaji": "星々の絆",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Hoshi-boshi no Kizuna",
+    "aliases": [
+      "星之羁绊",
+      "The Bonds of the Stars"
+    ],
+    "type": "TVアニメ挿入歌",
+    "origin": "TV动画第9话／剧中歌专辑Vol.1《ラ レヴュー ド マチネ》（2018）",
     "singers": [
       "小泉萌香",
       "小山百代"
     ],
-    "description": "待补"
+    "description": "奈奈与华恋的第九话Revue曲，把再演记忆与珍贵羁绊编织成星光。"
   },
   {
     "id": "song-104",
     "folder": "星々の絆(movie ver.)",
     "title": "星々の絆(movie ver.)",
-    "romaji": "星々の絆(movie ver.)",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Hoshi-boshi no Kizuna (movie ver.)",
+    "aliases": [
+      "The Bonds of the Stars (movie ver.)"
+    ],
+    "type": "劇場版バージョン曲",
+    "origin": "《再生讃美曲》剧场版剧中歌CD（2020）",
     "singers": [
       "小泉萌香",
       "小山百代"
     ],
-    "description": "待补"
+    "description": "《星々の絆》的剧场版版本，以更凝练的编曲回望奈奈与华恋的星之纽带。"
   },
   {
     "id": "song-105",
     "folder": "星の少女、月に少女",
     "title": "星の少女、月に少女",
-    "romaji": "星の少女、月に少女",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Hoshi no Shōjo, Tsuki ni Shōjo",
+    "aliases": [
+      "星之少女，月之少女"
+    ],
+    "type": "スタリラ劇中歌",
+    "origin": "Revue Album《アルカナ・アルカディア》（2022）",
     "singers": [
       "工藤晴香",
       "富田麻帆",
       "潘めぐみ",
       "小山百代"
     ],
-    "description": "待补"
+    "description": "四位舞台少女在星与月的寓言中交错歌唱，展开关于选择与相遇的幻想舞台。"
   },
   {
     "id": "song-106",
     "folder": "星摘みの歌",
     "title": "星摘みの歌",
-    "romaji": "星摘みの歌",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Hoshi Tsumi no Uta",
+    "aliases": [
+      "摘星之歌"
+    ],
+    "type": "TVアニメ挿入歌",
+    "origin": "TV动画第9话／剧中歌专辑Vol.1《ラ レヴュー ド マチネ》（2018）",
     "singers": [
       "富田麻帆",
       "相羽あいな"
     ],
-    "description": "待补"
+    "description": "真矢与克洛迪娜的二重唱，优雅地唱出摘取星辰、争夺顶点的骄傲。"
   },
   {
     "id": "song-107",
     "folder": "昔語りふたりぼっち",
     "title": "昔語りふたりぼっち",
-    "romaji": "昔語りふたりぼっち",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Mukashigatari Futari Bocchi",
+    "aliases": [
+      "两人的往昔故事",
+      "Our Old Tale"
+    ],
+    "type": "EP収録曲",
+    "origin": "九九组 prequel EP《Acte Zero》（2025）",
     "singers": [
       "生田輝",
       "伊藤彩沙"
     ],
-    "description": "待补"
+    "description": "双叶与香子的怀旧二重唱，把两人从年少到舞台的共同往事唱得温柔而俏皮。"
   },
   {
     "id": "song-108",
     "folder": "追って追われてシリウス",
     "title": "追って追われてシリウス",
-    "romaji": "追って追われてシリウス",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Otte Owarete Sirius",
+    "aliases": [
+      "追逐与被追逐的天狼星"
+    ],
+    "type": "スタリラ劇中歌",
+    "origin": "《ラ・レヴュー・エターナル》（2019）／Starry Diamond天狼星Revue",
     "singers": [
       "生田輝",
       "伊藤彩沙",
       "楠木ともり",
       "紡木吏佐"
     ],
-    "description": "待补"
+    "description": "双叶、香子与凛明馆组合围绕天狼星神话展开追逐，节奏明快而富有戏剧性。"
   },
   {
     "id": "song-109",
     "folder": "白鳥のセレナーデ ～銀河夜語より～",
     "title": "白鳥のセレナーデ ～銀河夜語より～",
-    "romaji": "白鳥のセレナーデ ～銀河夜語より～",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Hakuchō no Serenade ~Ginga Yogo yori~",
+    "aliases": [
+      "天鹅小夜曲"
+    ],
+    "type": "舞台／企画曲",
+    "origin": "舞台少女系列特别企划曲目",
     "singers": [
       "三森すずこ",
       "富田麻帆"
     ],
-    "description": "待补"
+    "description": "真矢与克洛迪娜演唱的抒情小夜曲，以银河夜语般的意象铺陈优雅而遥远的舞台。"
   },
   {
     "id": "song-110",
     "folder": "美しき人 或いは其れは",
     "title": "美しき人 或いは其れは",
-    "romaji": "美しき人 或いは其れは",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Utsukushiki Hito Aruiwa Sore wa",
+    "aliases": [
+      "美丽的人，或者那就是",
+      "A Beautiful Person, Or Perhaps It Is"
+    ],
+    "type": "劇場版関連曲",
+    "origin": "剧场版「少女☆歌劇 レヴュースタァライト」相关收录曲（2021）",
     "singers": [
       "富田麻帆",
       "相羽あいな"
     ],
-    "description": "待补"
+    "description": "以美与自我凝视为主题的二重唱，在华丽编曲中呈现舞台少女的理想身影。"
   },
   {
     "id": "song-111",
     "folder": "舞台少女心得 幕間",
     "title": "舞台少女心得 幕間",
-    "romaji": "舞台少女心得 幕間",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Butai Shōjo Kokoroe Makuma",
+    "aliases": [
+      "舞台少女心得・幕间",
+      "The Knowledge of a Stage Girl: Interlude"
+    ],
+    "type": "TVアニメ劇中歌",
+    "origin": "TV动画第11话／剧场版相关收录（2018）",
     "singers": [
       "小山百代",
       "佐藤日向",
@@ -1677,86 +1763,98 @@
       "相羽あいな",
       "富田麻帆"
     ],
-    "description": "待补"
+    "description": "九九组全员合唱的抒情改编，承接原曲《舞台少女心得》并唱出再演终章的觉悟。"
   },
   {
     "id": "song-112",
     "folder": "復讐の剣 (ひかり×華恋ver.)",
     "title": "復讐の剣 (ひかり×華恋ver.)",
-    "romaji": "復讐の剣 (ひかり×華恋ver.)",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Fukushū no Tsurugi (Hikari×Karen ver.)",
+    "aliases": [
+      "复仇之剑（光×华恋）"
+    ],
+    "type": "ゲーム劇中歌",
+    "origin": "游戏《舞台奏像劇 遙かなるエルドラド》剧中歌专辑（2024）",
     "singers": [
       "三森すずこ",
       "小山百代"
     ],
-    "description": "待补"
+    "description": "光与华恋版本的复仇之剑，把两人的命运对峙与相互牵引凝成二重唱。"
   },
   {
     "id": "song-113",
     "folder": "復讐の剣 (まひる×ななver.)",
     "title": "復讐の剣 (まひる×ななver.)",
-    "romaji": "復讐の剣 (まひる×ななver.)",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Fukushū no Tsurugi (Mahiru×Nana ver.)",
+    "aliases": [
+      "复仇之剑（真昼×奈奈）"
+    ],
+    "type": "ゲーム劇中歌",
+    "origin": "游戏《舞台奏像劇 遙かなるエルドラド》剧中歌专辑（2024）",
     "singers": [
       "岩田陽葵",
       "小泉萌香"
     ],
-    "description": "待补"
+    "description": "真昼与奈奈版本以温柔却坚定的声线，呈现两位舞台少女面对过去的复仇与和解。"
   },
   {
     "id": "song-114",
     "folder": "復讐の剣 (香子×真矢ver.)",
     "title": "復讐の剣 (香子×真矢ver.)",
-    "romaji": "復讐の剣 (香子×真矢ver.)",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Fukushū no Tsurugi (Kaoruko×Maya ver.)",
+    "aliases": [
+      "复仇之剑（香子×真矢）"
+    ],
+    "type": "ゲーム劇中歌",
+    "origin": "游戏《舞台奏像劇 遙かなるエルドラド》剧中歌专辑（2024）",
     "singers": [
       "伊藤彩沙",
       "富田麻帆"
     ],
-    "description": "待补"
+    "description": "香子与真矢版本将优雅与锋芒并置，唱出两位强者之间不肯退让的对决。"
   },
   {
     "id": "song-115",
     "folder": "復讐の剣 (純那×華恋ver.)",
     "title": "復讐の剣 (純那×華恋ver.)",
-    "romaji": "復讐の剣 (純那×華恋ver.)",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Fukushū no Tsurugi (Junna×Karen ver.)",
+    "aliases": [
+      "复仇之剑（纯那×华恋）"
+    ],
+    "type": "ゲーム劇中歌",
+    "origin": "游戏《舞台奏像劇 遙かなるエルドラド》剧中歌专辑（2024）",
     "singers": [
       "佐藤日向",
       "小山百代"
     ],
-    "description": "待补"
+    "description": "纯那与华恋版本把理想与冲动并置，在复仇主题中保留同伴之间的信赖。"
   },
   {
     "id": "song-116",
     "folder": "復讐の剣 (双葉×クロディーヌver.)",
     "title": "復讐の剣 (双葉×クロディーヌver.)",
-    "romaji": "復讐の剣 (双葉×クロディーヌver.)",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Fukushū no Tsurugi (Futaba×Claudine ver.)",
+    "aliases": [
+      "复仇之剑（双叶×克洛迪娜）"
+    ],
+    "type": "ゲーム劇中歌",
+    "origin": "游戏《舞台奏像劇 遙かなるエルドラド》剧中歌专辑（2024）",
     "singers": [
       "生田輝",
       "相羽あいな"
     ],
-    "description": "待补"
+    "description": "双叶与克洛迪娜版本以利落节奏展现两位剑士的锋利性格与舞台默契。"
   },
   {
     "id": "song-117",
     "folder": "別れの戦記",
     "title": "別れの戦記",
-    "romaji": "別れの戦記",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Wakare no Senki",
+    "aliases": [
+      "离别战记"
+    ],
+    "type": "舞台テーマソング",
+    "origin": "2024《The MUSICAL 别れの戦記》主题曲／会场CD",
     "singers": [
       "富田麻帆",
       "伊藤彩沙",
@@ -1768,32 +1866,36 @@
       "相羽あいな",
       "佐藤日向"
     ],
-    "description": "待补"
+    "description": "全员群像式的离别与出征之歌，在壮阔编曲中记录舞台少女告别旧日的瞬间。"
   },
   {
     "id": "song-118",
     "folder": "命尽きても尽き果てず",
     "title": "命尽きても尽き果てず",
-    "romaji": "命尽きても尽き果てず",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Inochi Tsukitemo Tsukihatezu",
+    "aliases": [
+      "生命终尽亦不止息"
+    ],
+    "type": "スタリラ劇中歌",
+    "origin": "Revue Album《アルカナ・アルカディア》（2022）",
     "singers": [
       "小山百代",
       "生田輝",
       "尾崎由香",
       "遠野ひかる"
     ],
-    "description": "待补"
+    "description": "跨校组合演唱的史诗曲，描写即使生命燃尽也要让舞台意志延续。"
   },
   {
     "id": "song-119",
     "folder": "裏切りのクレタ",
     "title": "裏切りのクレタ",
-    "romaji": "裏切りのクレタ",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Uragiri no Crete",
+    "aliases": [
+      "背叛的克里特"
+    ],
+    "type": "スタリラ劇中歌",
+    "origin": "《ラ・レヴュー・エターナル》（2019）／Starry Diamond金牛座Revue",
     "singers": [
       "富田麻帆",
       "小泉萌香",
@@ -1802,34 +1904,39 @@
       "佐々木未来",
       "加藤英美里"
     ],
-    "description": "待补"
+    "description": "真矢、奈奈与跨校成员演绎克里特神话，背叛与王权在压迫感十足的Revue中交锋。"
   },
   {
     "id": "song-120",
     "folder": "恋の魔球",
     "title": "恋の魔球",
-    "romaji": "恋の魔球",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Koi no Makyū",
+    "aliases": [
+      "恋爱的魔球",
+      "Love’s Wicked Pitch"
+    ],
+    "type": "TVアニメ挿入歌",
+    "origin": "TV动画第5话／剧中歌专辑Vol.1《ラ レヴュー ド マチネ》（2018）",
     "singers": [
       "岩田陽葵",
       "小山百代"
     ],
-    "description": "待补"
+    "description": "真昼与华恋的棒球主题二重唱，把嫉妒、勇气与恋心化作一记直球。"
   },
   {
     "id": "song-121",
     "folder": "恋の魔球(7回裏)",
     "title": "恋の魔球(7回裏)",
-    "romaji": "恋の魔球(7回裏)",
-    "aliases": [],
-    "type": "未分类",
-    "origin": "待补",
+    "romaji": "Koi no Makyū (Nanakai Ura)",
+    "aliases": [
+      "恋爱的魔球（第七局下半）"
+    ],
+    "type": "劇場版バージョン曲",
+    "origin": "《再生讃美曲》剧场版剧中歌CD（2020）",
     "singers": [
       "岩田陽葵",
       "小山百代"
     ],
-    "description": "待补"
+    "description": "《恋の魔球》的特别版本，在更浓的戏剧编排中延续真昼与华恋的热烈对决。"
   }
 ]
