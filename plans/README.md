@@ -20,8 +20,8 @@
 | plan-011 | 补齐曲库歌曲元数据 | 已提交 | plan-011(data): 补齐曲库歌曲元数据 |
 | plan-012 | 按 Standard Readme 重写项目说明与部署建议 | 已提交 | plan-012(docs): 统一 README 与部署说明 |
 | plan-013 | 拆分双语 README、统一项目名并确定代码许可证 | 已提交 | plan-013(docs): 拆分双语 README 并统一许可证 |
-| plan-014 | 建立不含本地素材的 GitHub 代码镜像 | 实现待评 | — |
-| plan-015 | 从本地完整工作区直接部署 Cloudflare Pages | 待实现 | — |
+| plan-014 | 建立不含本地素材的 GitHub 代码镜像 | 已提交 | plan-014(repo): 准备公开代码镜像 |
+| plan-015 | 从本地完整工作区直接部署 Cloudflare Pages | 实现待评 | — |
 
 状态取值：`未开始 / 起草中 / 待评阅 / 评阅中 / 返修中 / 待实现 / 实现中 / 实现待评 / 已提交 / 已取消`。
 
@@ -55,4 +55,6 @@
 - 2026-10-27：plan-013 计划评阅 PASS；开始拆分中文/英文 README，统一根包名称并补充代码许可证。
 - 2026-10-27：plan-013 implementation review PASS；双语 README、MIT LICENSE、名称统一、测试与构建均通过，已提交文档更新。
 - 2026-10-27：plan-014、plan-015 计划评阅 PASS；开始准备 GitHub 代码镜像清理与 Cloudflare Direct Upload 两条独立交付链。
+- 2026-10-27：plan-014 公开镜像完成；GitHub 仓库创建并推送，远程 clone 审计无 music 历史对象。
+- 2026-10-27：plan-015 Direct Upload 完成；Cloudflare Pages 默认地址可访问，线上资源 smoke test 通过。
 

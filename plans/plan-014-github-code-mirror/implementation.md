@@ -19,3 +19,9 @@
 - `npm run build`：通过。
 - `npm run assets -- --verify`：通过，121 首歌曲 × 8 片段、封面、歌词和源文件指纹一致。
 - `git status` 确认没有修改 `music/` 内容。
+
+## 公开镜像结果
+
+- 隔离副本已使用 `git-filter-repo` 清理 `music/` 全部历史；当前索引无 `music/`，全历史对象扫描无 `music/`、mp3 或 lrc。
+- 公开仓库已创建并推送：`https://github.com/RoiexLee/shojo-kageki-music-trivia`。
+- 从远程重新 clone 审计通过：当前树 `music=0`、历史 `music=0`、音频对象 `0`；主题素材未在本计划中擅自删除。
